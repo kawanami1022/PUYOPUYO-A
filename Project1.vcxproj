@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="input\controller.cpp" />
     <ClCompile Include="input\keyInput.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="main.cpp" />
@@ -36,11 +35,11 @@
     <ClInclude Include="input\keyInput.h" />
     <ClInclude Include="details\Vector2.h" />
     <ClInclude Include="PyInputMode\IpLeft.h" />
+    <ClInclude Include="PyInputMode\IpTurnL.h" />
+    <ClInclude Include="PyInputMode\IpTurnR.h" />
     <ClInclude Include="PyInputMode\IpUp.h" />
     <ClInclude Include="PyInputMode\lpDown.h" />
-    <ClInclude Include="PyInputMode\lpRight.h" />
-    <ClInclude Include="PyInputMode\lpTurnL.h" />
-    <ClInclude Include="PyInputMode\LpTurnR.h" />
+    <ClInclude Include="PyInputMode\IpRight.h" />
     <ClInclude Include="PyUpMode\DROP.h" />
     <ClInclude Include="PyUpMode\ERASE.h" />
     <ClInclude Include="PyUpMode\FALL.h" />

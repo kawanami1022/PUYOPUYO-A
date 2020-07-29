@@ -8,6 +8,7 @@
 #include "PyUpMode/ERASE.h"
 #include "PyUpMode/FALL.h"
 #include "PyUpMode/GENERATES.h"
+#include "PyInputMode/IpLeft.h"
 
 int Stage::stageCount_ = 0;
 
@@ -52,7 +53,7 @@ void Stage::draw()
 	DrawFormatString(0, 0, 0xff0000, "stage");
 	
 
-	for (size_t id = 0; id < gridCountX * gridCountY; id++)
+	for (int id = 0; id < gridCountX * gridCountY; id++)
 	{
 		DrawBox(offset_.x + (id % gridCountX) * blockSize,
 			(offset_.y + (id / gridCountX)) * blockSize,

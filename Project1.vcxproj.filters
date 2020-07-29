@@ -42,9 +42,6 @@
     <ClCompile Include="Stage.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="input\controller.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Puyo.h">
@@ -104,13 +101,13 @@
     <ClInclude Include="PyInputMode\lpDown.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PyInputMode\lpRight.h">
+    <ClInclude Include="PyInputMode\IpRight.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PyInputMode\lpTurnL.h">
+    <ClInclude Include="PyInputMode\IpTurnL.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PyInputMode\LpTurnR.h">
+    <ClInclude Include="PyInputMode\IpTurnR.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

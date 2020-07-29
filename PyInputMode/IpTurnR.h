@@ -2,10 +2,10 @@
 #include "../Vector2.h"
 #include "../stage.h"
 #include "../Puyo.h"
-struct IpDown
+
+struct IpTurnR
 {
 	void operator()(Stage* stage)
 	{
-
 	}
 };

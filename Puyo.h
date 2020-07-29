@@ -5,7 +5,6 @@
 #include "input/InputID.h"
 #include "Vector2.h"
 #include "Stage.h"
-#include "playUnit.h"
 enum class PUYO_TYPE
 {
 	NON,			// 
@@ -47,8 +46,6 @@ public:
 	void drop();
 	bool DeletePuyo();
 	void SetMatchGrid(Vector2&& Pos);
-	friend class Stage;
-	friend class playUnit;
 
 private:
 	Vector2 pos_;
@@ -65,6 +62,13 @@ private:
 	std::map< PUYO_STATE, std::function<void()>> drawID;
 	bool Init(Vector2& fieldPos, Vector2& GridPos);
 	int speed;
+	friend class Stage;
 
+	friend struct IpLeft;
+	friend struct IpUp;
+	friend struct IpDown;
+	friend struct IpRight;
+	friend struct IpTurnL;
+	friend struct IpTurnR;
 };
 

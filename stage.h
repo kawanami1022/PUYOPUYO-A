@@ -54,6 +54,7 @@ private:
 	std::vector<Vector2>	ErPyDelPos_;
 	std::vector<Vector2>	FallPyPos_;		// óéâ∫ópÇ’ÇÊç¿ïW
 	std::map<STG_MODE, std::function<void(Stage* stage)>> StgModeFunc;
+	std::map<STG_MODE, std::function<void(Stage* stage)>> StgInputFunc;
 	std::function<void(Vector2&&,Vector2&&)> chPuyo_;
 	int frame;
 	InputID inputId_;
@@ -65,6 +66,13 @@ private:
 	bool Init(Vector2&);
 	int _checkGridCount;
 	int GrHandle;
+
+	friend struct IpLeft;
+	friend struct IpUp;
+	friend struct IpDown;
+	friend struct IpRight;
+	friend struct IpTurnL;
+	friend struct IpTurnR;
 protected:
 
 public:
@@ -92,5 +100,7 @@ public:
 	friend struct FALL;
 	friend struct ERASE;
 	friend struct DROP;
+
+
 };
 
