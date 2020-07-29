@@ -1,0 +1,134 @@
+#include <random>
+#include <iostream>
+#include <DxLib.h>
+#include "Stage.h"
+#include "Puyo.h"
+#include "input/controller.h"
+#include "_debug/_DebugConOut.h"
+
+
+Puyo::Puyo(Vector2& fieldPos, Vector2 GridPos)
+{
+    
+    Init(fieldPos, GridPos);
+}
+
+Puyo::~Puyo()
+{
+}
+
+void Puyo::update()
+{
+
+}
+
+void Puyo::draw()
+{
+    DrawCircle(pos_.x, pos_.y,
+        radious, color[static_cast<int>(puyoType)], 1, 1);
+}
+
+void Puyo::setMovePer(DirPermit dirPer)
+{
+    dirPer_ = dirPer;
+}
+
+void Puyo::setBlockSize(int size)
+{
+    blockSize = size;
+}
+
+void Puyo::drop()
+{
+    if (dirPer_.perBit.d == 0)
+    pos_.y+= speed;
+}
+
+bool Puyo::DeletePuyo()
+{
+    // remove_if‚ðŽg‚Á‚Ä‚¯‚·
+    return false;
+}
+
+void Puyo::SetMatchGrid(Vector2&& Pos)
+{
+    pos_ = Pos + offsetPos_-blockSize/2;
+}
+
+void Puyo::Move(InputID id)
+{
+    switch (id)
+    {
+    case InputID::Up:
+        //if (dirPer_.perBit.u == 0)pos_.y--;
+        break;
+    case InputID::Down:
+        break;
+    case InputID::Left:
+        if (dirPer_.perBit.l == 0)pos_.x -= blockSize;
+        break;
+    case InputID::Right:
+        if (dirPer_.perBit.r == 0)pos_.x += blockSize;
+        break;
+    case InputID::Btn1:
+
+        break;
+    case InputID::Btn2:
+        break;
+    case InputID::Max:
+        break;
+    default:
+        break;
+    }
+
+}
+
+void Puyo::Down(InputID id)
+{
+    if (id == InputID::Down)
+    {
+        pos_.y += 6;
+    }
+}
+
+
+Vector2 Puyo::GetGridPos()
+{
+    return Vector2((pos_.x - offsetPos_.x - blockSize / 2) / blockSize, (pos_.y - offsetPos_.y - blockSize / 2) / blockSize);
+}
+
+PUYO_TYPE Puyo::GetPuyoType()
+{
+    return puyoType;
+}
+
+bool Puyo::GetAlive()
+{
+    return alive_;
+}
+
+void Puyo::SetAlive(bool aliveFlag)
+{
+    alive_ = aliveFlag;
+}
+
+bool Puyo::Init(Vector2& stagePos, Vector2& GridPos)
+{
+    std::random_device seed_gen;
+    std::mt19937 random_(seed_gen());
+    std::uniform_int_distribution<int> dist(static_cast<int>(PUYO_TYPE::R), static_cast<int>(PUYO_TYPE::P));
+
+    blockSize = 30;
+    pos_ = stagePos;
+    offsetPos_ = pos_;
+    pos_.x += blockSize / 2 + blockSize*GridPos.x;
+    pos_.y += blockSize / 2 + blockSize*GridPos.y;
+    radious = 12;
+    speed = 2;
+    puyoState = PUYO_STATE::MOVE;
+    puyoType = static_cast<PUYO_TYPE>(dist(random_));
+    for (int i = 0; i < 5; i++)
+        std::cout << dist(random_) << std::endl;
+    alive_ = true;
+    return true;
+}
