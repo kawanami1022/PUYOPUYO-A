@@ -225,7 +225,29 @@ bool Stage::puyoMove(InputID inputID)
 			puyo_[1]->pos_.x += puyo_[1]->blockSize;
 		}
 		break;
-	case InputID::Btn1:
+	case InputID::TURN_L:
+		// ‰E
+		if (puyo_[0]->GetGridPos().x + 1 == puyo_[1]->GetGridPos().x)
+		{
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x ,puyo_[0]->pos_.y - blockSize };
+		}
+		// ‰º
+		else if (puyo_[0]->GetGridPos().y + 1 == puyo_[1]->GetGridPos().y)
+		{
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x + blockSize ,puyo_[0]->pos_.y };
+		}
+		// ¶
+		else if (puyo_[0]->GetGridPos().x - 1 == puyo_[1]->GetGridPos().x)
+		{
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x  ,puyo_[0]->pos_.y + blockSize };
+		}
+		// ã
+		else if (puyo_[0]->GetGridPos().y - 1 == puyo_[1]->GetGridPos().y)
+		{
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x - blockSize ,puyo_[0]->pos_.y };
+		}
+		break;
+	case InputID::TURN_R:
 		// ‰E
 		if (puyo_[0]->GetGridPos().x + 1 == puyo_[1]->GetGridPos().x)
 		{
@@ -234,20 +256,18 @@ bool Stage::puyoMove(InputID inputID)
 		// ‰º
 		else if (puyo_[0]->GetGridPos().y + 1 == puyo_[1]->GetGridPos().y)
 		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x + blockSize ,puyo_[0]->pos_.y};
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x - blockSize ,puyo_[0]->pos_.y };
 		}
 		// ¶
 		else if (puyo_[0]->GetGridPos().x - 1 == puyo_[1]->GetGridPos().x)
 		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x - blockSize ,puyo_[0]->pos_.y };
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x  ,puyo_[0]->pos_.y - blockSize };
 		}
 		// ã
 		else if (puyo_[0]->GetGridPos().y - 1 == puyo_[1]->GetGridPos().y)
 		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x,puyo_[0]->pos_.y - blockSize };
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x + blockSize ,puyo_[0]->pos_.y };
 		}
-		break;
-	case InputID::Btn2:
 		break;
 	case InputID::Max:
 		break;

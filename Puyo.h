@@ -5,6 +5,7 @@
 #include "input/InputID.h"
 #include "Vector2.h"
 #include "Stage.h"
+#include "playUnit.h"
 enum class PUYO_TYPE
 {
 	NON,			// 
@@ -47,6 +48,7 @@ public:
 	bool DeletePuyo();
 	void SetMatchGrid(Vector2&& Pos);
 	friend class Stage;
+	friend class playUnit;
 
 private:
 	Vector2 pos_;

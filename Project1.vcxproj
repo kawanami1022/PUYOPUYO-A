@@ -35,6 +35,12 @@
     <ClInclude Include="input\InputID.h" />
     <ClInclude Include="input\keyInput.h" />
     <ClInclude Include="details\Vector2.h" />
+    <ClInclude Include="PyInputMode\IpLeft.h" />
+    <ClInclude Include="PyInputMode\IpUp.h" />
+    <ClInclude Include="PyInputMode\lpDown.h" />
+    <ClInclude Include="PyInputMode\lpRight.h" />
+    <ClInclude Include="PyInputMode\lpTurnL.h" />
+    <ClInclude Include="PyInputMode\LpTurnR.h" />
     <ClInclude Include="PyUpMode\DROP.h" />
     <ClInclude Include="PyUpMode\ERASE.h" />
     <ClInclude Include="PyUpMode\FALL.h" />

@@ -8,8 +8,8 @@ enum class InputID
 	Down,
 	Left,
 	Right,
-	Btn1,
-	Btn2,
+	TURN_L,
+	TURN_R,
 	Max
 };
 
