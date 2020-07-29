@@ -55,34 +55,6 @@ void Puyo::SetMatchGrid(Vector2&& Pos)
     pos_ = Pos + offsetPos_-blockSize/2;
 }
 
-void Puyo::Move(InputID id)
-{
-    switch (id)
-    {
-    case InputID::Up:
-        //if (dirPer_.perBit.u == 0)pos_.y--;
-        break;
-    case InputID::Down:
-        break;
-    case InputID::Left:
-        if (dirPer_.perBit.l == 0)pos_.x -= blockSize;
-        break;
-    case InputID::Right:
-        if (dirPer_.perBit.r == 0)pos_.x += blockSize;
-        break;
-    case InputID::Btn1:
-
-        break;
-    case InputID::Btn2:
-        break;
-    case InputID::Max:
-        break;
-    default:
-        break;
-    }
-
-}
-
 void Puyo::Down(InputID id)
 {
     if (id == InputID::Down)

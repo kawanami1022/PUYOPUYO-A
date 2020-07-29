@@ -54,13 +54,13 @@ void Stage::draw()
 
 	for (size_t id = 0; id < gridCountX * gridCountY; id++)
 	{
-		DrawBox(offset_.x + (id % gridCountX) * blockSizeX,
-			(offset_.y + (id / gridCountX)) * blockSizeY,
-			offset_.x + ((id % gridCountX) * blockSizeX + blockSizeX),
-			(offset_.y + (id / gridCountX)) * blockSizeY + blockSizeY,
+		DrawBox(offset_.x + (id % gridCountX) * blockSize,
+			(offset_.y + (id / gridCountX)) * blockSize,
+			offset_.x + ((id % gridCountX) * blockSize + blockSize),
+			(offset_.y + (id / gridCountX)) * blockSize + blockSize,
 			0x888888, false);
-		DrawFormatString(offset_.x + (id % gridCountX) * blockSizeX,
-			(offset_.y + (id / gridCountX)) * blockSizeY, 0xffffff, "%d", stgData_[id % gridCountX][id / gridCountX]);
+		DrawFormatString(offset_.x + (id % gridCountX) * blockSize,
+			(offset_.y + (id / gridCountX)) * blockSize, 0xffffff, "%d", stgData_[id % gridCountX][id / gridCountX]);
 	}
 	for (auto&& PUYO : puyo_)
 	{
@@ -74,9 +74,9 @@ void Stage::makePuyo()
 	if (dirPer.perBit.d == 1)
 	{
 		puyo_.emplace(puyo_.begin(), std::make_unique<Puyo>(this->_pos, Vector2(3, 1)));
-		puyo_[0]->setBlockSize(blockSizeX);
+		puyo_[0]->setBlockSize(blockSize);
 		puyo_.emplace(puyo_.begin()+1, std::make_unique<Puyo>(this->_pos, Vector2(4, 1)));
-		puyo_[1]->setBlockSize(blockSizeX);
+		puyo_[1]->setBlockSize(blockSize);
 	}
 }
 
@@ -112,13 +112,6 @@ void Stage::SetStageData()
 		tmp = PUYO->GetGridPos();
 		stgData_[tmp.x][tmp.y] = PUYO->GetPuyoType();
 	}
-}
-
-void Stage::setErasePuyo()
-{
-	//eraseDataBase_=stgDataBase_;	// 消去用データ
-	//if(eraseData_[GridPos.x][GridPos.y])
-
 }
 
 void Stage::SetPuyoData()
@@ -211,9 +204,6 @@ bool Stage::ErasePuyo(Vector2&& GridPos)
 
 bool Stage::puyoMove(InputID inputID)
 {
-
-	auto RotatePuyo = [&]() {};
-
 	switch (inputID)
 	{
 	case InputID::Up:
@@ -236,7 +226,26 @@ bool Stage::puyoMove(InputID inputID)
 		}
 		break;
 	case InputID::Btn1:
-
+		// 右
+		if (puyo_[0]->GetGridPos().x + 1 == puyo_[1]->GetGridPos().x)
+		{
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x,puyo_[0]->pos_.y + blockSize };
+		}
+		// 下
+		else if (puyo_[0]->GetGridPos().y + 1 == puyo_[1]->GetGridPos().y)
+		{
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x + blockSize ,puyo_[0]->pos_.y};
+		}
+		// 左
+		else if (puyo_[0]->GetGridPos().x - 1 == puyo_[1]->GetGridPos().x)
+		{
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x - blockSize ,puyo_[0]->pos_.y };
+		}
+		// 上
+		else if (puyo_[0]->GetGridPos().y - 1 == puyo_[1]->GetGridPos().y)
+		{
+			puyo_[1]->pos_ = { puyo_[0]->pos_.x,puyo_[0]->pos_.y - blockSize };
+		}
 		break;
 	case InputID::Btn2:
 		break;
@@ -256,13 +265,6 @@ Vector2 Stage::getChipPos()
 
 bool Stage::DeletePuyo()
 {
-	//TRACE("%d\n",ErPyDelPos_.size())
-	//for (auto&& ErPyDelPos : ErPyDelPos_)
-	//{
-	//	TRACE("(%d,%d)\n", ErPyDelPos.x,ErPyDelPos.y)
-	//}
-	//TRACE("------------------------------\n")
-
 
 	auto RemovePuyo = std::remove_if(puyo_.begin(), puyo_.end(), [&](auto&& puyo) 
 	{
@@ -313,7 +315,7 @@ bool Stage::Init(Vector2& Pos)
 	_checkGridCount = 0;
 
 	stgMode = STG_MODE::GENERATES;
-	GrHandle = MakeScreen(gridCountX * blockSizeX, gridCountY * blockSizeY, false);
+	GrHandle = MakeScreen(gridCountX * blockSize, gridCountY * blockSize, false);
 	// frendで関数オブジェクトを呼び出す
 	StgModeFunc.try_emplace(STG_MODE::DROP, DROP());
 	StgModeFunc.try_emplace(STG_MODE::ERASE, ERASE());
@@ -323,7 +325,7 @@ bool Stage::Init(Vector2& Pos)
 }
 
 
-Stage::Stage(Vector2 && offset, Vector2&& size) :blockSizeX(30), blockSizeY(30),
+Stage::Stage(Vector2 && offset, Vector2&& size) :blockSize(30),
 							gridCountX(8), gridCountY(15)
 {
 	offset_ = offset;

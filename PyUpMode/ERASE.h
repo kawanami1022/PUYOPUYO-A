@@ -23,8 +23,6 @@ struct ERASE
 			}
 		}
 
-		stage->SetPuyoData();
-
 		stage->ErPyDelPos_.clear();
 		stage->SetStageData();
 	}

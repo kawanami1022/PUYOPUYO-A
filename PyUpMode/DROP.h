@@ -26,7 +26,9 @@ struct DROP
 			if (stage->stgMode == STG_MODE::ERASE)
 			{
 				tmp = stage->puyo_[0]->GetGridPos();
-				stage->puyo_[0]->SetMatchGrid(std::move((tmp + 1) * stage->blockSizeX));
+				stage->puyo_[0]->SetMatchGrid(std::move((tmp + 1) * stage->blockSize));
+				tmp = stage->puyo_[1]->GetGridPos();
+				stage->puyo_[1]->SetMatchGrid(std::move((tmp + 1) * stage->blockSize));
 			}
 		}
 	}

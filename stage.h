@@ -40,11 +40,9 @@ union DirPermit
 class Stage
 {
 private:
-	const int blockSizeX;
-	const int blockSizeY;
+	const int blockSize;
 	const int gridCountX;
 	const int gridCountY;
-	//std::unique_ptr<PlayUnit> plUnit;
 	STG_MODE stgMode;
 	std::vector<std::shared_ptr<Puyo>> puyo_;
 	std::shared_ptr<controller> controller_;
@@ -78,7 +76,6 @@ public:
 	void makePuyo();
 	void updtPuyoData();
 	void SetStageData();
-	void setErasePuyo();
 	void SetPuyoData();
 	bool setPermition(Vector2 tmp);
 	bool chErasePuyo(Vector2&& GridPos, Vector2&& chGridPos);

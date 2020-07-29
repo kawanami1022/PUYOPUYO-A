@@ -36,7 +36,6 @@ public:
 	~Puyo();
 	void update();
 	void draw();
-	void Move(InputID id);
 	void Down(InputID id);
 	Vector2 GetGridPos();
 	PUYO_TYPE GetPuyoType();
