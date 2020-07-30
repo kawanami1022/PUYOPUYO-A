@@ -9,7 +9,11 @@
 #include "PyUpMode/FALL.h"
 #include "PyUpMode/GENERATES.h"
 #include "PyInputMode/IpLeft.h"
-
+#include "PyInputMode/IpRight.h"
+#include "PyInputMode/IpTurnL.h"
+#include "PyInputMode/IpTurnR.h"
+#include "PyInputMode/IpUp.h"
+#include "PyInputMode/lpDown.h"
 int Stage::stageCount_ = 0;
 
 void Stage::input()
@@ -63,6 +67,9 @@ void Stage::draw()
 		DrawFormatString(offset_.x + (id % gridCountX) * blockSize,
 			(offset_.y + (id / gridCountX)) * blockSize, 0xffffff, "%d", stgData_[id % gridCountX][id / gridCountX]);
 	}
+	DrawLine(offset_.x, offset_.y+blockSize*gridCountY,
+		offset_.x+gridCountX*blockSize, offset_.y + blockSize * gridCountY,
+		0xffffff, false);
 	for (auto&& PUYO : puyo_)
 	{
 		PUYO->draw();
@@ -205,76 +212,77 @@ bool Stage::ErasePuyo(Vector2&& GridPos)
 
 bool Stage::puyoMove(InputID inputID)
 {
-	switch (inputID)
-	{
-	case InputID::Up:
-		//if (dirPer_.perBit.u == 0)pos_.y--;
-		break;
-	case InputID::Down:
-		break;
-	case InputID::Left:
-		if (puyo_[0]->dirPer_.perBit.l == 0)
-		{
-			puyo_[0]->pos_.x -= puyo_[0]->blockSize;
-			puyo_[1]->pos_.x -= puyo_[1]->blockSize;
-		}
-		break;
-	case InputID::Right:
-		if (puyo_[1]->dirPer_.perBit.r == 0)
-		{
-			puyo_[0]->pos_.x += puyo_[0]->blockSize;
-			puyo_[1]->pos_.x += puyo_[1]->blockSize;
-		}
-		break;
-	case InputID::TURN_L:
-		// 右
-		if (puyo_[0]->GetGridPos().x + 1 == puyo_[1]->GetGridPos().x)
-		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x ,puyo_[0]->pos_.y - blockSize };
-		}
-		// 下
-		else if (puyo_[0]->GetGridPos().y + 1 == puyo_[1]->GetGridPos().y)
-		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x + blockSize ,puyo_[0]->pos_.y };
-		}
-		// 左
-		else if (puyo_[0]->GetGridPos().x - 1 == puyo_[1]->GetGridPos().x)
-		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x  ,puyo_[0]->pos_.y + blockSize };
-		}
-		// 上
-		else if (puyo_[0]->GetGridPos().y - 1 == puyo_[1]->GetGridPos().y)
-		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x - blockSize ,puyo_[0]->pos_.y };
-		}
-		break;
-	case InputID::TURN_R:
-		// 右
-		if (puyo_[0]->GetGridPos().x + 1 == puyo_[1]->GetGridPos().x)
-		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x,puyo_[0]->pos_.y + blockSize };
-		}
-		// 下
-		else if (puyo_[0]->GetGridPos().y + 1 == puyo_[1]->GetGridPos().y)
-		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x - blockSize ,puyo_[0]->pos_.y };
-		}
-		// 左
-		else if (puyo_[0]->GetGridPos().x - 1 == puyo_[1]->GetGridPos().x)
-		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x  ,puyo_[0]->pos_.y - blockSize };
-		}
-		// 上
-		else if (puyo_[0]->GetGridPos().y - 1 == puyo_[1]->GetGridPos().y)
-		{
-			puyo_[1]->pos_ = { puyo_[0]->pos_.x + blockSize ,puyo_[0]->pos_.y };
-		}
-		break;
-	case InputID::Max:
-		break;
-	default:
-		break;
-	}
+	StgInputFunc[inputID](&(*this));
+	//switch (inputID)
+	//{
+	//case InputID::Up:
+	//	//if (dirPer_.perBit.u == 0)pos_.y--;
+	//	break;
+	//case InputID::Down:
+	//	break;
+	//case InputID::Left:
+	//	if (puyo_[0]->dirPer_.perBit.l == 0)
+	//	{
+	//		puyo_[0]->pos_.x -= puyo_[0]->blockSize;
+	//		puyo_[1]->pos_.x -= puyo_[1]->blockSize;
+	//	}
+	//	break;
+	//case InputID::Right:
+	//	if (puyo_[1]->dirPer_.perBit.r == 0)
+	//	{
+	//		puyo_[0]->pos_.x += puyo_[0]->blockSize;
+	//		puyo_[1]->pos_.x += puyo_[1]->blockSize;
+	//	}
+	//	break;
+	//case InputID::TURN_L:
+	//	// 右
+	//	if (puyo_[0]->GetGridPos().x + 1 == puyo_[1]->GetGridPos().x)
+	//	{
+	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x ,puyo_[0]->pos_.y - blockSize };
+	//	}
+	//	// 下
+	//	else if (puyo_[0]->GetGridPos().y + 1 == puyo_[1]->GetGridPos().y)
+	//	{
+	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x + blockSize ,puyo_[0]->pos_.y };
+	//	}
+	//	// 左
+	//	else if (puyo_[0]->GetGridPos().x - 1 == puyo_[1]->GetGridPos().x)
+	//	{
+	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x  ,puyo_[0]->pos_.y + blockSize };
+	//	}
+	//	// 上
+	//	else if (puyo_[0]->GetGridPos().y - 1 == puyo_[1]->GetGridPos().y)
+	//	{
+	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x - blockSize ,puyo_[0]->pos_.y };
+	//	}
+	//	break;
+	//case InputID::TURN_R:
+	//	// 右
+	//	if (puyo_[0]->GetGridPos().x + 1 == puyo_[1]->GetGridPos().x)
+	//	{
+	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x,puyo_[0]->pos_.y + blockSize };
+	//	}
+	//	// 下
+	//	else if (puyo_[0]->GetGridPos().y + 1 == puyo_[1]->GetGridPos().y)
+	//	{
+	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x - blockSize ,puyo_[0]->pos_.y };
+	//	}
+	//	// 左
+	//	else if (puyo_[0]->GetGridPos().x - 1 == puyo_[1]->GetGridPos().x)
+	//	{
+	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x  ,puyo_[0]->pos_.y - blockSize };
+	//	}
+	//	// 上
+	//	else if (puyo_[0]->GetGridPos().y - 1 == puyo_[1]->GetGridPos().y)
+	//	{
+	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x + blockSize ,puyo_[0]->pos_.y };
+	//	}
+	//	break;
+	//case InputID::Max:
+	//	break;
+	//default:
+	//	break;
+	//}
 	return true;
 }
 
@@ -342,6 +350,12 @@ bool Stage::Init(Vector2& Pos)
 	StgModeFunc.try_emplace(STG_MODE::ERASE, ERASE());
 	StgModeFunc.try_emplace(STG_MODE::FALL, FALL());
 	StgModeFunc.try_emplace(STG_MODE::GENERATES, GENERATES());
+
+	StgInputFunc.try_emplace(InputID::Left, IpLeft());
+	StgInputFunc.try_emplace(InputID::Right, IpRight());
+	StgInputFunc.try_emplace(InputID::TURN_L, IpTurnL());
+	StgInputFunc.try_emplace(InputID::TURN_R,IpTurnR());
+	StgInputFunc.try_emplace(InputID::Down,IpDown());
 	return true;
 }
 

@@ -44,6 +44,7 @@ private:
 	const int gridCountX;
 	const int gridCountY;
 	STG_MODE stgMode;
+	InputID IpMode;
 	std::vector<std::shared_ptr<Puyo>> puyo_;
 	std::shared_ptr<controller> controller_;
 	DirPermit dirPer;				// 0:‹–‰Â 1:–³Œø
@@ -54,7 +55,7 @@ private:
 	std::vector<Vector2>	ErPyDelPos_;
 	std::vector<Vector2>	FallPyPos_;		// —‰º—p‚Õ‚æÀ•W
 	std::map<STG_MODE, std::function<void(Stage* stage)>> StgModeFunc;
-	std::map<STG_MODE, std::function<void(Stage* stage)>> StgInputFunc;
+	std::map<InputID, std::function<void(Stage* stage)>> StgInputFunc;
 	std::function<void(Vector2&&,Vector2&&)> chPuyo_;
 	int frame;
 	InputID inputId_;
