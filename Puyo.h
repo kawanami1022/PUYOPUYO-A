@@ -41,7 +41,6 @@ public:
 	PUYO_TYPE GetPuyoType();
 	bool GetAlive();
 	void SetAlive(bool aliveFlag);
-	void setMovePer(DirPermit);
 	void setBlockSize(int size);
 	void drop();
 	bool DeletePuyo();
@@ -70,5 +69,10 @@ private:
 	friend struct IpRight;
 	friend struct IpTurnL;
 	friend struct IpTurnR;
+
+	friend struct GENERATES;
+	friend struct FALL;
+	friend struct ERASE;
+	friend struct DROP;
 };
 

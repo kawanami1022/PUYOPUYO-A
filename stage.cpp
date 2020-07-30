@@ -28,18 +28,16 @@ void Stage::input()
 			{
 				for (int id = 0; id < 2; id++)
 				{
-					setPermition(puyo_[id]->GetGridPos());
-					puyo_[id]->setMovePer(dirPer);
+					setPermition(puyo_[id]->GetGridPos(), id);
 				}
-				puyoMove(data.first);
+				StgInputFunc[data.first](&(*this));
 			}
 			if (data.second[static_cast<int>(Trg::Now)] == 1 &&
 				data.second[static_cast<int>(Trg::Old)] == 1)
 			{
 				for (int id = 0; id < 2; id++)
 				{
-					setPermition(puyo_[id]->GetGridPos());
-					puyo_[id]->setMovePer(dirPer);
+					setPermition(puyo_[id]->GetGridPos(), id);
 					puyo_[id]->Down(data.first);
 				}
 			}
@@ -79,13 +77,10 @@ void Stage::draw()
 
 void Stage::makePuyo()
 {
-	if (dirPer.perBit.d == 1)
-	{
-		puyo_.emplace(puyo_.begin(), std::make_unique<Puyo>(this->_pos, Vector2(3, 1)));
-		puyo_[0]->setBlockSize(blockSize);
-		puyo_.emplace(puyo_.begin()+1, std::make_unique<Puyo>(this->_pos, Vector2(4, 1)));
-		puyo_[1]->setBlockSize(blockSize);
-	}
+	puyo_.emplace(puyo_.begin(), std::make_unique<Puyo>(this->_pos, Vector2(3, 1)));
+	puyo_[0]->setBlockSize(blockSize);
+	puyo_.emplace(puyo_.begin()+1, std::make_unique<Puyo>(this->_pos, Vector2(4, 1)));
+	puyo_[1]->setBlockSize(blockSize);
 }
 
 void Stage::updtPuyoData()
@@ -132,12 +127,12 @@ void Stage::SetPuyoData()
 }
 
 
-bool Stage::setPermition(Vector2 tmp)
+bool Stage::setPermition(Vector2 tmp, int ID)
 {
-	dirPer.perBit.u = stgData_[tmp.x][tmp.y - 1] == PUYO_TYPE::NON ? 0 : 1;
-	dirPer.perBit.r = stgData_[tmp.x + 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
-	dirPer.perBit.d = stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON ? 0 : 1;
-	dirPer.perBit.l = stgData_[tmp.x - 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
+	puyo_[ID]->dirPer_.perBit.u = stgData_[tmp.x][tmp.y - 1] == PUYO_TYPE::NON ? 0 : 1;
+	puyo_[ID]->dirPer_.perBit.r = stgData_[tmp.x + 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
+	puyo_[ID]->dirPer_.perBit.d = stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON ? 0 : 1;
+	puyo_[ID]->dirPer_.perBit.l = stgData_[tmp.x - 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
 	return true;
 }
 
@@ -210,83 +205,6 @@ bool Stage::ErasePuyo(Vector2&& GridPos)
 	return true;
 }
 
-bool Stage::puyoMove(InputID inputID)
-{
-	StgInputFunc[inputID](&(*this));
-	//switch (inputID)
-	//{
-	//case InputID::Up:
-	//	//if (dirPer_.perBit.u == 0)pos_.y--;
-	//	break;
-	//case InputID::Down:
-	//	break;
-	//case InputID::Left:
-	//	if (puyo_[0]->dirPer_.perBit.l == 0)
-	//	{
-	//		puyo_[0]->pos_.x -= puyo_[0]->blockSize;
-	//		puyo_[1]->pos_.x -= puyo_[1]->blockSize;
-	//	}
-	//	break;
-	//case InputID::Right:
-	//	if (puyo_[1]->dirPer_.perBit.r == 0)
-	//	{
-	//		puyo_[0]->pos_.x += puyo_[0]->blockSize;
-	//		puyo_[1]->pos_.x += puyo_[1]->blockSize;
-	//	}
-	//	break;
-	//case InputID::TURN_L:
-	//	// ‰E
-	//	if (puyo_[0]->GetGridPos().x + 1 == puyo_[1]->GetGridPos().x)
-	//	{
-	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x ,puyo_[0]->pos_.y - blockSize };
-	//	}
-	//	// ‰º
-	//	else if (puyo_[0]->GetGridPos().y + 1 == puyo_[1]->GetGridPos().y)
-	//	{
-	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x + blockSize ,puyo_[0]->pos_.y };
-	//	}
-	//	// ¶
-	//	else if (puyo_[0]->GetGridPos().x - 1 == puyo_[1]->GetGridPos().x)
-	//	{
-	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x  ,puyo_[0]->pos_.y + blockSize };
-	//	}
-	//	// ã
-	//	else if (puyo_[0]->GetGridPos().y - 1 == puyo_[1]->GetGridPos().y)
-	//	{
-	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x - blockSize ,puyo_[0]->pos_.y };
-	//	}
-	//	break;
-	//case InputID::TURN_R:
-	//	// ‰E
-	//	if (puyo_[0]->GetGridPos().x + 1 == puyo_[1]->GetGridPos().x)
-	//	{
-	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x,puyo_[0]->pos_.y + blockSize };
-	//	}
-	//	// ‰º
-	//	else if (puyo_[0]->GetGridPos().y + 1 == puyo_[1]->GetGridPos().y)
-	//	{
-	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x - blockSize ,puyo_[0]->pos_.y };
-	//	}
-	//	// ¶
-	//	else if (puyo_[0]->GetGridPos().x - 1 == puyo_[1]->GetGridPos().x)
-	//	{
-	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x  ,puyo_[0]->pos_.y - blockSize };
-	//	}
-	//	// ã
-	//	else if (puyo_[0]->GetGridPos().y - 1 == puyo_[1]->GetGridPos().y)
-	//	{
-	//		puyo_[1]->pos_ = { puyo_[0]->pos_.x + blockSize ,puyo_[0]->pos_.y };
-	//	}
-	//	break;
-	//case InputID::Max:
-	//	break;
-	//default:
-	//	break;
-	//}
-	return true;
-}
-
-
 Vector2 Stage::getChipPos()
 {
 	return _pos;
@@ -302,8 +220,6 @@ bool Stage::DeletePuyo()
 
 	puyo_.erase(RemovePuyo,puyo_.end());
 	ErPyDelPos_.clear();
-
-	SetPuyoData();
 	return false;
 }
 
@@ -315,7 +231,6 @@ std::vector<PUYO_TYPE*> Stage::GetErasePos()
 
 bool Stage::Init(Vector2& Pos)
 {
-	dirPer = { 1,1,1,1 };
 	frame = 0;
 	this->_pos = Pos;
 
@@ -351,11 +266,12 @@ bool Stage::Init(Vector2& Pos)
 	StgModeFunc.try_emplace(STG_MODE::FALL, FALL());
 	StgModeFunc.try_emplace(STG_MODE::GENERATES, GENERATES());
 
+	StgInputFunc.try_emplace(InputID::Up, IpUp());
 	StgInputFunc.try_emplace(InputID::Left, IpLeft());
+	StgInputFunc.try_emplace(InputID::Down,IpDown());
 	StgInputFunc.try_emplace(InputID::Right, IpRight());
 	StgInputFunc.try_emplace(InputID::TURN_L, IpTurnL());
 	StgInputFunc.try_emplace(InputID::TURN_R,IpTurnR());
-	StgInputFunc.try_emplace(InputID::Down,IpDown());
 	return true;
 }
 

@@ -47,7 +47,6 @@ private:
 	InputID IpMode;
 	std::vector<std::shared_ptr<Puyo>> puyo_;
 	std::shared_ptr<controller> controller_;
-	DirPermit dirPer;				// 0:許可 1:無効
 	std::vector<PUYO_TYPE> stgDataBase_;	// 
 	std::vector<PUYO_TYPE*> stgData_;		// _dataBaseの一次元配列の先頭アドレスを確保
 	std::vector<PUYO_TYPE> eraseDataBase_;	// 消去用データ
@@ -74,6 +73,11 @@ private:
 	friend struct IpRight;
 	friend struct IpTurnL;
 	friend struct IpTurnR;
+
+	friend struct GENERATES;
+	friend struct FALL;
+	friend struct ERASE;
+	friend struct DROP;
 protected:
 
 public:
@@ -86,10 +90,9 @@ public:
 	void updtPuyoData();
 	void SetStageData();
 	void SetPuyoData();
-	bool setPermition(Vector2 tmp);
+	bool setPermition(Vector2 tmp, int ID);
 	bool chErasePuyo(Vector2&& GridPos, Vector2&& chGridPos);
 	bool ErasePuyo(Vector2&& GridPos);
-	bool puyoMove(InputID inputID);
 	Vector2 getChipPos();
 	bool DeletePuyo();
 	std::vector<PUYO_TYPE*> GetErasePos();
@@ -97,10 +100,6 @@ public:
 	~Stage();
 	friend class PlayUnit;
 
-	friend struct GENERATES;
-	friend struct FALL;
-	friend struct ERASE;
-	friend struct DROP;
 
 
 };

@@ -10,20 +10,17 @@ struct DROP
 
 		if (stage->stgMode == STG_MODE::DROP)
 		{
-			stage->stgMode = STG_MODE::ERASE;
-			std::for_each(stage->puyo_.crbegin(), stage->puyo_.crend(),
-				[&](auto&& puyo) {
-				tmp = puyo->GetGridPos();
-				stage->setPermition(tmp);
-				puyo->setMovePer(stage->dirPer);
-				puyo->drop();
-				//下方向に移動できないか確認する
-				if (stage->dirPer.perBit.d == 0)
-				{
-					stage->stgMode = STG_MODE::DROP;
-				}		// いなかったら削除状態に変更
-			});
-			if (stage->stgMode == STG_MODE::ERASE)
+			stage->stgMode = STG_MODE::FALL;
+			stage->setPermition(stage->puyo_[0]->GetGridPos(), 0);
+			stage->setPermition(stage->puyo_[1]->GetGridPos(), 1);
+			stage->puyo_[0]->drop();
+			stage->puyo_[1]->drop();
+			//下方向に移動できないか確認する
+			if (stage->puyo_[0]->dirPer_.perBit.d == 0&&stage->puyo_[1]->dirPer_.perBit.d==0)
+			{
+				stage->stgMode = STG_MODE::DROP;
+			}		// いなかったら削除状態に変更
+			if (stage->stgMode == STG_MODE::FALL)
 			{
 				tmp = stage->puyo_[0]->GetGridPos();
 				stage->puyo_[0]->SetMatchGrid(std::move((tmp + 1) * stage->blockSize));

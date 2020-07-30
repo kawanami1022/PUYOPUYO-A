@@ -28,11 +28,6 @@ void Puyo::draw()
         radious, color[static_cast<int>(puyoType)], 1, 1);
 }
 
-void Puyo::setMovePer(DirPermit dirPer)
-{
-    dirPer_ = dirPer;
-}
-
 void Puyo::setBlockSize(int size)
 {
     blockSize = size;
@@ -89,7 +84,7 @@ bool Puyo::Init(Vector2& stagePos, Vector2& GridPos)
     std::random_device seed_gen;
     std::mt19937 random_(seed_gen());
     std::uniform_int_distribution<int> dist(static_cast<int>(PUYO_TYPE::R), static_cast<int>(PUYO_TYPE::P));
-
+    dirPer_.perBit = { 0,0,0,0 };
     blockSize = 30;
     pos_ = stagePos;
     offsetPos_ = pos_;
@@ -99,8 +94,6 @@ bool Puyo::Init(Vector2& stagePos, Vector2& GridPos)
     speed = 2;
     puyoState = PUYO_STATE::MOVE;
     puyoType = static_cast<PUYO_TYPE>(dist(random_));
-    for (int i = 0; i < 5; i++)
-        std::cout << dist(random_) << std::endl;
     alive_ = true;
     return true;
 }

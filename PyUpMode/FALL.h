@@ -1,40 +1,29 @@
 #pragma once
+#include <algorithm>
+#include <vector>
 #include "../stage.h"
 #include "../Puyo.h"
-
+#include "../_debug/_DebugConOut.h"
 struct FALL
 {
 	void operator()(Stage* stage) {
 		Vector2 tmp;
-		
-		stage->stgMode = STG_MODE::GENERATES;
-		for (int i = stage->gridCountX * stage->gridCountY - 1; 0 < i; i--)
-		{
-			if (stage->stgData_[i % stage->gridCountX][i / stage->gridCountX] != PUYO_TYPE::NON && 
-				stage->stgData_[i % stage->gridCountX][i / stage->gridCountX] != PUYO_TYPE::WALL)
-			{
-				//setPermition(tmp);
-				//check enable to down
-				if (stage->stgData_[i % stage->gridCountX][i / stage->gridCountX + 1] == PUYO_TYPE::NON) {
-					stage->stgMode = STG_MODE::FALL;
-					stage->FallPyPos_.emplace_back(Vector2(i % stage->gridCountX, i / stage->gridCountX));
+		stage->stgMode = STG_MODE::ERASE;
+		int id=stage->puyo_.size() - 1;
 
-				}		// ‚¢‚È‚©‚Á‚½‚ç¶¬ó‘Ô‚É•ÏX
-			}
-		};
-		for (auto&& Puyo : stage->puyo_)
-		{
-			for (auto&& FallPuyo : stage->FallPyPos_)
+		std::for_each(stage->puyo_.crbegin(), stage->puyo_.crend(), 
+			[&](auto&& puyo){
+			tmp = puyo->GetGridPos();
+			stage->setPermition(tmp, id);
+			TRACE("%d\n", static_cast<int>(stage->stgData_[tmp.x][tmp.y + 1]))
+			if (stage->stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON)
 			{
-				if (FallPuyo == Puyo->GetGridPos())
-				{
-					tmp = FallPuyo;
-					stage->setPermition(tmp);
-					Puyo->setMovePer(stage->dirPer);
-					Puyo->drop();
-				}
+				stage->stgMode = STG_MODE::FALL;
+				puyo->drop();
 			}
-		}
+			id--;
+		});
+		TRACE("-----------------------\n")
 		stage->SetStageData();
 	}
 };
