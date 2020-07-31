@@ -45,7 +45,6 @@ public:
 	void drop();
 	bool DeletePuyo();
 	void SetMatchGrid(Vector2&& Pos);
-
 private:
 	Vector2 pos_;
 	Vector2 chipPos;
@@ -55,7 +54,7 @@ private:
 	Vector2 offsetPos_;
 	DirPermit dirPer_;
 	bool alive_;
-	int radious;
+	Vector2 radious;
 	int blockSize;
 	std::map< PUYO_STATE, std::function<void(PUYO_STATE)>> move;
 	std::map< PUYO_STATE, std::function<void()>> drawID;
@@ -72,6 +71,7 @@ private:
 
 	friend struct GENERATES;
 	friend struct FALL;
+	friend struct PUYON;
 	friend struct ERASE;
 	friend struct DROP;
 };

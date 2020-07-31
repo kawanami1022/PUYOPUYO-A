@@ -110,5 +110,8 @@
     <ClInclude Include="PyInputMode\IpTurnR.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="PyUpMode\PUYON.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

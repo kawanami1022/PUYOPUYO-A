@@ -24,8 +24,8 @@ void Puyo::update()
 
 void Puyo::draw()
 {
-    DrawCircle(pos_.x, pos_.y,
-        radious, color[static_cast<int>(puyoType)], 1, 1);
+    DrawOval(pos_.x, pos_.y,
+        radious.x,radious.y, color[static_cast<int>(puyoType)], 1, 1);
 }
 
 void Puyo::setBlockSize(int size)
@@ -85,12 +85,12 @@ bool Puyo::Init(Vector2& stagePos, Vector2& GridPos)
     std::mt19937 random_(seed_gen());
     std::uniform_int_distribution<int> dist(static_cast<int>(PUYO_TYPE::R), static_cast<int>(PUYO_TYPE::P));
     dirPer_.perBit = { 0,0,0,0 };
-    blockSize = 30;
+    radious = Vector2(15, 15);
+    blockSize = 32;
     pos_ = stagePos;
     offsetPos_ = pos_;
     pos_.x += blockSize / 2 + blockSize*GridPos.x;
     pos_.y += blockSize / 2 + blockSize*GridPos.y;
-    radious = 12;
     speed = 2;
     puyoState = PUYO_STATE::MOVE;
     puyoType = static_cast<PUYO_TYPE>(dist(random_));

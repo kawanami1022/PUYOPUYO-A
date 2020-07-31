@@ -8,7 +8,7 @@ struct FALL
 {
 	void operator()(Stage* stage) {
 		Vector2 tmp;
-		stage->stgMode = STG_MODE::ERASE;
+		stage->stgMode = STG_MODE::PUYON;
 		int id=stage->puyo_.size() - 1;
 
 		std::for_each(stage->puyo_.crbegin(), stage->puyo_.crend(), 

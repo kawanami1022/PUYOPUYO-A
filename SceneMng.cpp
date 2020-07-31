@@ -41,6 +41,7 @@ SceneMng::SceneMng()
 {
 	offset = {0,0};
 	size = { 400,600 };
+
 }
 
 SceneMng::~SceneMng()

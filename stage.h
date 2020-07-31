@@ -13,6 +13,7 @@
 enum class STG_MODE
 {
 	GENERATES,
+	PUYON,
 	DROP,
 	FALL,
 	ERASE,
@@ -44,7 +45,6 @@ private:
 	const int gridCountX;
 	const int gridCountY;
 	STG_MODE stgMode;
-	InputID IpMode;
 	std::vector<std::shared_ptr<Puyo>> puyo_;
 	std::shared_ptr<controller> controller_;
 	std::vector<PUYO_TYPE> stgDataBase_;	// 
@@ -52,7 +52,6 @@ private:
 	std::vector<PUYO_TYPE> eraseDataBase_;	// 消去用データ
 	std::vector<PUYO_TYPE*> eraseData_;		// 消去用データ
 	std::vector<Vector2>	ErPyDelPos_;
-	std::vector<Vector2>	FallPyPos_;		// 落下用ぷよ座標
 	std::map<STG_MODE, std::function<void(Stage* stage)>> StgModeFunc;
 	std::map<InputID, std::function<void(Stage* stage)>> StgInputFunc;
 	std::function<void(Vector2&&,Vector2&&)> chPuyo_;
@@ -65,7 +64,6 @@ private:
 	Vector2 size_;
 	bool Init(Vector2&);
 	int _checkGridCount;
-	int GrHandle;
 
 	friend struct IpLeft;
 	friend struct IpUp;
@@ -76,6 +74,7 @@ private:
 
 	friend struct GENERATES;
 	friend struct FALL;
+	friend struct PUYON;
 	friend struct ERASE;
 	friend struct DROP;
 protected:

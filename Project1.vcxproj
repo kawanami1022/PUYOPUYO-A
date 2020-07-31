@@ -44,6 +44,7 @@
     <ClInclude Include="PyUpMode\ERASE.h" />
     <ClInclude Include="PyUpMode\FALL.h" />
     <ClInclude Include="PyUpMode\GENERATES.h" />
+    <ClInclude Include="PyUpMode\PUYON.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="input\Pad.h" />
     <ClInclude Include="input\mouse.h" />

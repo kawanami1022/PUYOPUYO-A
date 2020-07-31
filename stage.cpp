@@ -6,6 +6,7 @@
 #include "_debug/_DebugConOut.h"
 #include "PyUpMode/DROP.h"
 #include "PyUpMode/ERASE.h"
+#include "PyUpMode/PUYON.h"
 #include "PyUpMode/FALL.h"
 #include "PyUpMode/GENERATES.h"
 #include "PyInputMode/IpLeft.h"
@@ -259,10 +260,10 @@ bool Stage::Init(Vector2& Pos)
 	_checkGridCount = 0;
 
 	stgMode = STG_MODE::GENERATES;
-	GrHandle = MakeScreen(gridCountX * blockSize, gridCountY * blockSize, false);
 	// frendで関数オブジェクトを呼び出す
 	StgModeFunc.try_emplace(STG_MODE::DROP, DROP());
 	StgModeFunc.try_emplace(STG_MODE::ERASE, ERASE());
+	StgModeFunc.try_emplace(STG_MODE::PUYON, PUYON());
 	StgModeFunc.try_emplace(STG_MODE::FALL, FALL());
 	StgModeFunc.try_emplace(STG_MODE::GENERATES, GENERATES());
 
@@ -276,7 +277,7 @@ bool Stage::Init(Vector2& Pos)
 }
 
 
-Stage::Stage(Vector2 && offset, Vector2&& size) :blockSize(30),
+Stage::Stage(Vector2 && offset, Vector2&& size) :blockSize(32),
 							gridCountX(8), gridCountY(15)
 {
 	offset_ = offset;
@@ -287,5 +288,4 @@ Stage::Stage(Vector2 && offset, Vector2&& size) :blockSize(30),
 
 Stage::~Stage()
 {
-	DeleteGraph(GrHandle);
 }
