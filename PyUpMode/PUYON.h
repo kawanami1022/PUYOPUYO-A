@@ -12,19 +12,33 @@ struct PUYON
 		frame++;
 		Vector2 offsetRadious(0, abs((frame) % 12 - 6));
 		Vector2 puyoMatchGrid[2];
-		puyoMatchGrid[0].y= stage->puyo_[0]->GetGridPos().y * stage->puyo_[0]->blockSize + stage->puyo_[0]->offsetPos_.y + stage->puyo_[0]->blockSize / 2,
-		puyoMatchGrid[1].y= stage->puyo_[1]->GetGridPos().y * stage->puyo_[1]->blockSize + stage->puyo_[1]->offsetPos_.y + stage->puyo_[1]->blockSize / 2,
-
-		stage->puyo_[0]->radious.y = stage->puyo_[0]->blockSize/2- offsetRadious.y;
-		stage->puyo_[1]->radious.y = stage->puyo_[1]->blockSize/2 - offsetRadious.y;
-		stage->puyo_[0]->pos_.y = puyoMatchGrid[0].y + offsetRadious.y;
-		stage->puyo_[1]->pos_.y = puyoMatchGrid[1].y + offsetRadious.y;
-		if (offsetRadious.y <=0)
+		for (int id = 0; id < 2; id++)
 		{
-			stage->puyo_[0]->radious.y = stage->puyo_[0]->blockSize/2;
-			stage->puyo_[1]->radious.y = stage->puyo_[1]->blockSize/2;
-			stage->stgMode = STG_MODE::ERASE;
+
+			puyoMatchGrid[id].y= stage->puyo_[id]->GetGridPos().y * stage->puyo_[id]->blockSize + stage->puyo_[id]->offsetPos_.y + stage->puyo_[id]->blockSize / 2,
+
+
+			stage->puyo_[id]->radious.y = stage->puyo_[id]->blockSize/2- offsetRadious.y;
+			stage->puyo_[id]->pos_.y = puyoMatchGrid[id].y + offsetRadious.y;
+
+			for (auto&& PUYO : stage->puyo_)
+			{
+				if (stage->puyo_[id]->GetGridPos().x == PUYO->GetGridPos().x)
+				{
+					PUYO->radious.y = PUYO->blockSize / 2 - offsetRadious.y;
+					PUYO->pos_.y = puyoMatchGrid[id].y + offsetRadious.y;
+				}
+			}
+
+
+			if (offsetRadious.y <=0)
+			{
+				stage->puyo_[id]->radious.y = stage->puyo_[id]->blockSize/2;
+				stage->stgMode = STG_MODE::ERASE;
+			}
 		}
+
+
 	}
 private:
 	int frame;
