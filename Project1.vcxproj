@@ -90,6 +90,9 @@
     <ClInclude Include="_debug\_DebugConOut.h" />
     <ClInclude Include="_debug\_DebugDispOut.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\PURPLE_Puyo.psd" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{054E2FFD-5262-405C-BED9-1947BC064AC0}</ProjectGuid>
