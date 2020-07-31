@@ -21,7 +21,7 @@ void Stage::input()
 	(*controller_)();
 	if(stgMode==STG_MODE::DROP)
 	{
-		for (auto data : controller_->GetCntData())
+		for (auto&& data : controller_->GetCntData())
 		{
 			if (data.second[static_cast<int>(Trg::Now)] == 0 &&
 				data.second[static_cast<int>(Trg::Old)] == 1)

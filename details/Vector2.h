@@ -129,7 +129,7 @@ bool Vector2Temple<T>::operator!=(const Vector2Temple& vec) const
 template <class T>
 bool Vector2Temple<T>::operator<=(const Vector2Temple& vec) const
 {
-	return ((this->x <= vec.x) && (this->y <= vec.y));;
+	return ((this->x <= vec.x) || (this->y <= vec.y));;
 }
 
 template <class T>

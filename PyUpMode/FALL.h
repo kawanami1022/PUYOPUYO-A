@@ -15,7 +15,6 @@ struct FALL
 			[&](auto&& puyo){
 			tmp = puyo->GetGridPos();
 			stage->setPermition(tmp, id);
-			TRACE("%d\n", static_cast<int>(stage->stgData_[tmp.x][tmp.y + 1]))
 			if (stage->stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON)
 			{
 				stage->stgMode = STG_MODE::FALL;
@@ -23,7 +22,6 @@ struct FALL
 			}
 			id--;
 		});
-		TRACE("-----------------------\n")
 		stage->SetStageData();
 	}
 };

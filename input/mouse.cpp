@@ -4,22 +4,13 @@
 void mouse::Update()
 {
 	GetMousePoint(&pos.x, &pos.y);
-	_mouseInputData[MOUSE_INPUT_LEFT] = GetMouseInput()& MOUSE_INPUT_LEFT;
-	_mouseInputData[MOUSE_INPUT_RIGHT] = GetMouseInput() & MOUSE_INPUT_RIGHT;
-	_mouseInputData[MOUSE_INPUT_MIDDLE] = GetMouseInput()& MOUSE_INPUT_MIDDLE;
-	for (auto _id:InputID())
+
+	int mouseInput = GetMouseInput();
+	for (auto id_:InputID())
 	{
-		_data[_id][static_cast<int>(Trg::Old)] = _data[_id][static_cast<int>(Trg::Now)];
-		_data[_id][static_cast<int>(Trg::Now)] = _mouseInputData[_mouseInputTbl[_id]];
+		_data[id_][static_cast<int>(Trg::Old)] = _data[id_][static_cast<int>(Trg::Now)];
+		_data[id_][static_cast<int>(Trg::Now)] = _mouseInputTbl[id_] & mouseInput;
 	}
-}
-
-mouse::mouse()
-{
-}
-
-mouse::~mouse()
-{
 }
 bool mouse::Setup(int no)
 {

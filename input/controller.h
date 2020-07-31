@@ -2,6 +2,8 @@
 #include <array>
 #include <map>
 #include "InputID.h"
+#define STCI static_cast<int>
+
 enum class Trg
 {
 	Now,
@@ -22,6 +24,7 @@ enum class ContType
 
 using TrgBool = std::array<bool, static_cast<size_t>(Trg::Max)>;
 using CntData = std::map<InputID, TrgBool>;
+
 
 struct controller
 {
