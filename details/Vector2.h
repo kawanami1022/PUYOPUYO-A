@@ -101,6 +101,15 @@ Vector2Temple<T>& Vector2Temple<T>::operator/=(T k)
 }
 
 template<class T>
+Vector2Temple<T>& Vector2Temple<T>::operator++()
+{
+	this->x++;
+	this->y ++;
+	// TODO: return ステートメントをここに挿入します
+	return (*this);
+}
+
+template<class T>
 Vector2Temple<T> Vector2Temple<T>::operator+() const
 {
 	// TODO: return ステートメントをここに挿入します

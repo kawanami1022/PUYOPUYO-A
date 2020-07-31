@@ -26,6 +26,11 @@ void Puyo::draw()
 {
     DrawOval(pos_.x, pos_.y,
         radious.x,radious.y, color[static_cast<int>(puyoType)], 1, 1);
+    DrawCircle(pos_.x, pos_.y,
+        2, 0xffffff, 1, 1);
+   DrawCircle(GetGridPos().x* blockSize + offsetPos_.x+blockSize/2,
+       GetGridPos().y * blockSize + offsetPos_.y + blockSize / 2,
+       3,0xffffff,1,1);
 }
 
 void Puyo::setBlockSize(int size)

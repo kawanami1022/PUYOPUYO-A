@@ -19,6 +19,7 @@ public:
 	Vector2Temple& operator*=(T k);
 	Vector2Temple& operator*=(T& k);
 	Vector2Temple& operator/=(T k);
+	Vector2Temple& operator++();
 	Vector2Temple operator+()const;
 	Vector2Temple operator-()const;
 

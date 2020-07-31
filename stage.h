@@ -7,7 +7,7 @@
 #include "input/controller.h"
 #include "input/keyInput.h"
 #include "input/Pad.h"
-
+#define STGPUYO(id) stage->puyo_[id]
 #define PUYO_DELETE_NUM	4
 
 enum class STG_MODE
