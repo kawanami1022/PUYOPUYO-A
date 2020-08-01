@@ -47,6 +47,7 @@ public:
 	void SetMatchGrid(Vector2&& Pos);
 private:
 	Vector2 pos_;
+	Vector2 ROffPos_;
 	PUYO_TYPE puyoType;
 	PUYO_STATE puyoState;
 	Vector2 offsetPos_;
