@@ -30,11 +30,12 @@ struct PUYON
 				}
 			}
 			std::cout << "--------------------" << std::endl;
-			if (offsetRadious.y <=0)
-			{
-				stage->puyo_[id]->radious.y = stage->puyo_[0]->blockSize/2;
-				stage->stgMode = STG_MODE::MUNYON;
-			}
+		}
+		if (offsetRadious.y <=0)
+		{
+			stage->puyo_[0]->radious.y = stage->puyo_[0]->blockSize/2;
+			stage->puyo_[1]->radious.y = stage->puyo_[1]->blockSize/2;
+			stage->stgMode = STG_MODE::MUNYON;
 		}
 
 
