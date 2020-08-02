@@ -113,5 +113,8 @@
     <ClInclude Include="PyUpMode\PUYON.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="PyUpMode\MUNYON.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

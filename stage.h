@@ -14,6 +14,7 @@ enum class STG_MODE
 {
 	GENERATES,
 	PUYON,
+	MUNYON,
 	DROP,
 	FALL,
 	ERASE,
@@ -75,6 +76,7 @@ private:
 	friend struct GENERATES;
 	friend struct FALL;
 	friend struct PUYON;
+	friend struct MUNYOUN;
 	friend struct ERASE;
 	friend struct DROP;
 protected:

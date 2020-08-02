@@ -26,11 +26,39 @@ void Puyo::draw()
 {
     DrawOval(pos_.x, pos_.y+ ROffPos_.y,
         radious.x,radious.y, color[static_cast<int>(puyoType)], 1, 1);
-    DrawCircle(pos_.x, pos_.y,
-        2, 0xffffff, 1, 1);
-   DrawCircle(GetGridPos().x* blockSize + offsetPos_.x+blockSize/2,
-       GetGridPos().y * blockSize + offsetPos_.y + blockSize / 2,
-       3,0xffffff,1,1);
+    
+    if (munyonBox_.perBit.u == 1)
+    {
+        DrawBox(pos_.x - blockSize / 2, pos_.y - blockSize / 2,
+            pos_.x + blockSize /2, pos_.y,
+            color[static_cast<int>(puyoType)], true);
+    }
+    
+    if (munyonBox_.perBit.d == 1)
+    {
+        DrawBox(pos_.x - blockSize / 2, pos_.y,
+            pos_.x + blockSize / 2, pos_.y + blockSize / 2,
+            color[static_cast<int>(puyoType)], true);
+    }
+
+    if (munyonBox_.perBit.r == 1)
+    {
+        DrawBox(pos_.x, pos_.y - blockSize / 2,
+            pos_.x + blockSize / 2, pos_.y + blockSize / 2,
+            color[static_cast<int>(puyoType)], true);
+    }
+
+    if (munyonBox_.perBit.l == 1)
+    {
+        DrawBox(pos_.x - blockSize / 2, pos_.y - blockSize / 2,
+            pos_.x, pos_.y,
+            color[static_cast<int>(puyoType)], true);
+    }
+   // DrawCircle(pos_.x, pos_.y,
+   //     2, 0xffffff, 1, 1);
+   //DrawCircle(GetGridPos().x* blockSize + offsetPos_.x+blockSize/2,
+   //    GetGridPos().y * blockSize + offsetPos_.y + blockSize / 2,
+   //    3,0xffffff,1,1);
 }
 
 void Puyo::setBlockSize(int size)
@@ -90,6 +118,7 @@ bool Puyo::Init(Vector2& stagePos, Vector2& GridPos)
     std::mt19937 random_(seed_gen());
     std::uniform_int_distribution<int> dist(static_cast<int>(PUYO_TYPE::R), static_cast<int>(PUYO_TYPE::P));
     dirPer_.perBit = { 0,0,0,0 };
+    munyonBox_.perBit = { 0,0,0,0 };
     ROffPos_ = Vector2(0, 0);
     radious = Vector2(15, 15);
     blockSize = 32;

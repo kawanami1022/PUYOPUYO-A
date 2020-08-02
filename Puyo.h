@@ -51,7 +51,8 @@ private:
 	PUYO_TYPE puyoType;
 	PUYO_STATE puyoState;
 	Vector2 offsetPos_;
-	DirPermit dirPer_;
+	DirPermit dirPer_;		// 0:ˆÚ“®‹–‰Â 1:ˆÚ“®‹ÖŽ~
+	DirPermit munyonBox_;		// 0:•`‰æ‚µ‚È‚¢ 1:‹éŒ`•`‰æ
 	bool alive_;
 	Vector2 radious;
 	int blockSize;
@@ -71,6 +72,7 @@ private:
 	friend struct GENERATES;
 	friend struct FALL;
 	friend struct PUYON;
+	friend struct MUNYOUN;
 	friend struct ERASE;
 	friend struct DROP;
 };

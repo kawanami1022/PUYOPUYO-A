@@ -32,7 +32,7 @@ struct PUYON
 			if (offsetRadious.y <=0)
 			{
 				stage->puyo_[id]->radious.y = stage->puyo_[0]->blockSize/2;
-				stage->stgMode = STG_MODE::ERASE;
+				stage->stgMode = STG_MODE::MUNYON;
 			}
 		}
 

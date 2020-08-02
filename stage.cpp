@@ -7,6 +7,7 @@
 #include "PyUpMode/DROP.h"
 #include "PyUpMode/ERASE.h"
 #include "PyUpMode/PUYON.h"
+#include "PyUpMode/MUNYON.h"
 #include "PyUpMode/FALL.h"
 #include "PyUpMode/GENERATES.h"
 #include "PyInputMode/IpLeft.h"
@@ -263,6 +264,7 @@ bool Stage::Init(Vector2& Pos)
 	// frendで関数オブジェクトを呼び出す
 	StgModeFunc.try_emplace(STG_MODE::DROP, DROP());
 	StgModeFunc.try_emplace(STG_MODE::ERASE, ERASE());
+	StgModeFunc.try_emplace(STG_MODE::MUNYON, MUNYOUN());
 	StgModeFunc.try_emplace(STG_MODE::PUYON, PUYON());
 	StgModeFunc.try_emplace(STG_MODE::FALL, FALL());
 	StgModeFunc.try_emplace(STG_MODE::GENERATES, GENERATES());
