@@ -17,11 +17,12 @@ struct PUYON
 
 			for (auto&& Puyo : stage->puyo_)
 			{
-				int mag = (stage->gridCountY-1)-Puyo->GetGridPos().y;	// puyo‚ÌyÀ•W‚É‚æ‚Á‚ÄˆÚ“®”{—¦‚ğ‹‚ß‚é
 
-				int MatchGridPosY = Puyo->GetGridPos().y * Puyo->blockSize + Puyo->offsetPos_.y + Puyo->blockSize / 2;
 				if (stage->puyo_[id]->GetGridPos().x == Puyo->GetGridPos().x)
 				{
+					int MatchGridPosY = Puyo->GetGridPos().y * Puyo->blockSize + Puyo->offsetPos_.y + Puyo->blockSize / 2;
+					int mag = (stage->gridCountY-1)-Puyo->GetGridPos().y;	// puyo‚ÌyÀ•W‚É‚æ‚Á‚ÄˆÚ“®”{—¦‚ğ‹‚ß‚é
+
 					std::cout<< mag <<std::endl;
 					Puyo->radious.x = Puyo->blockSize / 2 - offsetRadious.x;
 					Puyo->radious.y = Puyo->blockSize / 2 - offsetRadious.y;

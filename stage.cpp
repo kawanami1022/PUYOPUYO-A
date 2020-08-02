@@ -79,6 +79,7 @@ void Stage::draw()
 
 void Stage::makePuyo()
 {
+
 	puyo_.emplace(puyo_.begin(), std::make_unique<Puyo>(this->_pos, Vector2(3, 1)));
 	puyo_[0]->setBlockSize(blockSize);
 	puyo_.emplace(puyo_.begin()+1, std::make_unique<Puyo>(this->_pos, Vector2(4, 1)));
