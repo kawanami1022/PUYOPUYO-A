@@ -29,29 +29,29 @@ void Puyo::draw()
     
     if (munyonBox_.perBit.u == 1)
     {
-        DrawBox(pos_.x - blockSize / 2, pos_.y - blockSize / 2,
-            pos_.x + blockSize /2, pos_.y,
+        DrawBox(pos_.x - blockSize / 2, pos_.y -radious.y + ROffPos_.y,
+            pos_.x + blockSize / 2, pos_.y + ROffPos_.y,
             color[static_cast<int>(puyoType)], true);
     }
     
     if (munyonBox_.perBit.d == 1)
     {
-        DrawBox(pos_.x - blockSize / 2, pos_.y,
-            pos_.x + blockSize / 2, pos_.y + blockSize / 2,
+        DrawBox(pos_.x - blockSize / 2, pos_.y + ROffPos_.y,
+            pos_.x + radious.x, pos_.y + radious.y + ROffPos_.y,
             color[static_cast<int>(puyoType)], true);
     }
 
     if (munyonBox_.perBit.r == 1)
     {
-        DrawBox(pos_.x, pos_.y - blockSize / 2,
-            pos_.x + blockSize / 2, pos_.y + blockSize / 2,
+        DrawBox(pos_.x, pos_.y - radious.y + ROffPos_.y,
+            pos_.x + blockSize/2, pos_.y + radious.y + ROffPos_.y,
             color[static_cast<int>(puyoType)], true);
     }
 
     if (munyonBox_.perBit.l == 1)
     {
-        DrawBox(pos_.x - blockSize / 2, pos_.y - blockSize / 2,
-            pos_.x, pos_.y,
+        DrawBox(pos_.x - blockSize / 2, pos_.y - radious.y + ROffPos_.y,
+            pos_.x, pos_.y + radious.y + ROffPos_.y,
             color[static_cast<int>(puyoType)], true);
     }
    // DrawCircle(pos_.x, pos_.y,
