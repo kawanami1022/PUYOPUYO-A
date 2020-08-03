@@ -1,4 +1,5 @@
 #pragma once
+#include <list>
 #include <memory>
 #include <vector>
 #include <functional>
@@ -88,12 +89,11 @@ public:
 	void update();
 	void draw();
 	void makePuyo();
-	void updtPuyoData();
 	void SetStageData();
 	void SetPuyoData();
 	bool setPermition(Vector2 tmp, int ID);
 	bool chErasePuyo(Vector2&& GridPos, Vector2&& chGridPos);
-	bool ErasePuyo(Vector2&& GridPos);
+	bool ErasePuyo(Vector2&& GridPos);			// è¡ÇπÇÈÇ’ÇÊÇ™ë∂ç›	true ë∂ç›ÇµÇ»Ç¢ false
 	Vector2 getChipPos();
 	bool DeletePuyo();
 	std::vector<PUYO_TYPE*> GetErasePos();

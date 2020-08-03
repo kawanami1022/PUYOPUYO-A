@@ -13,6 +13,7 @@ enum class PUYO_TYPE
 	B,			// ê¬
 	Y,			// â©êF
 	P,			// éá
+	OBS,			// Ç®é◊ñÇ
 	WALL,
 	MAX,
 };
@@ -26,7 +27,7 @@ enum class PUYO_STATE
 	MAX,
 };
 
-const int color[static_cast<int>(PUYO_TYPE::MAX)]={0,0xff0000,0x00ff33,0x0000ff,0xffff00,0x00ffff};
+const int color[static_cast<int>(PUYO_TYPE::MAX)]={0,0xff0000,0x00ff33,0x0000ff,0xffff00,0x00ffff,0xffffff};
 
 
 class Puyo

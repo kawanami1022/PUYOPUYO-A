@@ -86,12 +86,6 @@ void Stage::makePuyo()
 	puyo_[1]->setBlockSize(blockSize);
 }
 
-void Stage::updtPuyoData()
-{
-	Vector2 tmp1 = { 1,4 };
-	Vector2 tmp2 = { 1,4 };
-	Vector2 tmp3 = tmp1 * tmp2;
-}
 
 void Stage::SetStageData()
 {
@@ -132,7 +126,7 @@ void Stage::SetPuyoData()
 
 bool Stage::setPermition(Vector2 tmp, int ID)
 {
-	puyo_[ID]->dirPer_.perBit.u = stgData_[tmp.x][tmp.y - 1] == PUYO_TYPE::NON ? 0 : 1;
+	//puyo_[ID]->dirPer_.perBit.u = stgData_[tmp.x][tmp.y - 1] == PUYO_TYPE::NON ? 0 : 1;
 	puyo_[ID]->dirPer_.perBit.r = stgData_[tmp.x + 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
 	puyo_[ID]->dirPer_.perBit.d = stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON ? 0 : 1;
 	puyo_[ID]->dirPer_.perBit.l = stgData_[tmp.x - 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;

@@ -12,6 +12,7 @@ struct PUYON
 	void operator()(Stage* stage) {
 		frame++;
 		Vector2 offsetRadious(abs((frame/2) % 6 - 3), abs((frame) % 12 - 6));
+
 		for (int id = 0; id < 2; id++)
 		{
 
@@ -26,7 +27,7 @@ struct PUYON
 					std::cout<< mag <<std::endl;
 					Puyo->radious.x = Puyo->blockSize / 2 - offsetRadious.x;
 					Puyo->radious.y = Puyo->blockSize / 2 - offsetRadious.y;
-					Puyo->ROffPos_.y = offsetRadious.y* mag;
+					Puyo->ROffPos_.y = offsetRadious.y * mag * 2;
 				}
 			}
 			std::cout << "--------------------" << std::endl;
@@ -37,7 +38,7 @@ struct PUYON
 			stage->puyo_[1]->radious.y = stage->puyo_[1]->blockSize/2;
 			stage->stgMode = STG_MODE::MUNYON;
 		}
-
+		
 
 	}
 private:

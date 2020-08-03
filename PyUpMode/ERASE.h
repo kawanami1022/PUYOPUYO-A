@@ -1,4 +1,5 @@
 #pragma once
+#include <list>
 #include "../stage.h"
 #include "../Puyo.h"
 
@@ -6,6 +7,13 @@ struct ERASE
 {
 	void operator()(Stage* stage){
 		Vector2 tmp;
+
+		if (flag)
+		{
+		}
+
+
+		flag = false;
 		stage->stgMode = STG_MODE::GENERATES;
 		stage->SetStageData();
 		for (int i = stage->gridCountX * stage->gridCountY; 0 < i; i--)
@@ -16,6 +24,7 @@ struct ERASE
 				tmp = { i % stage->gridCountX ,i / stage->gridCountX };
 				if (stage->ErasePuyo(std::move(tmp)))
 				{
+					flag = true;
 					stage->DeletePuyo();
 					stage->stgMode = STG_MODE::FALL;
 					break;
@@ -26,4 +35,7 @@ struct ERASE
 		stage->ErPyDelPos_.clear();
 		stage->SetStageData();
 	}
+private:
+	bool flag = false;
+
 };
