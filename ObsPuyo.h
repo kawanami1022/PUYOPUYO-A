@@ -5,5 +5,6 @@ class ObsPuyo :
 {
 public:
 	ObsPuyo(Vector2& fieldPos, Vector2 GridPos);
+	
 };
 

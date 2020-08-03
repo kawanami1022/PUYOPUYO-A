@@ -1,19 +1,19 @@
 #pragma once
+#include <iterator>
 #include <list>
 #include "../stage.h"
 #include "../Puyo.h"
+#include "../ObsPuyo.h"
 
 struct ERASE
 {
 	void operator()(Stage* stage){
 		Vector2 tmp;
-
-		if (flag)
+		for(int i=1;i<stage->chainCount_;i++)
 		{
+			stage->obsPuyo_.emplace_back(ObsPuyo(stage->offset_, Vector2(i, 0)));
 		}
 
-
-		flag = false;
 		stage->stgMode = STG_MODE::GENERATES;
 		stage->SetStageData();
 		for (int i = stage->gridCountX * stage->gridCountY; 0 < i; i--)
@@ -24,7 +24,7 @@ struct ERASE
 				tmp = { i % stage->gridCountX ,i / stage->gridCountX };
 				if (stage->ErasePuyo(std::move(tmp)))
 				{
-					flag = true;
+					stage->chainCount_++;
 					stage->DeletePuyo();
 					stage->stgMode = STG_MODE::FALL;
 					break;
@@ -36,6 +36,5 @@ struct ERASE
 		stage->SetStageData();
 	}
 private:
-	bool flag = false;
 
 };

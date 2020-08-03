@@ -5,6 +5,21 @@
 #include "input/InputID.h"
 #include "Vector2.h"
 #include "Stage.h"
+
+struct BitField
+{
+	unsigned int u : 1;
+	unsigned int r : 1;
+	unsigned int d : 1;
+	unsigned int l : 1;
+};
+
+union DirPermit
+{
+	BitField perBit;
+	unsigned int flag;
+};
+
 enum class PUYO_TYPE
 {
 	NON,			// 
@@ -46,11 +61,13 @@ public:
 	void drop();
 	bool DeletePuyo();
 	void SetMatchGrid(Vector2&& Pos);
+protected:
+	PUYO_TYPE puyoType;
+	PUYO_STATE puyoState;
 private:
 	Vector2 pos_;
 	Vector2 ROffPos_;
-	PUYO_TYPE puyoType;
-	PUYO_STATE puyoState;
+
 	Vector2 offsetPos_;
 	DirPermit dirPer_;		// 0:ˆÚ“®‹–‰Â 1:ˆÚ“®‹ÖŽ~
 	DirPermit munyonBox_;		// 0:•`‰æ‚µ‚È‚¢ 1:‹éŒ`•`‰æ

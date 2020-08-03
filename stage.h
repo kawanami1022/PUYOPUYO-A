@@ -8,6 +8,8 @@
 #include "input/controller.h"
 #include "input/keyInput.h"
 #include "input/Pad.h"
+#include "Puyo.h"
+#include "ObsPuyo.h"
 #define STGPUYO(id) stage->puyo_[id]
 #define PUYO_DELETE_NUM	4
 
@@ -22,21 +24,6 @@ enum class STG_MODE
 	MAX,
 };
 
-struct BitField
-{
-	unsigned int u : 1;
-	unsigned int r : 1;
-	unsigned int d : 1;
-	unsigned int l : 1;
-};
-
-union DirPermit
-{
-	BitField perBit;
-	unsigned int flag;
-};
-
-#include "Puyo.h"
 
 
 
@@ -57,6 +44,7 @@ private:
 	std::map<STG_MODE, std::function<void(Stage* stage)>> StgModeFunc;
 	std::map<InputID, std::function<void(Stage* stage)>> StgInputFunc;
 	std::function<void(Vector2&&,Vector2&&)> chPuyo_;
+	std::list<ObsPuyo> obsPuyo_;
 	int frame;
 	InputID inputId_;
 	static int stageCount_;
@@ -66,6 +54,7 @@ private:
 	Vector2 size_;
 	bool Init(Vector2&);
 	int _checkGridCount;
+	int chainCount_;
 
 	friend struct IpLeft;
 	friend struct IpUp;

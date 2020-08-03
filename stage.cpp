@@ -74,6 +74,11 @@ void Stage::draw()
 	{
 		PUYO->draw();
 	}
+	for (auto&& OBSPUYO : obsPuyo_)
+	{
+		OBSPUYO.draw();
+	}
+	
 	frame++;
 }
 
@@ -254,7 +259,7 @@ bool Stage::Init(Vector2& Pos)
 	SetStageData();
 
 	_checkGridCount = 0;
-
+	chainCount_ = 0;
 	stgMode = STG_MODE::GENERATES;
 	// frendで関数オブジェクトを呼び出す
 	StgModeFunc.try_emplace(STG_MODE::DROP, DROP());
