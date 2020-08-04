@@ -17,6 +17,7 @@ struct FALL
 		// obsPuyo—Ž‰º
 		if (stage->ObsDropCnt_ > 3)
 		{
+			stage->ObsDropCnt_ = 0;
 			int count = 0;
 			for (auto&& ObsPuyo : stage->obsPuyo_)
 			{

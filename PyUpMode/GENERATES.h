@@ -7,9 +7,17 @@ struct GENERATES
 	void operator()(Stage* stage) {
 		stage->stgMode = STG_MODE::DROP;
 		stage->GetChainCount_ = 0;
+		for (auto&& obsPUYO : stage->obsPuyo_)
+		{
+			if(obsPUYO.GetGridPos().y==0)
+			stage->newObsDropCnt_++;
+		}
 
-		if (stage->SetChainCount_ >= 0)
-		{stage->ObsDropCnt_++;}
+		
+		if (stage->newObsDropCnt_ >0)
+		{
+			stage->ObsDropCnt_++;
+		}
 
 
 		for (int x = 0; x < stage->gridCountX-1; x++) {

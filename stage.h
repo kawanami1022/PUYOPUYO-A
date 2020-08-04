@@ -57,6 +57,7 @@ private:
 	int SetChainCount_;
 	int GetChainCount_;
 	int ObsDropCnt_;
+	int newObsDropCnt_;		// V‹K—‰º—p‚¨‚¶‚á‚Üpuyo
 
 	friend struct IpLeft;
 	friend struct IpUp;

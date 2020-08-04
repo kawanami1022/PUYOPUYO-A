@@ -58,7 +58,7 @@ public:
 	bool GetAlive();
 	void SetAlive(bool aliveFlag);
 	void setBlockSize(int size);
-	void drop();
+	bool drop();
 	bool DeletePuyo();
 	void SetMatchGrid(Vector2&& Pos);
 protected:

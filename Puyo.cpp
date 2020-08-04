@@ -66,10 +66,14 @@ void Puyo::setBlockSize(int size)
     blockSize = size;
 }
 
-void Puyo::drop()
+bool Puyo::drop()
 {
     if (dirPer_.perBit.d == 0)
-    pos_.y+= 1;
+    {
+        pos_.y+= 1;
+        return true;
+    }
+    return false;
 }
 
 bool Puyo::DeletePuyo()

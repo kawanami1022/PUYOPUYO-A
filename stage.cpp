@@ -62,9 +62,10 @@ int Stage::update()
 
 void Stage::draw()
 {
-	DrawFormatString(0, 0, 0xff0000, "stage");
-	
 
+	DrawFormatString(id_ *400,0, 0xffffff, "SetChainCount_:%d", SetChainCount_);
+	DrawFormatString(id_ * 400,16, 0xffffff, "GetChainCount_:%d", GetChainCount_);
+	DrawFormatString(id_ * 400,32, 0xffffff, "ObsDropCnt_:%d", ObsDropCnt_);
 	for (int id = 0; id < gridCountX * gridCountY; id++)
 	{
 		DrawBox(offset_.x + (id % gridCountX) * blockSize,
@@ -194,8 +195,6 @@ bool Stage::ErasePuyo(Vector2&& GridPos)
 	ErPyDelPos_.emplace_back(Vector2(GridPos));
 	chPuyo_(std::move(GridPos),std::move(GridPos));
 
-	//trace("%d\n", erpydelpos_.size())
-	//trace("------------------------------\n")
 	if (PUYO_DELETE_NUM > ErPyDelPos_.size())
 	{
 		ErPyDelPos_.clear();
@@ -255,6 +254,7 @@ bool Stage::Init(Vector2& Pos)
 	{ controller_=std::make_unique<KeyInput>(); }
 
 	controller_->Setup(stageCount_);
+	id_ = stageCount_;
 	stageCount_++;
 	color_ = 0x000033 << (16 * stageCount_);
 
@@ -275,6 +275,7 @@ bool Stage::Init(Vector2& Pos)
 	GetChainCount_ = 0;
 	SetChainCount_ = 0;
 	ObsDropCnt_ = 0;
+	newObsDropCnt_ = 0;		// 落下準備用puyoカウンター
 	stgMode = STG_MODE::GENERATES;
 	// frendで関数オブジェクトを呼び出す
 	StgModeFunc.try_emplace(STG_MODE::DROP, DROP());
