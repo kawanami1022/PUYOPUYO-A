@@ -54,7 +54,7 @@ int Stage::update()
 
 	for (int i = 1; i < SetChainCount_; i++)
 	{
-		obsPuyo_.push_back(ObsPuyo(offset_, Vector2(i, 0)));
+		obsPuyo_.push_front(ObsPuyo(offset_, Vector2(i, 0)));
 	}
 
 	return GetChainCount_;

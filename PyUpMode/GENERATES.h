@@ -5,25 +5,28 @@
 struct GENERATES
 {
 	void operator()(Stage* stage) {
+		Vector2 tmp;
 		stage->stgMode = STG_MODE::DROP;
 		stage->GetChainCount_ = 0;
 
-		
-		if (stage->obsPuyo_.size() >0)
-		{
-			stage->ObsDropCnt_++;
-		}
-
 		// お邪魔ぷよカウンターが3つ以上
 		// obsPuyo落下
-		if (stage->ObsDropCnt_ > 3)
+		for (auto&& ObsPuyo : stage->obsPuyo_)
 		{
-			stage->ObsDropCnt_ = 0;
-			int count = 0;
-			for (auto&& ObsPuyo : stage->obsPuyo_)
+			ObsPuyo.DropCount--;
+			if (ObsPuyo.DropCount == 0)
 			{
+				tmp = ObsPuyo.GetGridPos();
+				stage->puyo_.emplace_back(std::make_unique<Puyo>(stage->offset_, (tmp,tmp), PUYO_TYPE::OBS));
 			}
 		}
+		auto rmObs = std::remove_if(stage->obsPuyo_.begin(), stage->obsPuyo_.end(), [&](auto&& obsPy)
+		{
+			return obsPy.DropCount <= 0;
+		});
+
+		stage->obsPuyo_.erase(rmObs, stage->obsPuyo_.end());
+
 		for (int x = 0; x < stage->gridCountX-1; x++) {
 			if (stage->stgData_[x][1] != PUYO_TYPE::NON || stage->stgData_[x][1] != PUYO_TYPE::WALL)
 			{

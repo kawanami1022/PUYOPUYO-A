@@ -7,10 +7,27 @@
 #include "_debug/_DebugConOut.h"
 
 
-Puyo::Puyo(Vector2& fieldPos, Vector2 GridPos)
+Puyo::Puyo(Vector2& stagePos, Vector2 GridPos)
 {
     
-    Init(fieldPos, GridPos);
+    Init(stagePos, GridPos);
+}
+
+Puyo::Puyo(Vector2& stagePos, Vector2 GridPos, PUYO_TYPE puyoType)
+{
+    dirPer_.perBit = { 0,0,0,0 };
+    munyonBox_.perBit = { 0,0,0,0 };
+    ROffPos_ = Vector2(0, 0);
+    radious = Vector2(15, 15);
+    blockSize = 32;
+    pos_ = stagePos;
+    offsetPos_ = pos_;
+    pos_.x += blockSize / 2 + blockSize * GridPos.x;
+    pos_.y += blockSize / 2 + blockSize * GridPos.y;
+    speed = 2;
+    puyoState = PUYO_STATE::MOVE;
+    puyoType_ = puyoType;
+    alive_ = true;
 }
 
 Puyo::~Puyo()
@@ -25,34 +42,34 @@ void Puyo::update()
 void Puyo::draw()
 {
     DrawOval(pos_.x, pos_.y+ ROffPos_.y,
-        radious.x,radious.y, color[static_cast<int>(puyoType)], 1, 1);
+        radious.x,radious.y, color[static_cast<int>(puyoType_)], 1, 1);
     
     if (munyonBox_.perBit.u == 1)
     {
         DrawBox(pos_.x - blockSize / 2, pos_.y -radious.y + ROffPos_.y,
             pos_.x + blockSize / 2, pos_.y + ROffPos_.y,
-            color[static_cast<int>(puyoType)], true);
+            color[static_cast<int>(puyoType_)], true);
     }
     
     if (munyonBox_.perBit.d == 1)
     {
         DrawBox(pos_.x - blockSize / 2, pos_.y + ROffPos_.y,
             pos_.x + radious.x, pos_.y + radious.y + ROffPos_.y,
-            color[static_cast<int>(puyoType)], true);
+            color[static_cast<int>(puyoType_)], true);
     }
 
     if (munyonBox_.perBit.r == 1)
     {
         DrawBox(pos_.x, pos_.y - radious.y + ROffPos_.y,
             pos_.x + blockSize/2, pos_.y + radious.y + ROffPos_.y,
-            color[static_cast<int>(puyoType)], true);
+            color[static_cast<int>(puyoType_)], true);
     }
 
     if (munyonBox_.perBit.l == 1)
     {
         DrawBox(pos_.x - blockSize / 2, pos_.y - radious.y + ROffPos_.y,
             pos_.x, pos_.y + radious.y + ROffPos_.y,
-            color[static_cast<int>(puyoType)], true);
+            color[static_cast<int>(puyoType_)], true);
     }
    // DrawCircle(pos_.x, pos_.y,
    //     2, 0xffffff, 1, 1);
@@ -103,7 +120,7 @@ Vector2 Puyo::GetGridPos()
 
 PUYO_TYPE Puyo::GetPuyoType()
 {
-    return puyoType;
+    return puyoType_;
 }
 
 bool Puyo::GetAlive()
@@ -132,7 +149,7 @@ bool Puyo::Init(Vector2& stagePos, Vector2& GridPos)
     pos_.y += blockSize / 2 + blockSize*GridPos.y;
     speed = 2;
     puyoState = PUYO_STATE::MOVE;
-    puyoType = static_cast<PUYO_TYPE>(dist(random_));
+    puyoType_ = static_cast<PUYO_TYPE>(dist(random_));
     alive_ = true;
     return true;
 }

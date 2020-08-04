@@ -5,6 +5,8 @@ class ObsPuyo :
 {
 public:
 	ObsPuyo(Vector2& fieldPos, Vector2 GridPos);
-	
+private:
+	int DropCount;
+	friend struct  GENERATES;
 };
 
