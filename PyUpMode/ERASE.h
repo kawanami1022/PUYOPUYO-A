@@ -9,10 +9,7 @@ struct ERASE
 {
 	void operator()(Stage* stage){
 		Vector2 tmp;
-		for(int i=1;i<stage->chainCount_;i++)
-		{
-			stage->obsPuyo_.emplace_back(ObsPuyo(stage->offset_, Vector2(i, 0)));
-		}
+
 
 		stage->stgMode = STG_MODE::GENERATES;
 		stage->SetStageData();
@@ -24,7 +21,7 @@ struct ERASE
 				tmp = { i % stage->gridCountX ,i / stage->gridCountX };
 				if (stage->ErasePuyo(std::move(tmp)))
 				{
-					stage->chainCount_++;
+					stage->GetChainCount_++;
 					stage->DeletePuyo();
 					stage->stgMode = STG_MODE::FALL;
 					break;

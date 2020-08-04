@@ -47,9 +47,17 @@ void Stage::input()
 	}
 }
 
-void Stage::update()
+int Stage::update()
 {
 	StgModeFunc[stgMode](&(*this));
+
+
+	for (int i = 1; i < SetChainCount_; i++)
+	{
+		obsPuyo_.push_back(ObsPuyo(offset_, Vector2(i, 0)));
+	}
+
+	return GetChainCount_;
 }
 
 void Stage::draw()
@@ -207,6 +215,11 @@ bool Stage::ErasePuyo(Vector2&& GridPos)
 	return true;
 }
 
+void Stage::SetChainCount(int SetChainCount)
+{
+	SetChainCount_ = SetChainCount;
+}
+
 Vector2 Stage::getChipPos()
 {
 	return _pos;
@@ -239,7 +252,7 @@ bool Stage::Init(Vector2& Pos)
 	if (stageCount_ == 0) 
 	{ controller_=std::make_unique<KeyInput>(); }
 	if(stageCount_==1)
-	{ controller_=std::make_unique<Pad>(); }
+	{ controller_=std::make_unique<KeyInput>(); }
 
 	controller_->Setup(stageCount_);
 	stageCount_++;
@@ -259,7 +272,9 @@ bool Stage::Init(Vector2& Pos)
 	SetStageData();
 
 	_checkGridCount = 0;
-	chainCount_ = 0;
+	GetChainCount_ = 0;
+	SetChainCount_ = 0;
+	ObsDropCnt_ = 0;
 	stgMode = STG_MODE::GENERATES;
 	// frendで関数オブジェクトを呼び出す
 	StgModeFunc.try_emplace(STG_MODE::DROP, DROP());

@@ -69,7 +69,7 @@ void Puyo::setBlockSize(int size)
 void Puyo::drop()
 {
     if (dirPer_.perBit.d == 0)
-    pos_.y+= speed;
+    pos_.y+= 1;
 }
 
 bool Puyo::DeletePuyo()

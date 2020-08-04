@@ -15,6 +15,7 @@ class SceneMng
 private:
 	SceneMng();
 	~SceneMng();
+	void upDate();
 	void draw();
 
 	static SceneMng *hInstance;

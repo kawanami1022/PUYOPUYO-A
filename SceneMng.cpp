@@ -25,10 +25,7 @@ int SceneMng::Run()
 	// ƒ‹[ƒv
 	while (ProcessMessage() == 0)
 	{
-		stage[0]->input();
-		stage[1]->input();
-		stage[0]->update();
-		stage[1]->update();
+		upDate();
 		draw();
 	}
 
@@ -46,6 +43,17 @@ SceneMng::SceneMng()
 
 SceneMng::~SceneMng()
 {
+}
+
+void SceneMng::upDate()
+{
+	int SetChainCount_ = 0;
+	for (int i = 0; i < stage.size(); i++)
+	{
+		stage[i]->SetChainCount(SetChainCount_);
+		stage[i]->input();
+		SetChainCount_=stage[i]->update();
+	}
 }
 
 void SceneMng::draw()

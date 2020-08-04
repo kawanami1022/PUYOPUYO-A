@@ -54,7 +54,9 @@ private:
 	Vector2 size_;
 	bool Init(Vector2&);
 	int _checkGridCount;
-	int chainCount_;
+	int SetChainCount_;
+	int GetChainCount_;
+	int ObsDropCnt_;
 
 	friend struct IpLeft;
 	friend struct IpUp;
@@ -75,7 +77,7 @@ public:
 	Vector2 _pos;
 
 	void input();
-	void update();
+	int update();
 	void draw();
 	void makePuyo();
 	void SetStageData();
@@ -83,6 +85,7 @@ public:
 	bool setPermition(Vector2 tmp, int ID);
 	bool chErasePuyo(Vector2&& GridPos, Vector2&& chGridPos);
 	bool ErasePuyo(Vector2&& GridPos);			// è¡ÇπÇÈÇ’ÇÊÇ™ë∂ç›	true ë∂ç›ÇµÇ»Ç¢ false
+	void SetChainCount(int SetChainCount);
 	Vector2 getChipPos();
 	bool DeletePuyo();
 	std::vector<PUYO_TYPE*> GetErasePos();
