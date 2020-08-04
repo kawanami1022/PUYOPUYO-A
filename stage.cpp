@@ -275,7 +275,6 @@ bool Stage::Init(Vector2& Pos)
 	GetChainCount_ = 0;
 	SetChainCount_ = 0;
 	ObsDropCnt_ = 0;
-	newObsDropCnt_ = 0;		// 落下準備用puyoカウンター
 	stgMode = STG_MODE::GENERATES;
 	// frendで関数オブジェクトを呼び出す
 	StgModeFunc.try_emplace(STG_MODE::DROP, DROP());
