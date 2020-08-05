@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\GameOverScene.cpp" />
+    <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="input\keyInput.cpp" />
     <ClCompile Include="ObsPuyo.cpp" />
     <ClCompile Include="Stage.cpp" />
@@ -27,10 +29,15 @@
     <ClCompile Include="input\mouse.cpp" />
     <ClCompile Include="Puyo.cpp" />
     <ClCompile Include="SceneMng.cpp" />
+    <ClCompile Include="Texture\Texture.cpp" />
+    <ClCompile Include="Texture\TextureFactory.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="_debug\_DebugConOut.cpp" />
     <ClCompile Include="_debug\_DebugDispOut.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\GameOverScene.h" />
+    <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="input\controller.h" />
     <ClInclude Include="input\InputID.h" />
     <ClInclude Include="input\keyInput.h" />
@@ -53,6 +60,9 @@
     <ClInclude Include="input\mouse.h" />
     <ClInclude Include="Puyo.h" />
     <ClInclude Include="SceneMng.h" />
+    <ClInclude Include="Texture\Texture.h" />
+    <ClInclude Include="Texture\TextureFactory.h" />
+    <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="_debug\_DebugConOut.h" />
     <ClInclude Include="_debug\_DebugDispOut.h" />

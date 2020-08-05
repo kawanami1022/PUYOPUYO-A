@@ -7,6 +7,7 @@ struct DROP
 {
 	void operator()(Stage* stage) {
 		Vector2 tmp;
+		stage->GetChainCount_ = 0;
 
 		if (stage->stgMode == STG_MODE::DROP)
 		{

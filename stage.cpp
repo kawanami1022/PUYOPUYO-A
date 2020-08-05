@@ -56,8 +56,9 @@ int Stage::update()
 	{
 		obsPuyo_.push_front(ObsPuyo(offset_, Vector2(i, 0)));
 	}
-
-	return GetChainCount_;
+	if (stgMode == STG_MODE::GENERATES)
+	{return GetChainCount_;}
+	return 0;
 }
 
 void Stage::draw()
@@ -100,6 +101,10 @@ void Stage::makePuyo()
 	puyo_[1]->setBlockSize(blockSize);
 }
 
+void Stage::setNextPuyo()
+{
+}
+
 
 void Stage::SetStageData()
 {
@@ -126,6 +131,7 @@ void Stage::SetStageData()
 		tmp = PUYO->GetGridPos();
 		stgData_[tmp.x][tmp.y] = PUYO->GetPuyoType();
 	}
+	// puyo
 }
 
 void Stage::SetPuyoData()

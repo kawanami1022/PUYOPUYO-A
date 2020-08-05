@@ -14,7 +14,7 @@ int SceneMng::Run()
 	{
 		return -1;				// エラーが起きたら直ちに終了
 	}
-	offset = { 100,100 };
+	offset = { 50,100 };
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
 	offset = { 500, 100 };
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));

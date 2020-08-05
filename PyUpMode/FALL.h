@@ -31,10 +31,11 @@ struct FALL
 			if (stage->stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON)
 			{
 				stage->stgMode = STG_MODE::FALL;
-				puyo->drop();
+				puyo->pos_.y+=8;
 			}
 			id--;
 		});
+
 		stage->SetStageData();
 	}
 };

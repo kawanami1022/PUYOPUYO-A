@@ -24,7 +24,7 @@ enum class STG_MODE
 	MAX,
 };
 
-
+using sharPuyo = std::shared_ptr<Puyo>;
 
 
 class Stage
@@ -34,7 +34,8 @@ private:
 	const int gridCountX;
 	const int gridCountY;
 	STG_MODE stgMode;
-	std::vector<std::shared_ptr<Puyo>> puyo_;
+	std::vector<sharPuyo> puyo_;
+	std::vector<sharPuyo> nextPuyo_;
 	std::shared_ptr<controller> controller_;
 	std::vector<PUYO_TYPE> stgDataBase_;	// 
 	std::vector<PUYO_TYPE*> stgData_;		// _dataBaseの一次元配列の先頭アドレスを確保
@@ -80,6 +81,7 @@ public:
 	int update();
 	void draw();
 	void makePuyo();
+	void setNextPuyo();
 	void SetStageData();
 	void SetPuyoData();
 	bool setPermition(Vector2 tmp, int ID);
