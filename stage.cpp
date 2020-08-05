@@ -67,16 +67,14 @@ void Stage::draw()
 	DrawFormatString(id_ *400,0, 0xffffff, "SetChainCount_:%d", SetChainCount_);
 	DrawFormatString(id_ * 400,16, 0xffffff, "GetChainCount_:%d", GetChainCount_);
 	DrawFormatString(id_ * 400,32, 0xffffff, "ObsDropCnt_:%d", ObsDropCnt_);
-	for (int id = 0; id < gridCountX * gridCountY; id++)
-	{
-		DrawBox(offset_.x + (id % gridCountX) * blockSize,
-			(offset_.y + (id / gridCountX)) * blockSize,
-			offset_.x + ((id % gridCountX) * blockSize + blockSize),
-			(offset_.y + (id / gridCountX)) * blockSize + blockSize,
-			0x888888, false);
-		DrawFormatString(offset_.x + (id % gridCountX) * blockSize,
-			(offset_.y + (id / gridCountX)) * blockSize, 0xffffff, "%d", stgData_[id % gridCountX][id / gridCountX]);
-	}
+
+	Vector2 nextBoxPos = Vector2(50, 100);
+	DrawBox(nextBoxPos.x+(screenSizeX / 8)*(3+id_)-blockSize/2,
+		nextBoxPos.y,
+		nextBoxPos.x + (screenSizeX /8)*(3+id_) + blockSize / 2,
+		nextBoxPos.y + blockSize * 2,
+		0xffffff, false);
+
 	DrawLine(offset_.x, offset_.y+blockSize*gridCountY,
 		offset_.x+gridCountX*blockSize, offset_.y + blockSize * gridCountY,
 		0xffffff, false);
@@ -103,6 +101,10 @@ void Stage::makePuyo()
 
 void Stage::setNextPuyo()
 {
+	nextPuyo_.emplace(nextPuyo_.begin(), std::make_unique<Puyo>(this->_pos, Vector2(3, 1)));
+	nextPuyo_[0]->setBlockSize(blockSize);
+	nextPuyo_.emplace(nextPuyo_.begin() + 1, std::make_unique<Puyo>(this->_pos, Vector2(4, 1)));
+	nextPuyo_[1]->setBlockSize(blockSize);
 }
 
 
@@ -300,7 +302,9 @@ bool Stage::Init(Vector2& Pos)
 }
 
 
-Stage::Stage(Vector2 && offset, Vector2&& size) :blockSize(32),
+Stage::Stage(Vector2 && offset, Vector2&& size) :
+							screenSizeX(800), screenSizeY(600),
+							blockSize(32),
 							gridCountX(8), gridCountY(15)
 {
 	offset_ = offset;

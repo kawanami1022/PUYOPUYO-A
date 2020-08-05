@@ -30,6 +30,8 @@ using sharPuyo = std::shared_ptr<Puyo>;
 class Stage
 {
 private:
+	const int screenSizeX;
+	const int screenSizeY;
 	const int blockSize;
 	const int gridCountX;
 	const int gridCountY;
