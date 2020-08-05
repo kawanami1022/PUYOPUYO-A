@@ -7,6 +7,25 @@
 #include "_debug/_DebugConOut.h"
 
 
+Puyo::Puyo(Vector2&& Pos)
+{
+    std::random_device seed_gen;
+    std::mt19937 random_(seed_gen());
+    std::uniform_int_distribution<int> dist(static_cast<int>(PUYO_TYPE::R), static_cast<int>(PUYO_TYPE::P));
+    dirPer_.perBit = { 0,0,0,0 };
+    munyonBox_.perBit = { 0,0,0,0 };
+    ROffPos_ = Vector2(0, 0);
+    radious = Vector2(15, 15);
+    blockSize = 32;
+    pos_ = Pos;
+    offsetPos_ = pos_;
+    speed = 2;
+    puyoState = PUYO_STATE::MOVE;
+    puyoType_ = static_cast<PUYO_TYPE>(dist(random_));
+    alive_ = true;
+
+}
+
 Puyo::Puyo(Vector2& stagePos, Vector2 GridPos)
 {
     

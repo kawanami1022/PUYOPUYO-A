@@ -48,6 +48,7 @@ const int color[static_cast<int>(PUYO_TYPE::MAX)]={0,0xff0000,0x00ff33,0x0000ff,
 class Puyo
 {
 public:
+	Puyo(Vector2&& Pos);
 	Puyo(Vector2& stagePos, Vector2 GridPos);
 	Puyo(Vector2& stagePos, Vector2 GridPos, PUYO_TYPE puyoType);
 	~Puyo();

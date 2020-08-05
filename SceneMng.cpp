@@ -38,7 +38,7 @@ SceneMng::SceneMng()
 {
 	offset = {0,0};
 	size = { 400,600 };
-
+	SetChainCount_ = 0;
 }
 
 SceneMng::~SceneMng()
@@ -47,7 +47,6 @@ SceneMng::~SceneMng()
 
 void SceneMng::upDate()
 {
-	int SetChainCount_ = 0;
 	for (int i = 0; i < stage.size(); i++)
 	{
 		stage[i]->SetChainCount(SetChainCount_);

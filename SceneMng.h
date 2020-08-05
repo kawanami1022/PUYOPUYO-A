@@ -17,8 +17,8 @@ private:
 	~SceneMng();
 	void upDate();
 	void draw();
-
 	static SceneMng *hInstance;
+	int SetChainCount_;
 	Vector2 offset;
 	Vector2 size;
 	int handle;		// グラフィックハンドル

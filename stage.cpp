@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include <DxLib.h>
 #include "Vector2.h"
 #include "Stage.h"
@@ -68,12 +69,7 @@ void Stage::draw()
 	DrawFormatString(id_ * 400,16, 0xffffff, "GetChainCount_:%d", GetChainCount_);
 	DrawFormatString(id_ * 400,32, 0xffffff, "ObsDropCnt_:%d", ObsDropCnt_);
 
-	Vector2 nextBoxPos = Vector2(50, 100);
-	DrawBox(nextBoxPos.x+(screenSizeX / 8)*(3+id_)-blockSize/2,
-		nextBoxPos.y,
-		nextBoxPos.x + (screenSizeX /8)*(3+id_) + blockSize / 2,
-		nextBoxPos.y + blockSize * 2,
-		0xffffff, false);
+	
 
 	DrawLine(offset_.x, offset_.y+blockSize*gridCountY,
 		offset_.x+gridCountX*blockSize, offset_.y + blockSize * gridCountY,
@@ -86,24 +82,40 @@ void Stage::draw()
 	{
 		OBSPUYO.draw();
 	}
-	
+	DrawBox(nextBoxPos.x + (screenSizeX / 8) * (3 + id_) - blockSize / 2,
+		nextBoxPos.y,
+		nextBoxPos.x + (screenSizeX / 8) * (3 + id_) + blockSize / 2,
+		nextBoxPos.y + blockSize * 2,
+		0xffffff, false);
+	for (auto&& NEXTPUYO : nextPuyo_)
+	{
+		NEXTPUYO->draw();
+	}
 	frame++;
 }
 
 void Stage::makePuyo()
 {
 
-	puyo_.emplace(puyo_.begin(), std::make_unique<Puyo>(this->_pos, Vector2(3, 1)));
+	puyo_.emplace(puyo_.begin(), std::make_unique<Puyo>(this->_pos, Vector2(3, 1),nextPuyo_[0]->puyoType_));
 	puyo_[0]->setBlockSize(blockSize);
-	puyo_.emplace(puyo_.begin()+1, std::make_unique<Puyo>(this->_pos, Vector2(4, 1)));
+	puyo_.emplace(puyo_.begin()+1, std::make_unique<Puyo>(this->_pos, Vector2(4, 1), nextPuyo_[1]->puyoType_));
 	puyo_[1]->setBlockSize(blockSize);
 }
 
 void Stage::setNextPuyo()
 {
-	nextPuyo_.emplace(nextPuyo_.begin(), std::make_unique<Puyo>(this->_pos, Vector2(3, 1)));
+	nextPuyo_.clear();
+	nextPuyo_.emplace(nextPuyo_.begin(), 
+		std::make_unique<Puyo>(
+			std::move(Vector2(nextBoxPos.x +(screenSizeX / 8) * (3 + id_),
+				nextBoxPos.y+blockSize/2+ blockSize*0))));
 	nextPuyo_[0]->setBlockSize(blockSize);
-	nextPuyo_.emplace(nextPuyo_.begin() + 1, std::make_unique<Puyo>(this->_pos, Vector2(4, 1)));
+
+	nextPuyo_.emplace(nextPuyo_.begin() +1,
+		std::make_unique<Puyo>(
+			std::move(Vector2(nextBoxPos.x + (screenSizeX / 8) * (3 + id_), 
+				nextBoxPos.y + blockSize / 2 + blockSize * 1))));
 	nextPuyo_[1]->setBlockSize(blockSize);
 }
 
@@ -279,6 +291,8 @@ bool Stage::Init(Vector2& Pos)
 	{eraseData_.emplace_back(&eraseDataBase_[no * gridCountY]);}
 	SetStageData();
 
+	setNextPuyo();
+
 	_checkGridCount = 0;
 	GetChainCount_ = 0;
 	SetChainCount_ = 0;
@@ -309,7 +323,7 @@ Stage::Stage(Vector2 && offset, Vector2&& size) :
 {
 	offset_ = offset;
 	size_ = size;
-
+	nextBoxPos = Vector2(50, 100);
 	Init(offset_ );
 }
 

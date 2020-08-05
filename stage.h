@@ -55,6 +55,7 @@ private:
 	int color_;
 	Vector2 offset_;
 	Vector2 size_;
+	Vector2 nextBoxPos;
 	bool Init(Vector2&);
 	int _checkGridCount;
 	int SetChainCount_;

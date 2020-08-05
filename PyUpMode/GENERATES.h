@@ -35,6 +35,7 @@ struct GENERATES
 			if (stage->stgData_[x][1] != PUYO_TYPE::NON || stage->stgData_[x][1] != PUYO_TYPE::WALL)
 			{
 				stage->makePuyo();
+				stage->setNextPuyo();
 				break;
 			}
 		}
