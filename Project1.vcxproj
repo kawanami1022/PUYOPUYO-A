@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\GameOverScene.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="input\keyInput.cpp" />
@@ -36,6 +37,7 @@
     <ClCompile Include="_debug\_DebugDispOut.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\GameOverScene.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="input\controller.h" />

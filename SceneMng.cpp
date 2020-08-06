@@ -18,8 +18,6 @@ int SceneMng::Run()
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
 	offset = { 500, 100 };
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
-	handle = MakeScreen(240, 400, false);
-	SetDrawScreen(handle);
 	// 描画先画面を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 	// ループ

@@ -2,10 +2,10 @@
 class BaseScene
 {
 public:
-	
-private:
 	BaseScene();
-	~BaseScene();
+	virtual ~BaseScene();
+private:
 
+	
 };
 
