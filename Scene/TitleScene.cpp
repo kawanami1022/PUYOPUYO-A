@@ -8,12 +8,12 @@ TitleScene::~TitleScene()
 {
 }
 
-UniqueBase TitleScene::input(UniqueBase&& nowScene)
+UniqueBase TitleScene::input(UniqueBase nowScene)
 {
 	return std::move(nowScene);
 }
 
-UniqueBase TitleScene::upDate(UniqueBase&& nowScene)
+UniqueBase TitleScene::upDate(UniqueBase nowScene)
 {
 	return std::move(nowScene);
 }

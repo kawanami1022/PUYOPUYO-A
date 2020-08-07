@@ -8,8 +8,8 @@
 #include "input/controller.h"
 #include "input/keyInput.h"
 #include "input/Pad.h"
-#include "Puyo.h"
-#include "ObsPuyo.h"
+#include "Puyo/Puyo.h"
+#include "Puyo/ObsPuyo.h"
 #define STGPUYO(id) stage->puyo_[id]
 #define PUYO_DELETE_NUM	4
 

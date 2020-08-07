@@ -22,12 +22,12 @@
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="input\keyInput.cpp" />
-    <ClCompile Include="ObsPuyo.cpp" />
+    <ClCompile Include="Puyo\ObsPuyo.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="input\Pad.cpp" />
     <ClCompile Include="input\mouse.cpp" />
-    <ClCompile Include="Puyo.cpp" />
+    <ClCompile Include="Puyo\Puyo.cpp" />
     <ClCompile Include="SceneMng.cpp" />
     <ClCompile Include="Texture\Texture.cpp" />
     <ClCompile Include="Texture\TextureFactory.cpp" />
@@ -42,7 +42,7 @@
     <ClInclude Include="input\InputID.h" />
     <ClInclude Include="input\keyInput.h" />
     <ClInclude Include="details\Vector2.h" />
-    <ClInclude Include="ObsPuyo.h" />
+    <ClInclude Include="Puyo\ObsPuyo.h" />
     <ClInclude Include="PyInputMode\IpLeft.h" />
     <ClInclude Include="PyInputMode\IpTurnL.h" />
     <ClInclude Include="PyInputMode\IpTurnR.h" />
@@ -58,7 +58,7 @@
     <ClInclude Include="Stage.h" />
     <ClInclude Include="input\Pad.h" />
     <ClInclude Include="input\mouse.h" />
-    <ClInclude Include="Puyo.h" />
+    <ClInclude Include="Puyo\Puyo.h" />
     <ClInclude Include="SceneMng.h" />
     <ClInclude Include="Texture\Texture.h" />
     <ClInclude Include="Texture\TextureFactory.h" />

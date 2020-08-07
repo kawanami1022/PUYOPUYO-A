@@ -6,8 +6,8 @@ class TitleScene :
 public:
     TitleScene();
     ~TitleScene();
-    UniqueBase input(UniqueBase&& nowScene)override;
-    UniqueBase upDate(UniqueBase&& nowScene)override;
+    UniqueBase input(UniqueBase nowScene)override;
+    UniqueBase upDate(UniqueBase nowScene)override;
     void Draw()override;
 };
 

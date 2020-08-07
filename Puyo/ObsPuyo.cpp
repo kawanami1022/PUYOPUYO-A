@@ -1,6 +1,6 @@
-#include "stage.h"
+#include "../stage.h"
 #include "ObsPuyo.h"
-#include "PyUpMode/GENERATES.h"
+#include "../PyUpMode/GENERATES.h"
 
 ObsPuyo::ObsPuyo(Vector2& fieldPos, Vector2 GridPos):Puyo(fieldPos, GridPos)
 {

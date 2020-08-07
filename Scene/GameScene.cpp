@@ -12,12 +12,12 @@ GameScene::~GameScene()
 {
 }
 
-UniqueBase GameScene::input(UniqueBase&& nowScene)
+UniqueBase GameScene::input(UniqueBase nowScene)
 {
     return std::move(nowScene);
 }
 
-UniqueBase GameScene::upDate(UniqueBase&& nowScene)
+UniqueBase GameScene::upDate(UniqueBase nowScene)
 {
 	for (int i = 0; i < stage.size(); i++)
 	{

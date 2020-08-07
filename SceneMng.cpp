@@ -1,6 +1,5 @@
 #include <DxLib.h>
 #include "SceneMng.h"
-#include "stage.h"
 #include "Scene/TitleScene.h"
 #include "Scene/GameScene.h"
 SceneMng* SceneMng::hInstance = nullptr;
@@ -15,17 +14,15 @@ int SceneMng::Run()
 	{
 		return -1;				// エラーが起きたら直ちに終了
 	}
-	offset = { 50,100 };
-	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
-	offset = { 500, 100 };
-	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
+
 	// 描画先画面を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 	// ループ
 	while (ProcessMessage() == 0)
 	{
-		upDate();
-		draw();
+		nowScene = nowScene->input(std::move(nowScene));
+		nowScene = nowScene->upDate(std::move(nowScene));
+		nowScene->Draw();
 	}
 
 
@@ -45,23 +42,5 @@ SceneMng::~SceneMng()
 {
 }
 
-void SceneMng::upDate()
-{
-	for (int i = 0; i < stage.size(); i++)
-	{
-		stage[i]->SetChainCount(SetChainCount_);
-		stage[i]->input();
-		SetChainCount_=stage[i]->update();
-	}
-}
 
-void SceneMng::draw()
-{
-	ClsDrawScreen();
-
-	stage[0]->draw();
-	stage[1]->draw();
-	ScreenFlip();
-
-}
 

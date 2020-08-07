@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include "../stage.h"
-#include "../Puyo.h"
+#include "../Puyo/Puyo.h"
 
 struct PUYON
 {

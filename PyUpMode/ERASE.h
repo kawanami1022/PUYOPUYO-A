@@ -2,8 +2,8 @@
 #include <iterator>
 #include <list>
 #include "../stage.h"
-#include "../Puyo.h"
-#include "../ObsPuyo.h"
+#include "../Puyo/Puyo.h"
+#include "../Puyo/ObsPuyo.h"
 
 struct ERASE
 {

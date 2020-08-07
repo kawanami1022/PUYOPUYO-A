@@ -16,8 +16,6 @@ class SceneMng
 private:
 	SceneMng();
 	~SceneMng();
-	void upDate();
-	void draw();
 	static SceneMng *hInstance;
 	int SetChainCount_;
 	Vector2 offset;

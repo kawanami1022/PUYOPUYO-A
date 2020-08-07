@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <vector>
 #include "../stage.h"
-#include "../Puyo.h"
+#include "../Puyo/Puyo.h"
 #include "../_debug/_DebugConOut.h"
 struct FALL
 {

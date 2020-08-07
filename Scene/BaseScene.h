@@ -10,8 +10,8 @@ public:
 	BaseScene();
 	virtual ~BaseScene();
 
-	virtual UniqueBase input(UniqueBase&&) = 0;
-	virtual UniqueBase upDate(UniqueBase&&) = 0;
+	virtual UniqueBase input(UniqueBase) = 0;
+	virtual UniqueBase upDate(UniqueBase) = 0;
 
 	virtual void Draw() = 0;
 

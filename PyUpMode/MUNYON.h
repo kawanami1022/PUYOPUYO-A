@@ -1,6 +1,6 @@
 #pragma once
 #include "../stage.h"
-#include "../Puyo.h"
+#include "../Puyo/Puyo.h"
 
 struct MUNYOUN
 {

@@ -1,10 +1,10 @@
 #include <random>
 #include <iostream>
 #include <DxLib.h>
-#include "Stage.h"
+#include "../Stage.h"
 #include "Puyo.h"
-#include "input/controller.h"
-#include "_debug/_DebugConOut.h"
+#include "../input/controller.h"
+#include "../_debug/_DebugConOut.h"
 
 
 Puyo::Puyo(Vector2&& Pos)
