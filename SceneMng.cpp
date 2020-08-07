@@ -1,7 +1,8 @@
 #include <DxLib.h>
 #include "SceneMng.h"
 #include "stage.h"
-
+#include "Scene/TitleScene.h"
+#include "Scene/GameScene.h"
 SceneMng* SceneMng::hInstance = nullptr;
 
 int SceneMng::Run()
@@ -37,6 +38,7 @@ SceneMng::SceneMng()
 	offset = {0,0};
 	size = { 400,600 };
 	SetChainCount_ = 0;
+	nowScene = std::make_unique<GameScene>();
 }
 
 SceneMng::~SceneMng()

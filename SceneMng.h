@@ -3,10 +3,11 @@
 #include <memory>
 #include <vector>
 #include "Vector2.h"
+#include "Scene/BaseScene.h"
 #define SCREEN_SIZE_X	800
 #define SCREEN_SIZE_Y	600
-
 #define lpSceneMng SceneMng::GetInstance()
+
 
 class Stage;
 
@@ -21,7 +22,8 @@ private:
 	int SetChainCount_;
 	Vector2 offset;
 	Vector2 size;
-	int handle;		// グラフィックハンドル
+	UniqueBase nowScene;
+
 public:
 	static SceneMng& GetInstance()
 	{
