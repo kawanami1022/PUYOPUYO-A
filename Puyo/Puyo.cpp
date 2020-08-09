@@ -63,33 +63,33 @@ void Puyo::draw()
     DrawOval(pos_.x, pos_.y+ ROffPos_.y,
         radious.x,radious.y, color[static_cast<int>(puyoType_)], 1, 1);
     
-    if (munyonBox_.perBit.u == 1)
-    {
-        DrawBox(pos_.x - blockSize / 2, pos_.y -radious.y + ROffPos_.y,
-            pos_.x + blockSize / 2, pos_.y + ROffPos_.y,
-            color[static_cast<int>(puyoType_)], true);
-    }
-    
-    if (munyonBox_.perBit.d == 1)
-    {
-        DrawBox(pos_.x - blockSize / 2, pos_.y + ROffPos_.y,
-            pos_.x + radious.x, pos_.y + radious.y + ROffPos_.y,
-            color[static_cast<int>(puyoType_)], true);
-    }
+    //if (munyonBox_.perBit.u == 1)
+    //{
+    //    DrawBox(pos_.x - blockSize / 2, pos_.y -radious.y + ROffPos_.y,
+    //        pos_.x + blockSize / 2, pos_.y + ROffPos_.y,
+    //        color[static_cast<int>(puyoType_)], true);
+    //}
+    //
+    //if (munyonBox_.perBit.d == 1)
+    //{
+    //    DrawBox(pos_.x - blockSize / 2, pos_.y + ROffPos_.y,
+    //        pos_.x + radious.x, pos_.y + radious.y + ROffPos_.y,
+    //        color[static_cast<int>(puyoType_)], true);
+    //}
 
-    if (munyonBox_.perBit.r == 1)
-    {
-        DrawBox(pos_.x, pos_.y - radious.y + ROffPos_.y,
-            pos_.x + blockSize/2, pos_.y + radious.y + ROffPos_.y,
-            color[static_cast<int>(puyoType_)], true);
-    }
+    //if (munyonBox_.perBit.r == 1)
+    //{
+    //    DrawBox(pos_.x, pos_.y - radious.y + ROffPos_.y,
+    //        pos_.x + blockSize/2, pos_.y + radious.y + ROffPos_.y,
+    //        color[static_cast<int>(puyoType_)], true);
+    //}
 
-    if (munyonBox_.perBit.l == 1)
-    {
-        DrawBox(pos_.x - blockSize / 2, pos_.y - radious.y + ROffPos_.y,
-            pos_.x, pos_.y + radious.y + ROffPos_.y,
-            color[static_cast<int>(puyoType_)], true);
-    }
+    //if (munyonBox_.perBit.l == 1)
+    //{
+    //    DrawBox(pos_.x - blockSize / 2, pos_.y - radious.y + ROffPos_.y,
+    //        pos_.x, pos_.y + radious.y + ROffPos_.y,
+    //        color[static_cast<int>(puyoType_)], true);
+    //}
    // DrawCircle(pos_.x, pos_.y,
    //     2, 0xffffff, 1, 1);
    //DrawCircle(GetGridPos().x* blockSize + offsetPos_.x+blockSize/2,
