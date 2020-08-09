@@ -9,9 +9,6 @@
 
 Puyo::Puyo(Vector2&& Pos)
 {
-    std::random_device seed_gen;
-    std::mt19937 random_(seed_gen());
-    std::uniform_int_distribution<int> dist(static_cast<int>(PUYO_TYPE::R), static_cast<int>(PUYO_TYPE::P));
     dirPer_.perBit = { 0,0,0,0 };
     munyonBox_.perBit = { 0,0,0,0 };
     ROffPos_ = Vector2(0, 0);
@@ -21,7 +18,6 @@ Puyo::Puyo(Vector2&& Pos)
     offsetPos_ = pos_;
     speed = 2;
     puyoState = PUYO_STATE::MOVE;
-    puyoType_ = static_cast<PUYO_TYPE>(dist(random_));
     alive_ = true;
 
 }
@@ -90,11 +86,11 @@ void Puyo::draw()
     //        pos_.x, pos_.y + radious.y + ROffPos_.y,
     //        color[static_cast<int>(puyoType_)], true);
     //}
-   // DrawCircle(pos_.x, pos_.y,
-   //     2, 0xffffff, 1, 1);
-   //DrawCircle(GetGridPos().x* blockSize + offsetPos_.x+blockSize/2,
-   //    GetGridPos().y * blockSize + offsetPos_.y + blockSize / 2,
-   //    3,0xffffff,1,1);
+    // DrawCircle(pos_.x, pos_.y,
+    //     2, 0xffffff, 1, 1);
+    //DrawCircle(GetGridPos().x* blockSize + offsetPos_.x+blockSize/2,
+    //    GetGridPos().y * blockSize + offsetPos_.y + blockSize / 2,
+    //    3,0xffffff,1,1);
 }
 
 void Puyo::setBlockSize(int size)

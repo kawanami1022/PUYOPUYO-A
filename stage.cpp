@@ -4,6 +4,8 @@
 #include "Vector2.h"
 #include "Stage.h"
 #include "input/InputID.h"
+#include "input/keyInput.h"
+#include "input/Pad.h"
 #include "_debug/_DebugConOut.h"
 #include "PyUpMode/DROP.h"
 #include "PyUpMode/ERASE.h"
@@ -105,6 +107,10 @@ void Stage::makePuyo()
 
 void Stage::setNextPuyo()
 {
+	std::random_device seed_gen;
+	std::mt19937 random_(seed_gen());
+	std::uniform_int_distribution<int> dist(static_cast<int>(PUYO_TYPE::R), static_cast<int>(PUYO_TYPE::P));
+
 	nextPuyo_.clear();
 	nextPuyo_.emplace(nextPuyo_.begin(), 
 		std::make_unique<Puyo>(
@@ -117,6 +123,7 @@ void Stage::setNextPuyo()
 			std::move(Vector2(nextBoxPos.x + (screenSizeX / 8) * (3 + id_), 
 				nextBoxPos.y + blockSize / 2 + blockSize * 1))));
 	nextPuyo_[1]->setBlockSize(blockSize);
+
 }
 
 

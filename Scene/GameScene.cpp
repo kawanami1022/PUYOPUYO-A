@@ -1,3 +1,4 @@
+#include <DxLib.h>
 #include "GameScene.h"
 GameScene::GameScene()
 {
