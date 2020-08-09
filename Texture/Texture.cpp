@@ -1,18 +1,18 @@
 #include <DxLib.h>
 #include "Texture.h"
 
-Texture::Texture(std::string FileName)
+Texture::Texture(int GrHandle)
 {
-	GrHandle = LoadGraph(FileName.data());
-	GetGraphSize(GrHandle, &size_.x, &size_.y);
+	GrHandle_ = GrHandle;
+	GetGraphSize(GrHandle_, &size_.x, &size_.y);
 }
 
-Vector2 Texture::GetSize() const
+Vector2 Texture::GetSize()
 {
 	return size_;
 }
 
-int Texture::GetHandle() const
+int Texture::GetHandle()
 {
-	return GrHandle;
+	return GrHandle_;
 }

@@ -10,8 +10,8 @@ class TextureFactory
 {
 public:
 	SharTexture GetTexture(std::string FileName);
-	MapTexture TextureContainer_;
 private:
+	MapTexture TextureContainer_;
 	SharTexture CreateTexture(std::string FileName);
 	
 };

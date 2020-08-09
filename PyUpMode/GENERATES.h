@@ -21,7 +21,7 @@ struct GENERATES
 			if (ObsPuyo.DropCount == 0)
 			{
 				tmp = ObsPuyo.GetGridPos();
-				stage->puyo_.emplace_back(std::make_unique<Puyo>(stage->offset_, (tmp,tmp), PUYO_TYPE::OBS));
+				stage->puyo_.emplace_back(std::make_unique<Puyo>(stage->offset_, (tmp,tmp), PUYO_TYPE::OBS, stage->GrHandle_[STCI(PUYO_TYPE::OBS)]));
 			}
 		}
 		auto rmObs = std::remove_if(stage->obsPuyo_.begin(), stage->obsPuyo_.end(), [&](auto&& obsPy)

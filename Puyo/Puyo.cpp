@@ -28,7 +28,7 @@ Puyo::Puyo(Vector2& stagePos, Vector2 GridPos)
     Init(stagePos, GridPos);
 }
 
-Puyo::Puyo(Vector2& stagePos, Vector2 GridPos, PUYO_TYPE puyoType)
+Puyo::Puyo(Vector2& stagePos, Vector2 GridPos, PUYO_TYPE puyoType, int GrHandle)
 {
     dirPer_.perBit = { 0,0,0,0 };
     munyonBox_.perBit = { 0,0,0,0 };
@@ -37,11 +37,12 @@ Puyo::Puyo(Vector2& stagePos, Vector2 GridPos, PUYO_TYPE puyoType)
     blockSize = 32;
     pos_ = stagePos;
     offsetPos_ = pos_;
-    pos_.x += blockSize / 2 + blockSize * GridPos.x;
-    pos_.y += blockSize / 2 + blockSize * GridPos.y;
+    pos_.x += blockSize * GridPos.x;
+    pos_.y += blockSize * GridPos.y;
     speed = 2;
     puyoState = PUYO_STATE::MOVE;
     puyoType_ = puyoType;
+    GrHandle_ = GrHandle;
     alive_ = true;
 }
 
@@ -56,8 +57,10 @@ void Puyo::update()
 
 void Puyo::draw()
 {
-    DrawOval(pos_.x, pos_.y+ ROffPos_.y,
-        radious.x,radious.y, color[static_cast<int>(puyoType_)], 1, 1);
+    DrawGraph(pos_.x, pos_.y, GrHandle_, true);
+
+    //DrawOval(pos_.x, pos_.y+ ROffPos_.y,
+    //    radious.x,radious.y, color[static_cast<int>(puyoType_)], 1, 1);
     
     //if (munyonBox_.perBit.u == 1)
     //{

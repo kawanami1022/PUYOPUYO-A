@@ -19,6 +19,7 @@
 #include "PyInputMode/IpTurnR.h"
 #include "PyInputMode/IpUp.h"
 #include "PyInputMode/lpDown.h"
+#include	"Puyo/nextPuyo.h"
 int Stage::stageCount_ = 0;
 
 void Stage::input()
@@ -99,9 +100,11 @@ void Stage::draw()
 void Stage::makePuyo()
 {
 
-	puyo_.emplace(puyo_.begin(), std::make_unique<Puyo>(this->_pos, Vector2(3, 1),nextPuyo_[0]->puyoType_));
+	puyo_.emplace(puyo_.begin(), std::make_unique<Puyo>(
+		this->_pos, Vector2(3, 1),nextPuyo_[0]->puyoType_, GrHandle_[STCI(nextPuyo_[0]->puyoType_)]));
 	puyo_[0]->setBlockSize(blockSize);
-	puyo_.emplace(puyo_.begin()+1, std::make_unique<Puyo>(this->_pos, Vector2(4, 1), nextPuyo_[1]->puyoType_));
+	puyo_.emplace(puyo_.begin() + 1, std::make_unique<Puyo>(
+		this->_pos, Vector2(4, 1), nextPuyo_[1]->puyoType_, GrHandle_[STCI(nextPuyo_[0]->puyoType_)]));
 	puyo_[1]->setBlockSize(blockSize);
 }
 
@@ -113,15 +116,17 @@ void Stage::setNextPuyo()
 
 	nextPuyo_.clear();
 	nextPuyo_.emplace(nextPuyo_.begin(), 
-		std::make_unique<Puyo>(
-			std::move(Vector2(nextBoxPos.x +(screenSizeX / 8) * (3 + id_),
-				nextBoxPos.y+blockSize/2+ blockSize*0))));
+		std::make_unique<nextPuyo>(
+			Vector2(nextBoxPos.x +(screenSizeX / 8) * (3 + id_),
+				nextBoxPos.y+blockSize/2+ blockSize*0),
+				static_cast<PUYO_TYPE>(dist(random_))));
 	nextPuyo_[0]->setBlockSize(blockSize);
 
 	nextPuyo_.emplace(nextPuyo_.begin() +1,
-		std::make_unique<Puyo>(
-			std::move(Vector2(nextBoxPos.x + (screenSizeX / 8) * (3 + id_), 
-				nextBoxPos.y + blockSize / 2 + blockSize * 1))));
+		std::make_unique<nextPuyo>(
+			Vector2(nextBoxPos.x + (screenSizeX / 8) * (3 + id_), 
+				nextBoxPos.y + blockSize / 2 + blockSize * 1),
+				static_cast<PUYO_TYPE>(dist(random_))));
 	nextPuyo_[1]->setBlockSize(blockSize);
 
 }
@@ -319,6 +324,16 @@ bool Stage::Init(Vector2& Pos)
 	StgInputFunc.try_emplace(InputID::Right, IpRight());
 	StgInputFunc.try_emplace(InputID::TURN_L, IpTurnL());
 	StgInputFunc.try_emplace(InputID::TURN_R,IpTurnR());
+
+	GrHandle_.reserve(STCI(PUYO_TYPE::MAX));
+	GrHandle_.emplace_back(textureFactory.GetTexture("")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture("Image/RED_Puyo.png")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture("Image/GREEN_Puyo.png")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture("Image/BLUE_Puyo.png")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PURPLE_Puyo.png")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture("Image/YELLOW_Puyo.png")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture("Image/ICE_Puyo.png")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoWall.png")->GetHandle());
 	return true;
 }
 

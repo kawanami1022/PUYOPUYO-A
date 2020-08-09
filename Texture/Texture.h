@@ -5,12 +5,12 @@ class Texture
 {
 
 private:
-	int GrHandle;
+	int GrHandle_;
 	Vector2 size_;
 public:
-	Texture(std::string);
+	Texture(int);
 	// getter
-	Vector2 GetSize()const;
-	int GetHandle()const;
+	Vector2 GetSize();
+	int GetHandle();
 };
 

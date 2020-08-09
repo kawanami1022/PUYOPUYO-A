@@ -24,16 +24,16 @@ struct PUYON
 					int MatchGridPosY = Puyo->GetGridPos().y * Puyo->blockSize + Puyo->offsetPos_.y + Puyo->blockSize / 2;
 					int mag = (stage->gridCountY-1)-Puyo->GetGridPos().y;	// puyo‚ÌyÀ•W‚É‚æ‚Á‚ÄˆÚ“®”{—¦‚ð‹‚ß‚é
 
-					Puyo->radious.x = Puyo->blockSize / 2 - offsetRadious.x;
-					Puyo->radious.y = Puyo->blockSize / 2 - offsetRadious.y;
-					Puyo->ROffPos_.y = offsetRadious.y * mag * 2;
+					//Puyo->radious.x = Puyo->blockSize / 2 - offsetRadious.x;
+					//Puyo->radious.y = Puyo->blockSize / 2 - offsetRadious.y;
+					//Puyo->ROffPos_.y = offsetRadious.y * mag * 2;
 				}
 			}
 		}
 		if (offsetRadious.y <=0)
 		{
-			stage->puyo_[0]->radious.y = stage->puyo_[0]->blockSize/2;
-			stage->puyo_[1]->radious.y = stage->puyo_[1]->blockSize/2;
+			//stage->puyo_[0]->radious.y = stage->puyo_[0]->blockSize/2;
+			//stage->puyo_[1]->radious.y = stage->puyo_[1]->blockSize/2;
 			stage->stgMode = STG_MODE::MUNYON;
 		}
 	

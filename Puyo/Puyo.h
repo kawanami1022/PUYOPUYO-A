@@ -49,7 +49,7 @@ class Puyo
 public:
 	Puyo(Vector2&& Pos);
 	Puyo(Vector2& stagePos, Vector2 GridPos);
-	Puyo(Vector2& stagePos, Vector2 GridPos, PUYO_TYPE puyoType);
+	Puyo(Vector2& stagePos, Vector2 GridPos, PUYO_TYPE puyoType,int GrHandle);
 	~Puyo();
 	void update();
 	void draw();
@@ -79,6 +79,7 @@ private:
 	std::map< PUYO_STATE, std::function<void()>> drawID;
 	bool Init(Vector2& fieldPos, Vector2& GridPos);
 	int speed;
+	int GrHandle_;
 	friend class Stage;
 
 	friend struct IpLeft;

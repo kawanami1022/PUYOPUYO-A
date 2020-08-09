@@ -98,7 +98,7 @@ public:
 	~Stage();
 	friend class PlayUnit;
 	TextureFactory textureFactory;
-
+	std::vector<int> GrHandle_;
 
 };
 

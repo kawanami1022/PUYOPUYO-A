@@ -14,7 +14,7 @@ int SceneMng::Run()
 	{
 		return -1;				// エラーが起きたら直ちに終了
 	}
-
+	nowScene = std::make_unique<GameScene>();
 	// 描画先画面を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 	// ループ
@@ -35,7 +35,7 @@ SceneMng::SceneMng()
 	offset = {0,0};
 	size = { 400,600 };
 	SetChainCount_ = 0;
-	nowScene = std::make_unique<GameScene>();
+	
 }
 
 SceneMng::~SceneMng()
