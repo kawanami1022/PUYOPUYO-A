@@ -5,7 +5,7 @@ class nextPuyo :
     public Puyo
 {
 public:
-    nextPuyo(Vector2,PUYO_TYPE);
+    nextPuyo(Vector2,PUYO_TYPE, int GrHandle);
 private:
 };
 

@@ -60,11 +60,11 @@ public:
 	void SetAlive(bool aliveFlag);
 	void setBlockSize(int size);
 	bool drop();
-	bool DeletePuyo();
-	void SetMatchGrid(Vector2&& Pos);
+	void SetMatchGrid();
 protected:
 	PUYO_TYPE puyoType_;
 	PUYO_STATE puyoState;
+	int GrHandle_;
 private:
 	Vector2 pos_;
 	Vector2 ROffPos_;
@@ -79,7 +79,7 @@ private:
 	std::map< PUYO_STATE, std::function<void()>> drawID;
 	bool Init(Vector2& fieldPos, Vector2& GridPos);
 	int speed;
-	int GrHandle_;
+	
 	friend class Stage;
 
 	friend struct IpLeft;

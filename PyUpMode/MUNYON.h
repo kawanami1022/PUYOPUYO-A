@@ -13,7 +13,7 @@ struct MUNYOUN
 			PUYO->munyonBox_.perBit = { 0,0,0,0 };
 			//“¯F‚Ìpuyo‚ª‚È‚¢‚©Šm”F
 			// ã
-			if (stage->stgData_[tmp.x][tmp.y]== stage->stgData_[tmp.x][tmp.y-1])
+			if (stage->stgData_[tmp.x][tmp.y] == stage->stgData_[tmp.x][tmp.y - 1])
 				PUYO->munyonBox_.perBit.u = 1;
 			// ‰º
 			if (stage->stgData_[tmp.x][tmp.y] == stage->stgData_[tmp.x][tmp.y + 1])
@@ -24,6 +24,13 @@ struct MUNYOUN
 			// ¶
 			if (stage->stgData_[tmp.x][tmp.y] == stage->stgData_[tmp.x - 1][tmp.y])
 				PUYO->munyonBox_.perBit.l = 1;
+
+			if (PUYO->munyonBox_.perBit.u == 1)
+			{
+				
+			}
+
+
 		}
 		stage->stgMode = STG_MODE::ERASE;
 	}

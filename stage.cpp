@@ -20,6 +20,8 @@
 #include "PyInputMode/IpUp.h"
 #include "PyInputMode/lpDown.h"
 #include	"Puyo/nextPuyo.h"
+#include "DxLibForHomeBrew/DxLib_Draw.h"
+
 int Stage::stageCount_ = 0;
 
 void Stage::input()
@@ -72,7 +74,7 @@ void Stage::draw()
 	DrawFormatString(id_ * 400,16, 0xffffff, "GetChainCount_:%d", GetChainCount_);
 	DrawFormatString(id_ * 400,32, 0xffffff, "ObsDropCnt_:%d", ObsDropCnt_);
 
-	
+
 
 	DrawLine(offset_.x, offset_.y+blockSize*gridCountY,
 		offset_.x+gridCountX*blockSize, offset_.y + blockSize * gridCountY,
@@ -85,11 +87,22 @@ void Stage::draw()
 	{
 		OBSPUYO.draw();
 	}
+
+	for (int y = 0; y < gridCountY; y++)
+	{
+		for (int x = 0; x < gridCountX; x++)
+		{
+			DxLib_Draw::DrawBoxLineEOff(offset_.x + x * blockSize, offset_.y + y * blockSize, blockSize, blockSize, 0xffffff);
+			DrawFormatString(offset_.x + x * blockSize, offset_.y + y * blockSize, 0xffffff, "%d",stgData_[x][y]);
+		}
+	}
+
 	DrawBox(nextBoxPos.x + (screenSizeX / 8) * (3 + id_) - blockSize / 2,
 		nextBoxPos.y,
 		nextBoxPos.x + (screenSizeX / 8) * (3 + id_) + blockSize / 2,
 		nextBoxPos.y + blockSize * 2,
 		0xffffff, false);
+
 	for (auto&& NEXTPUYO : nextPuyo_)
 	{
 		NEXTPUYO->draw();
@@ -104,7 +117,7 @@ void Stage::makePuyo()
 		this->_pos, Vector2(3, 1),nextPuyo_[0]->puyoType_, GrHandle_[STCI(nextPuyo_[0]->puyoType_)]));
 	puyo_[0]->setBlockSize(blockSize);
 	puyo_.emplace(puyo_.begin() + 1, std::make_unique<Puyo>(
-		this->_pos, Vector2(4, 1), nextPuyo_[1]->puyoType_, GrHandle_[STCI(nextPuyo_[0]->puyoType_)]));
+		this->_pos, Vector2(4, 1), nextPuyo_[1]->puyoType_, GrHandle_[STCI(nextPuyo_[1]->puyoType_)]));
 	puyo_[1]->setBlockSize(blockSize);
 }
 
@@ -114,19 +127,22 @@ void Stage::setNextPuyo()
 	std::mt19937 random_(seed_gen());
 	std::uniform_int_distribution<int> dist(static_cast<int>(PUYO_TYPE::R), static_cast<int>(PUYO_TYPE::P));
 
+	PUYO_TYPE PuyoType= static_cast<PUYO_TYPE>(dist(random_));
+
 	nextPuyo_.clear();
 	nextPuyo_.emplace(nextPuyo_.begin(), 
 		std::make_unique<nextPuyo>(
 			Vector2(nextBoxPos.x +(screenSizeX / 8) * (3 + id_),
 				nextBoxPos.y+blockSize/2+ blockSize*0),
-				static_cast<PUYO_TYPE>(dist(random_))));
+				PuyoType,GrHandle_[STCI(PuyoType)]));
 	nextPuyo_[0]->setBlockSize(blockSize);
 
+	PuyoType= static_cast<PUYO_TYPE>(dist(random_));
 	nextPuyo_.emplace(nextPuyo_.begin() +1,
 		std::make_unique<nextPuyo>(
 			Vector2(nextBoxPos.x + (screenSizeX / 8) * (3 + id_), 
 				nextBoxPos.y + blockSize / 2 + blockSize * 1),
-				static_cast<PUYO_TYPE>(dist(random_))));
+				PuyoType, GrHandle_[STCI(PuyoType)]));
 	nextPuyo_[1]->setBlockSize(blockSize);
 
 }
@@ -303,7 +319,6 @@ bool Stage::Init(Vector2& Pos)
 	{eraseData_.emplace_back(&eraseDataBase_[no * gridCountY]);}
 	SetStageData();
 
-	setNextPuyo();
 
 	_checkGridCount = 0;
 	GetChainCount_ = 0;
@@ -334,6 +349,8 @@ bool Stage::Init(Vector2& Pos)
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/YELLOW_Puyo.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/ICE_Puyo.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoWall.png")->GetHandle());
+	setNextPuyo();
+
 	return true;
 }
 

@@ -5,7 +5,7 @@
 #include "Puyo.h"
 #include "../input/controller.h"
 #include "../_debug/_DebugConOut.h"
-
+#include "../DxLibForHomeBrew/DxLib_Draw.h"
 
 Puyo::Puyo(Vector2&& Pos)
 {
@@ -14,6 +14,7 @@ Puyo::Puyo(Vector2&& Pos)
     ROffPos_ = Vector2(0, 0);
     radious = Vector2(15, 15);
     blockSize = 32;
+    pos_ += blockSize;
     pos_ = Pos;
     offsetPos_ = pos_;
     speed = 2;
@@ -37,8 +38,8 @@ Puyo::Puyo(Vector2& stagePos, Vector2 GridPos, PUYO_TYPE puyoType, int GrHandle)
     blockSize = 32;
     pos_ = stagePos;
     offsetPos_ = pos_;
-    pos_.x += blockSize * GridPos.x;
-    pos_.y += blockSize * GridPos.y;
+    pos_.x += blockSize * GridPos.x + blockSize / 2;
+    pos_.y += blockSize * GridPos.y + blockSize / 2;
     speed = 2;
     puyoState = PUYO_STATE::MOVE;
     puyoType_ = puyoType;
@@ -57,8 +58,8 @@ void Puyo::update()
 
 void Puyo::draw()
 {
-    DrawGraph(pos_.x, pos_.y, GrHandle_, true);
-
+    //DrawGraph(pos_.x, pos_.y, GrHandle_, true);
+    DxLib_Draw::DrawExtendGraphCe(pos_.x, pos_.y + ROffPos_.y, radious.x*2, radious.y*2, GrHandle_);
     //DrawOval(pos_.x, pos_.y+ ROffPos_.y,
     //    radious.x,radious.y, color[static_cast<int>(puyoType_)], 1, 1);
     
@@ -89,6 +90,8 @@ void Puyo::draw()
     //        pos_.x, pos_.y + radious.y + ROffPos_.y,
     //        color[static_cast<int>(puyoType_)], true);
     //}
+
+
     // DrawCircle(pos_.x, pos_.y,
     //     2, 0xffffff, 1, 1);
     //DrawCircle(GetGridPos().x* blockSize + offsetPos_.x+blockSize/2,
@@ -111,15 +114,11 @@ bool Puyo::drop()
     return false;
 }
 
-bool Puyo::DeletePuyo()
-{
-    // remove_if‚ðŽg‚Á‚Ä‚¯‚·
-    return false;
-}
 
-void Puyo::SetMatchGrid(Vector2&& Pos)
+void Puyo::SetMatchGrid()
 {
-    pos_ = Pos + offsetPos_-blockSize/2;
+    //pos_ = Pos + offsetPos_ -blockSize / 2;
+    pos_ = GetGridPos()*blockSize+offsetPos_ + blockSize / 2;
 }
 
 void Puyo::Down(InputID id)

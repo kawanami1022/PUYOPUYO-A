@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DxLibForHomeBrew\DxLib_Draw.cpp" />
     <ClCompile Include="Puyo\nextPuyo.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="_debug\_DebugDispOut.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DxLibForHomeBrew\DxLib_Draw.h" />
     <ClInclude Include="Puyo\nextPuyo.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\BaseScene.h" />
