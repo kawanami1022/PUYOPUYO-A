@@ -10,10 +10,11 @@ public:
 	void Update() override;
 	bool Setup(int no) override;
 	ContType GetType(void) override;
-	bool Hold(int);
-	bool Push(int);
-	bool Release(int);
-	bool separate(int);
+	bool Hold(InputID)override;
+	bool push(InputID)override;
+	bool release(InputID)override;
+	bool separate(InputID)override;
+	void DebugDrow(int id)override;
 	Vector2 getMousePos();
 protected:
 	std::map<InputID, int> _mouseInputTbl;

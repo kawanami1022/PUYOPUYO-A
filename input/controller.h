@@ -2,6 +2,7 @@
 #include <array>
 #include <map>
 #include "InputID.h"
+#include "CommonInputID.h"
 #define STCI static_cast<int>
 
 enum class Trg
@@ -24,6 +25,7 @@ enum class ContType
 
 using TrgBool = std::array<bool, static_cast<size_t>(Trg::Max)>;
 using CntData = std::map<InputID, TrgBool>;
+using ComData = std::map<ComInputID, TrgBool>;
 
 
 struct controller
@@ -44,6 +46,7 @@ struct controller
 	virtual bool release(InputID) = 0;
 	virtual bool Hold(InputID) = 0;
 	virtual bool separate(InputID)=0;
+	virtual void DebugDrow(int id) = 0;
 protected:
 	CntData _data;
 

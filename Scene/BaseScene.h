@@ -1,5 +1,8 @@
 #pragma once
 #include <memory>
+#include "../Texture/TextureFactory.h"
+#include "../Texture/Texture.h"
+
 class BaseScene;
 
 using UniqueBase = std::unique_ptr<BaseScene>;
@@ -16,7 +19,6 @@ public:
 	virtual void Draw() = 0;
 
 private:
-
 	
 };
 

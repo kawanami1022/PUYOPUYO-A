@@ -6,7 +6,8 @@ GameScene::GameScene()
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
 	offset = { 500, 100 };
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
-
+	comInput = std::make_unique<ComInput>();
+	comInput->Setup();
 }
 
 GameScene::~GameScene()
@@ -15,6 +16,15 @@ GameScene::~GameScene()
 
 UniqueBase GameScene::input(UniqueBase nowScene)
 {
+	(*comInput)();
+	for (auto id : ComInputID())
+	{
+		if (comInput->push(id))
+		{
+			{stage[1]->ChangeInputMode(id);}
+		}
+	}
+
     return std::move(nowScene);
 }
 
@@ -35,5 +45,10 @@ void GameScene::Draw()
 
 	stage[0]->draw();
 	stage[1]->draw();
+
 	ScreenFlip();
+}
+
+void GameScene::DrawInput()
+{
 }

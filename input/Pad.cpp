@@ -18,7 +18,7 @@ void Pad::Update()
 
 bool Pad::push(InputID button)
 {
-	return (_data[button][static_cast<int>(Trg::Now)] && !_data[button][static_cast<int>(Trg::Old)]);
+	return (_data[button][static_cast<int>(Trg::Now)]==1) && (_data[button][static_cast<int>(Trg::Old)]==0);
 }
 
 bool Pad::release(InputID button)
@@ -45,5 +45,13 @@ bool Pad::Setup(int no)
 				{InputID::TURN_L,XINPUT_BUTTON_A},
 				{InputID::TURN_R,XINPUT_BUTTON_B} };
 	return true;
+}
+
+void Pad::DebugDrow(int id)
+{
+	if(id==0)
+	DrawFormatString(0, 0, 0xffffff, "inputMode: Pad");
+	if (id == 1)
+		DrawFormatString(400, 0, 0xffffff, "inputMode: Pad");
 }
 

@@ -5,6 +5,8 @@
 #include <functional>
 #include <algorithm>
 #include "Vector2.h"
+#include "input/ComInput.h"
+#include "input/CommonInputID.h"
 #include "input/controller.h"
 #include "Puyo/Puyo.h"
 #include "Puyo/ObsPuyo.h"
@@ -24,6 +26,7 @@ enum class STG_MODE
 	MAX,
 };
 
+
 using sharPuyo = std::shared_ptr<Puyo>;
 
 
@@ -39,15 +42,19 @@ private:
 	std::vector<sharPuyo> puyo_;
 	std::vector<sharPuyo> nextPuyo_;
 	std::shared_ptr<controller> controller_;
+	
 	std::vector<PUYO_TYPE> stgDataBase_;	// 
 	std::vector<PUYO_TYPE*> stgData_;		// _dataBaseの一次元配列の先頭アドレスを確保
 	std::vector<PUYO_TYPE> eraseDataBase_;	// 消去用データ
 	std::vector<PUYO_TYPE*> eraseData_;		// 消去用データ
 	std::vector<Vector2>	ErPyDelPos_;
+
 	std::map<STG_MODE, std::function<void(Stage* stage)>> StgModeFunc;
 	std::map<InputID, std::function<void(Stage* stage)>> StgInputFunc;
 	std::function<void(Vector2&&,Vector2&&)> chPuyo_;
 	std::list<ObsPuyo> obsPuyo_;
+
+
 	int frame;
 	InputID inputId_;
 	static int stageCount_;
@@ -56,7 +63,11 @@ private:
 	Vector2 offset_;
 	Vector2 size_;
 	Vector2 nextBoxPos;
+
+	// 初期化処理
 	bool Init(Vector2&);
+
+
 	int _checkGridCount;
 	int SetChainCount_;
 	int GetChainCount_;
@@ -91,6 +102,10 @@ public:
 	bool chErasePuyo(Vector2&& GridPos, Vector2&& chGridPos);
 	bool ErasePuyo(Vector2&& GridPos);			// 消せるぷよが存在	true 存在しない false
 	void SetChainCount(int SetChainCount);
+
+
+	// 入力処理系の関数
+	void ChangeInputMode(ComInputID);
 	Vector2 getChipPos();
 	bool DeletePuyo();
 	std::vector<PUYO_TYPE*> GetErasePos();

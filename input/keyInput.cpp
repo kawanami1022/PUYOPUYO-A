@@ -63,3 +63,11 @@ bool KeyInput::separate(InputID)
 	return false;
 }
 
+void KeyInput::DebugDrow(int id)
+{
+	if(id==0)
+	DrawFormatString(0, 0, 0xffffff, "inputMode: KeyInput");
+	if(id==1)
+	DrawFormatString(400, 0, 0xffffff, "inputMode: KeyInput");
+}
+

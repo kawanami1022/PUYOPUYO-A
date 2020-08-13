@@ -1,3 +1,4 @@
+#include <functional>
 #include <DxLib.h>
 #include "mouse.h"
 
@@ -14,9 +15,10 @@ void mouse::Update()
 }
 bool mouse::Setup(int no)
 {
-	_mouseInputTbl = { {InputID::Down,MOUSE_INPUT_LEFT},
-				{InputID::Right,MOUSE_INPUT_RIGHT},
-				{InputID::Left,MOUSE_INPUT_MIDDLE} };
+
+	_mouseInputTbl = { {InputID::Left,MOUSE_INPUT_LEFT},
+					{InputID::Right,MOUSE_INPUT_RIGHT},
+					{InputID::Down,MOUSE_INPUT_MIDDLE} };
 	return true;
 }
 
@@ -25,22 +27,22 @@ ContType mouse::GetType(void)
 	return ContType::Mouse;
 }
 
-bool mouse::Hold(int mouseButton)
+bool mouse::Hold(InputID mouseButton)
 {
 	return false;
 }
 
-bool mouse::Push(int mouseButton)
+bool mouse::push(InputID mouseButton)
 {
 	return false;
 }
 
-bool mouse::Release(int mouseButton)
+bool mouse::release(InputID mouseButton)
 {
 	return false;
 }
 
-bool mouse::separate(int mouseButton)
+bool mouse::separate(InputID mouseButton)
 {
 	return false;
 }
@@ -49,3 +51,13 @@ Vector2 mouse::getMousePos()
 {
 	return Vector2();
 }
+
+void mouse::DebugDrow(int id)
+{
+	if(id==0)
+	DrawFormatString(0, 0, 0xffffff, "inputMode: mouse");
+	if(id==1)
+	DrawFormatString(400,0, 0xffffff, "inputMode: mouse");
+
+}
+ 

@@ -58,45 +58,14 @@ void Puyo::update()
 
 void Puyo::draw()
 {
-    //DrawGraph(pos_.x, pos_.y, GrHandle_, true);
-    DxLib_Draw::DrawExtendGraphCe(pos_.x, pos_.y + ROffPos_.y, radious.x*2, radious.y*2, GrHandle_);
-    //DrawOval(pos_.x, pos_.y+ ROffPos_.y,
-    //    radious.x,radious.y, color[static_cast<int>(puyoType_)], 1, 1);
     
-    //if (munyonBox_.perBit.u == 1)
-    //{
-    //    DrawBox(pos_.x - blockSize / 2, pos_.y -radious.y + ROffPos_.y,
-    //        pos_.x + blockSize / 2, pos_.y + ROffPos_.y,
-    //        color[static_cast<int>(puyoType_)], true);
-    //}
-    //
-    //if (munyonBox_.perBit.d == 1)
-    //{
-    //    DrawBox(pos_.x - blockSize / 2, pos_.y + ROffPos_.y,
-    //        pos_.x + radious.x, pos_.y + radious.y + ROffPos_.y,
-    //        color[static_cast<int>(puyoType_)], true);
-    //}
+  
+    DrawExtendGraph(pos_.x - radious.x - munyonBox_.perBit.l * 2,
+        pos_.y - radious.y + ROffPos_.y - munyonBox_.perBit.u * 2,
+        pos_.x + radious.x + munyonBox_.perBit.r * 2,
+        pos_.y + radious.y + ROffPos_.y+munyonBox_.perBit.d* 2,
+        GrHandle_, true);
 
-    //if (munyonBox_.perBit.r == 1)
-    //{
-    //    DrawBox(pos_.x, pos_.y - radious.y + ROffPos_.y,
-    //        pos_.x + blockSize/2, pos_.y + radious.y + ROffPos_.y,
-    //        color[static_cast<int>(puyoType_)], true);
-    //}
-
-    //if (munyonBox_.perBit.l == 1)
-    //{
-    //    DrawBox(pos_.x - blockSize / 2, pos_.y - radious.y + ROffPos_.y,
-    //        pos_.x, pos_.y + radious.y + ROffPos_.y,
-    //        color[static_cast<int>(puyoType_)], true);
-    //}
-
-
-    // DrawCircle(pos_.x, pos_.y,
-    //     2, 0xffffff, 1, 1);
-    //DrawCircle(GetGridPos().x* blockSize + offsetPos_.x+blockSize/2,
-    //    GetGridPos().y * blockSize + offsetPos_.y + blockSize / 2,
-    //    3,0xffffff,1,1);
 }
 
 void Puyo::setBlockSize(int size)

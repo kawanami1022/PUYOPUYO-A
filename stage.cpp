@@ -6,6 +6,7 @@
 #include "input/InputID.h"
 #include "input/keyInput.h"
 #include "input/Pad.h"
+#include "input/mouse.h"
 #include "_debug/_DebugConOut.h"
 #include "PyUpMode/DROP.h"
 #include "PyUpMode/ERASE.h"
@@ -70,10 +71,7 @@ int Stage::update()
 void Stage::draw()
 {
 
-	DrawFormatString(id_ *400,0, 0xffffff, "SetChainCount_:%d", SetChainCount_);
-	DrawFormatString(id_ * 400,16, 0xffffff, "GetChainCount_:%d", GetChainCount_);
-	DrawFormatString(id_ * 400,32, 0xffffff, "ObsDropCnt_:%d", ObsDropCnt_);
-
+	controller_->DebugDrow(id_);
 
 
 	DrawLine(offset_.x, offset_.y+blockSize*gridCountY,
@@ -92,8 +90,8 @@ void Stage::draw()
 	{
 		for (int x = 0; x < gridCountX; x++)
 		{
-			DxLib_Draw::DrawBoxLineEOff(offset_.x + x * blockSize, offset_.y + y * blockSize, blockSize, blockSize, 0xffffff);
-			DrawFormatString(offset_.x + x * blockSize, offset_.y + y * blockSize, 0xffffff, "%d",stgData_[x][y]);
+			if(stgData_[x][y]== PUYO_TYPE::WALL)
+			DrawGraph(offset_.x + x * blockSize, offset_.y + y * blockSize,GrHandle_[STCI(PUYO_TYPE::WALL)], true);
 		}
 	}
 
@@ -267,6 +265,24 @@ void Stage::SetChainCount(int SetChainCount)
 	SetChainCount_ = SetChainCount;
 }
 
+void Stage::ChangeInputMode(ComInputID comInput)
+{
+	auto func = [&](ComInputID inputID) {
+		ContType contTypeTmp = controller_->GetType();
+
+		if (inputID == ComInputID::PG_DOWN)
+			contTypeTmp = static_cast<ContType>((STCI(contTypeTmp) - 1) % STCI(ContType::Max));
+		if (inputID == ComInputID::PG_UP)
+			contTypeTmp = static_cast<ContType>((STCI(contTypeTmp) + 1) % STCI(ContType::Max));
+
+		if (contTypeTmp == ContType::Key)			controller_ = std::make_unique<KeyInput>();
+		if (contTypeTmp == ContType::Mouse)		controller_ = std::make_unique<mouse>();
+		if (contTypeTmp == ContType::Pad)		controller_ = std::make_unique<Pad>();
+		controller_->Setup(id_);
+	};
+	func(comInput);
+}
+
 Vector2 Stage::getChipPos()
 {
 	return _pos;
@@ -340,6 +356,7 @@ bool Stage::Init(Vector2& Pos)
 	StgInputFunc.try_emplace(InputID::TURN_L, IpTurnL());
 	StgInputFunc.try_emplace(InputID::TURN_R,IpTurnR());
 
+	// グラフィックハンドルを用意
 	GrHandle_.reserve(STCI(PUYO_TYPE::MAX));
 	GrHandle_.emplace_back(textureFactory.GetTexture("")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/RED_Puyo.png")->GetHandle());
@@ -350,6 +367,8 @@ bool Stage::Init(Vector2& Pos)
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/ICE_Puyo.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoWall.png")->GetHandle());
 	setNextPuyo();
+
+	//changeInputType.try_emplace(ContType::Key, [](int x) { return x + 1; });
 
 	return true;
 }
@@ -363,9 +382,14 @@ Stage::Stage(Vector2 && offset, Vector2&& size) :
 	offset_ = offset;
 	size_ = size;
 	nextBoxPos = Vector2(50, 100);
+
+
 	Init(offset_ );
 }
 
 Stage::~Stage()
 {
+	GrHandle_.clear();
+	InitGraph();
+
 }
