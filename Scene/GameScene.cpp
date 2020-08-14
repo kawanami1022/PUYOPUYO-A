@@ -6,8 +6,7 @@ GameScene::GameScene()
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
 	offset = { 500, 100 };
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
-	comInput = std::make_unique<ComInput>();
-	comInput->Setup();
+
 }
 
 GameScene::~GameScene()

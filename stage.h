@@ -1,14 +1,13 @@
 #pragma once
+#include <array>
 #include <list>
 #include <memory>
 #include <vector>
 #include <functional>
-#include <algorithm>
 #include "Vector2.h"
 #include "input/ComInput.h"
 #include "input/CommonInputID.h"
 #include "input/controller.h"
-#include "Puyo/Puyo.h"
 #include "Puyo/ObsPuyo.h"
 #include "Texture/TextureFactory.h"
 #include "Texture/Texture.h"
@@ -26,6 +25,7 @@ enum class STG_MODE
 	MAX,
 };
 
+class Puyo;
 
 using sharPuyo = std::shared_ptr<Puyo>;
 
@@ -38,6 +38,7 @@ private:
 	const int blockSize;
 	const int gridCountX;
 	const int gridCountY;
+
 	STG_MODE stgMode;
 	std::vector<sharPuyo> puyo_;
 	std::vector<sharPuyo> nextPuyo_;
@@ -54,7 +55,6 @@ private:
 	std::function<void(Vector2&&,Vector2&&)> chPuyo_;
 	std::list<ObsPuyo> obsPuyo_;
 
-
 	int frame;
 	InputID inputId_;
 	static int stageCount_;
@@ -63,6 +63,7 @@ private:
 	Vector2 offset_;
 	Vector2 size_;
 	Vector2 nextBoxPos;
+	std::array<Vector2,2> GuidePyPos_;	//ガイド用Puyo座標
 
 	// 初期化処理
 	bool Init(Vector2&);
@@ -103,6 +104,7 @@ public:
 	bool ErasePuyo(Vector2&& GridPos);			// 消せるぷよが存在	true 存在しない false
 	void SetChainCount(int SetChainCount);
 
+	void SetPuyoGuide();
 
 	// 入力処理系の関数
 	void ChangeInputMode(ComInputID);

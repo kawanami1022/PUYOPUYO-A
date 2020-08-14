@@ -1,5 +1,9 @@
 #pragma once
+#include <string>
+#include <map>
 #include <memory>
+#include "../Input/CommonInputID.h"
+#include "../input/ComInput.h"
 #include "../Texture/TextureFactory.h"
 #include "../Texture/Texture.h"
 
@@ -17,7 +21,10 @@ public:
 	virtual UniqueBase upDate(UniqueBase) = 0;
 
 	virtual void Draw() = 0;
-
+protected:
+	std::shared_ptr<ComInput> comInput;
+	SharTexture textureFactory;
+	std::map<std::string, SharTexture> textureContainer;
 private:
 	
 };

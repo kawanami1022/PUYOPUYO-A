@@ -5,7 +5,8 @@ bool ComInput::Setup()
 {
     _ComInputTbl.try_emplace(ComInputID::PG_UP, KEY_INPUT_PGUP);
     _ComInputTbl.try_emplace(ComInputID::PG_DOWN, KEY_INPUT_PGDN);
-    return false;
+    _ComInputTbl.try_emplace(ComInputID::SPACE, KEY_INPUT_SPACE);
+    return true;
 }
 
 void ComInput::Update(void)
@@ -21,7 +22,7 @@ void ComInput::Update(void)
 bool ComInput::push(ComInputID comInputID)
 {
     return (comData_[comInputID][static_cast<int>(Trg::Now)] == 1
-            &&comData_[comInputID][static_cast<int>(Trg::Old)]==0);
+        && comData_[comInputID][static_cast<int>(Trg::Old)] == 0);
 }
 
 bool ComInput::Hold(ComInputID comInputID)

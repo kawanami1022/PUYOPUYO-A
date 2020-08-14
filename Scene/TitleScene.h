@@ -1,4 +1,5 @@
 #pragma once
+#include <EffekseerForDXLib.h>
 #include "BaseScene.h"
 class TitleScene :
     public BaseScene

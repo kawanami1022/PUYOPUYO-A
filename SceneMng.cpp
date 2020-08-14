@@ -2,6 +2,7 @@
 #include "SceneMng.h"
 #include "Scene/TitleScene.h"
 #include "Scene/GameScene.h"
+#include "EfkMng/EfkMng.h"
 SceneMng* SceneMng::hInstance = nullptr;
 
 int SceneMng::Run()
@@ -9,12 +10,19 @@ int SceneMng::Run()
 
 	ChangeWindowMode(true);
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, 32);
-
+	SetUseDirect3DVersion(DX_SCREEN_BACK);
 	if (DxLib_Init() == -1)		// ＤＸライブラリ初期化処理
 	{
 		return -1;				// エラーが起きたら直ちに終了
 	}
-	nowScene = std::make_unique<GameScene>();
+
+	// フルスクリーンウインドウの切り替えでリソースが消えるのを防ぐ。
+	// Effekseerを使用する場合は必ず設定する。
+	SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
+
+	lpEfkMng;
+
+	nowScene = std::make_unique<TitleScene>();
 	// 描画先画面を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 	// ループ
@@ -25,7 +33,7 @@ int SceneMng::Run()
 		nowScene->Draw();
 	}
 
-
+	lpEfkMng.Destroy();
 	DxLib_End();				// ＤＸライブラリ使用の終了処理
 	return 0;
 }

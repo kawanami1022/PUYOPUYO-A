@@ -8,7 +8,7 @@ struct DROP
 	void operator()(Stage* stage) {
 		Vector2 tmp;
 		stage->GetChainCount_ = 0;
-
+		stage->SetPuyoGuide();
 		if (stage->stgMode == STG_MODE::DROP)
 		{
 			stage->stgMode = STG_MODE::FALL;

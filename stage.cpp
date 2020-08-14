@@ -1,5 +1,6 @@
 #include <iostream>
 #include <random>
+#include <algorithm>
 #include <DxLib.h>
 #include "Vector2.h"
 #include "Stage.h"
@@ -93,6 +94,13 @@ void Stage::draw()
 			if(stgData_[x][y]== PUYO_TYPE::WALL)
 			DrawGraph(offset_.x + x * blockSize, offset_.y + y * blockSize,GrHandle_[STCI(PUYO_TYPE::WALL)], true);
 		}
+	}
+
+
+	for (auto&& GuidePos : GuidePyPos_)
+	{
+		DrawGraph(offset_.x + GuidePos.x * blockSize, offset_.y + GuidePos.y * blockSize,
+			GrHandle_[8], true);
 	}
 
 	DrawBox(nextBoxPos.x + (screenSizeX / 8) * (3 + id_) - blockSize / 2,
@@ -265,6 +273,25 @@ void Stage::SetChainCount(int SetChainCount)
 	SetChainCount_ = SetChainCount;
 }
 
+void Stage::SetPuyoGuide()
+{
+	GuidePyPos_[0] = puyo_[0]->GetGridPos();
+	GuidePyPos_[1] = puyo_[1]->GetGridPos();
+	int idx = 0;
+	for (auto&& GuidePyPos : GuidePyPos_)
+	{
+		for (int Grid_y = GuidePyPos_[idx].y; Grid_y < gridCountY; Grid_y++)
+		{
+			if (stgData_[GuidePyPos_[idx].x][Grid_y + 1] != PUYO_TYPE::NON)
+			{
+				GuidePyPos_[idx].y = Grid_y;
+				break;
+			}
+		}
+		idx++;
+	}
+}
+
 void Stage::ChangeInputMode(ComInputID comInput)
 {
 	auto func = [&](ComInputID inputID) {
@@ -322,7 +349,6 @@ bool Stage::Init(Vector2& Pos)
 	stageCount_++;
 	color_ = 0x000033 << (16 * stageCount_);
 
-	//puyo_.emplace_back(new Puyo(this->_pos));
 	//puyo_[0]->setBlockSize(blockSizeX);
 
 	stgDataBase_.resize(gridCountX * gridCountY);
@@ -340,6 +366,8 @@ bool Stage::Init(Vector2& Pos)
 	GetChainCount_ = 0;
 	SetChainCount_ = 0;
 	ObsDropCnt_ = 0;
+	GuidePyPos_[0] = { 0,0 };
+	GuidePyPos_[1] = { 0,0 };
 	stgMode = STG_MODE::GENERATES;
 	// frendで関数オブジェクトを呼び出す
 	StgModeFunc.try_emplace(STG_MODE::DROP, DROP());
@@ -366,6 +394,7 @@ bool Stage::Init(Vector2& Pos)
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/YELLOW_Puyo.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/ICE_Puyo.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoWall.png")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture("Image/GuideBlock.png")->GetHandle());
 	setNextPuyo();
 
 	//changeInputType.try_emplace(ContType::Key, [](int x) { return x + 1; });

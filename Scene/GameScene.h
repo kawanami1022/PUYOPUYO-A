@@ -2,8 +2,7 @@
 #include <vector>
 #include "BaseScene.h"
 #include "../stage.h"
-#include "../Input/CommonInputID.h"
-#include "../input/ComInput.h"
+
 class GameScene :
     public BaseScene
 {
@@ -15,7 +14,6 @@ public:
     void Draw()override;
     void DrawInput();       // “ü—Íˆ—•`‰æŠÖ”
 private:
-    std::shared_ptr<ComInput> comInput;
     std::vector<std::unique_ptr<Stage>> stage;
     Vector2 offset;
     Vector2 size;
