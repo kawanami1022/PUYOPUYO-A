@@ -188,7 +188,7 @@
     <ClInclude Include="Effekseer\Effect.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PyUpMode\Effect.h">
+    <ClInclude Include="PyUpMode\EFFECT.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

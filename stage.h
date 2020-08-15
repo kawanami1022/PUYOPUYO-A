@@ -5,6 +5,8 @@
 #include <vector>
 #include <functional>
 #include "Vector2.h"
+#include "Effekseer/EffekseerFactory.h"
+#include "Effekseer/Effect.h"
 #include "input/ComInput.h"
 #include "input/CommonInputID.h"
 #include "input/controller.h"
@@ -67,7 +69,7 @@ private:
 
 	// 初期化処理
 	bool Init(Vector2&);
-
+	bool efkInit();			// エフェクト
 
 	int _checkGridCount;
 	int SetChainCount_;
@@ -87,6 +89,7 @@ private:
 	friend struct MUNYOUN;
 	friend struct ERASE;
 	friend struct DROP;
+	friend struct Effect;
 protected:
 
 public:
@@ -116,7 +119,11 @@ public:
 	friend class PlayUnit;
 	TextureFactory textureFactory;
 	std::vector<int> GrHandle_;
-	std::vector<int> Effect_;
+
+	// エフェクト
+	std::vector<SharEfk> EffectHandle_;
+	std::list<SharInt> playEfkHandle_;
+	EffekseerFactory efkFac_;
 
 };
 

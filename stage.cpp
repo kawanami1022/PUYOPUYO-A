@@ -2,6 +2,7 @@
 #include <random>
 #include <algorithm>
 #include <DxLib.h>
+#include <EffekseerForDXLib.h>
 #include "Vector2.h"
 #include "Stage.h"
 #include "input/InputID.h"
@@ -113,6 +114,14 @@ void Stage::draw()
 	{
 		NEXTPUYO->draw();
 	}
+	
+	// Effekseerにより再生中のエフェクトを更新する。
+	UpdateEffekseer2D();
+
+	// Effekseerにより再生中のエフェクトを描画する。
+	DrawEffekseer2D();
+
+
 	frame++;
 }
 
@@ -304,7 +313,7 @@ void Stage::ChangeInputMode(ComInputID comInput)
 
 		if (contTypeTmp == ContType::Key)			controller_ = std::make_unique<KeyInput>();
 		if (contTypeTmp == ContType::Mouse)		controller_ = std::make_unique<mouse>();
-		if (contTypeTmp == ContType::Pad)		controller_ = std::make_unique<Pad>();
+		if (contTypeTmp == ContType::Pad)			controller_ = std::make_unique<Pad>();
 		controller_->Setup(id_);
 	};
 	func(comInput);
@@ -399,6 +408,18 @@ bool Stage::Init(Vector2& Pos)
 
 	//changeInputType.try_emplace(ContType::Key, [](int x) { return x + 1; });
 
+	return true;
+}
+
+bool Stage::efkInit()
+{
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("", 0.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/FireBall.efk", 20.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Arrow1.efk", 20.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Benediction.efk", 20.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow3.efk", 20.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/CosmicMist.efk", 20.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/BloodLance.efk", 20.f));
 	return true;
 }
 

@@ -48,7 +48,7 @@
     <ClInclude Include="DxLibForHomeBrew\DxLib_Draw.h" />
     <ClInclude Include="input\CommonInputID.h" />
     <ClInclude Include="Puyo\nextPuyo.h" />
-    <ClInclude Include="PyUpMode\Effect.h" />
+    <ClInclude Include="PyUpMode\EFFECT.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="input\controller.h" />
