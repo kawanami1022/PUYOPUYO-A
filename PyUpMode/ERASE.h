@@ -23,7 +23,7 @@ struct ERASE
 				{
 					stage->GetChainCount_++;
 					stage->DeletePuyo();
-					stage->stgMode = STG_MODE::FALL;
+					stage->stgMode = STG_MODE::EFFECT;
 					break;
 				}
 			}

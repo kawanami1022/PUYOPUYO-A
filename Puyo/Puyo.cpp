@@ -6,7 +6,6 @@
 #include "../input/controller.h"
 #include "../_debug/_DebugConOut.h"
 #include "../DxLibForHomeBrew/DxLib_Draw.h"
-
 Puyo::Puyo(Vector2&& Pos)
 {
     dirPer_.perBit = { 0,0,0,0 };

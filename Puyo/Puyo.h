@@ -95,5 +95,6 @@ private:
 	friend struct MUNYOUN;
 	friend struct ERASE;
 	friend struct DROP;
+	friend struct EFFECT;
 };
 

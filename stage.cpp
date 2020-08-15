@@ -16,6 +16,7 @@
 #include "PyUpMode/MUNYON.h"
 #include "PyUpMode/FALL.h"
 #include "PyUpMode/GENERATES.h"
+#include "PyUpMode/EFFECT.h"
 #include "PyInputMode/IpLeft.h"
 #include "PyInputMode/IpRight.h"
 #include "PyInputMode/IpTurnL.h"
@@ -329,6 +330,8 @@ bool Stage::DeletePuyo()
 
 	auto RemovePuyo = std::remove_if(puyo_.begin(), puyo_.end(), [&](auto&& puyo) 
 	{
+		if(puyo->GetAlive() == false)
+		ErPyDel_.emplace_back(puyo);
 		return (puyo->GetAlive() == false);
 	});
 
@@ -385,6 +388,7 @@ bool Stage::Init(Vector2& Pos)
 	StgModeFunc.try_emplace(STG_MODE::PUYON, PUYON());
 	StgModeFunc.try_emplace(STG_MODE::FALL, FALL());
 	StgModeFunc.try_emplace(STG_MODE::GENERATES, GENERATES());
+	StgModeFunc.try_emplace(STG_MODE::EFFECT, EFFECT());
 
 	StgInputFunc.try_emplace(InputID::Up, IpUp());
 	StgInputFunc.try_emplace(InputID::Left, IpLeft());
@@ -405,7 +409,7 @@ bool Stage::Init(Vector2& Pos)
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoWall.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/GuideBlock.png")->GetHandle());
 	setNextPuyo();
-
+	efkInit();
 	//changeInputType.try_emplace(ContType::Key, [](int x) { return x + 1; });
 
 	return true;
@@ -414,13 +418,13 @@ bool Stage::Init(Vector2& Pos)
 bool Stage::efkInit()
 {
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("", 0.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/FireBall.efk", 20.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Arrow1.efk", 20.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Benediction.efk", 20.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow3.efk", 20.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/CosmicMist.efk", 20.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/BloodLance.efk", 20.f));
-	return true;
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/FireBall.efk", 3.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Arrow1.efk", 5.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Benediction.efk", 5.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow3.efk", 5.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/CosmicMist.efk", 1.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/BloodLance.efk", 5.f));
+ 	return true;
 }
 
 

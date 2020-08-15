@@ -24,6 +24,7 @@ enum class STG_MODE
 	DROP,
 	FALL,
 	ERASE,
+	EFFECT,
 	MAX,
 };
 
@@ -51,6 +52,8 @@ private:
 	std::vector<PUYO_TYPE> eraseDataBase_;	// 消去用データ
 	std::vector<PUYO_TYPE*> eraseData_;		// 消去用データ
 	std::vector<Vector2>	ErPyDelPos_;
+	std::vector<sharPuyo> ErPyDel_;		// 消去用
+
 
 	std::map<STG_MODE, std::function<void(Stage* stage)>> StgModeFunc;
 	std::map<InputID, std::function<void(Stage* stage)>> StgInputFunc;
@@ -89,7 +92,7 @@ private:
 	friend struct MUNYOUN;
 	friend struct ERASE;
 	friend struct DROP;
-	friend struct Effect;
+	friend struct EFFECT;
 protected:
 
 public:
@@ -122,7 +125,7 @@ public:
 
 	// エフェクト
 	std::vector<SharEfk> EffectHandle_;
-	std::list<SharInt> playEfkHandle_;
+	std::list<int> playEfkHandle_;
 	EffekseerFactory efkFac_;
 
 };
