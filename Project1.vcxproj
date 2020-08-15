@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Effekseer\Effect.cpp" />
     <ClCompile Include="Effekseer\EffekseerFactory.cpp" />
     <ClCompile Include="EfkMng\EfkMng.cpp" />
     <ClCompile Include="input\ComInput.cpp" />
@@ -49,6 +48,7 @@
     <ClInclude Include="DxLibForHomeBrew\DxLib_Draw.h" />
     <ClInclude Include="input\CommonInputID.h" />
     <ClInclude Include="Puyo\nextPuyo.h" />
+    <ClInclude Include="PyUpMode\Effect.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="input\controller.h" />
@@ -134,21 +134,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(DXLIB_DIR)</IncludePath>
     <SourcePath>$(VC_SourcePath);</SourcePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)$(DXLIB_DIR)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(DXLIB_DIR)</IncludePath>
     <SourcePath>$(VC_SourcePath);</SourcePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)$(DXLIB_DIR)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(DXLIB_DIR)</IncludePath>
     <SourcePath>$(VC_SourcePath);</SourcePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)$(DXLIB_DIR)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(DXLIB_DIR)</IncludePath>
     <SourcePath>$(VC_SourcePath);</SourcePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)$(DXLIB_DIR)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

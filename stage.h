@@ -116,6 +116,7 @@ public:
 	friend class PlayUnit;
 	TextureFactory textureFactory;
 	std::vector<int> GrHandle_;
+	std::vector<int> Effect_;
 
 };
 
