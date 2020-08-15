@@ -31,9 +31,8 @@ struct EFFECT
 		for (auto&& PlEfkHdl : stage->playEfkHandle_)
 		{
 			if (frame == 60 * 3)
-			{
-				
-				StopEffekseer2DEffect(PlEfkHdl);}
+			{StopEffekseer2DEffect(PlEfkHdl);}
+
 			stage->stgMode = STG_MODE::FALL;
 			//Ä¶‚³‚ê‚Ä‚È‚©‚Á‚½‚çFalló‘Ô‚É•ÏX
 			if (IsEffekseer2DEffectPlaying(PlEfkHdl) == 0)
@@ -42,13 +41,12 @@ struct EFFECT
 				break;
 			}
 		}
-
+		frame++;
 		if (stage->stgMode == STG_MODE::FALL)
 		{
 			frame = 0;
 			stage->playEfkHandle_.clear();
 			stage->ErPyDel_.clear();
 		}
-		frame++;
 	}
 };

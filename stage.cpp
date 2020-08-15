@@ -420,7 +420,7 @@ bool Stage::efkInit()
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("", 0.f));
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/FireBall.efk", 3.f));
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Arrow1.efk", 5.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Benediction.efk", 5.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow4.efk", 2.f));
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow3.efk", 5.f));
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/CosmicMist.efk", 1.f));
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/BloodLance.efk", 5.f));
