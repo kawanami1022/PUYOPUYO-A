@@ -28,6 +28,16 @@ enum class STG_MODE
 	MAX,
 };
 
+
+enum class STG_TYPE
+{
+	PLAY,
+	WIN,
+	LOSE,
+	MAX
+};
+
+
 class Puyo;
 
 using sharPuyo = std::shared_ptr<Puyo>;
@@ -60,6 +70,7 @@ private:
 	std::function<void(Vector2&&,Vector2&&)> chPuyo_;
 	std::list<ObsPuyo> obsPuyo_;
 
+	STG_TYPE stgType_;			// ステージ状態
 	int frame;
 	InputID inputId_;
 	static int stageCount_;
@@ -99,7 +110,7 @@ public:
 	Vector2 _pos;
 
 	void input();
-	int update();
+	int update(STG_TYPE);
 	void draw();
 	void makePuyo();
 	void setNextPuyo();
@@ -115,6 +126,8 @@ public:
 	// 入力処理系の関数
 	void ChangeInputMode(ComInputID);
 	Vector2 getChipPos();
+	STG_TYPE GetStgType();
+
 	bool DeletePuyo();
 	std::vector<PUYO_TYPE*> GetErasePos();
 	Stage(Vector2&& offset, Vector2&& size);

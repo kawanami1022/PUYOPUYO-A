@@ -30,11 +30,18 @@ struct PUYON
 				}
 			}
 		}
-		if (offsetRadious.y <=0)
+		int idx = 0;
+
+		for (auto&& Puyo : stage->puyo_)
 		{
-			stage->puyo_[0]->radious.y = stage->puyo_[0]->blockSize/2;
-			stage->puyo_[1]->radious.y = stage->puyo_[1]->blockSize/2;
-			stage->stgMode = STG_MODE::MUNYON;
+			if (offsetRadious.y <= 0)
+			{
+
+				Puyo->radious.y = Puyo->blockSize / 2;
+				stage->stgMode = STG_MODE::MUNYON;
+				idx++;
+				if (idx == 2)break;
+			}
 		}
 	
 

@@ -57,9 +57,23 @@ void Stage::input()
 	}
 }
 
-int Stage::update()
+// EyStgType: 敵側のステージタイプ
+int Stage::update(STG_TYPE EyStgType)	
 {
-	StgModeFunc[stgMode](&(*this));
+	if (stgType_ == STG_TYPE::PLAY)
+	{
+		StgModeFunc[stgMode](&(*this));
+		// 敵が負けてたら
+		stgType_ = EyStgType == STG_TYPE::LOSE ? STG_TYPE::WIN : STG_TYPE::PLAY;
+	}
+
+	// puyoの位置を確認する
+	if (stgData_[3][1] != PUYO_TYPE::NON || stgData_[4][1] != PUYO_TYPE::NON)
+	{
+		stgType_ = STG_TYPE::LOSE;
+	}
+	
+
 
 
 	for (int i = 1; i < SetChainCount_; i++)
@@ -166,14 +180,12 @@ void Stage::setNextPuyo()
 
 void Stage::SetStageData()
 {
-	size_t count = 0;
+	size_t idx = 0;
 	Vector2 tmp = { 0,0 };
 	for (auto Data : stgDataBase_)
 	{
-		stgData_[count % gridCountX][count / gridCountX] = PUYO_TYPE::NON;
-		// x軸の壁をセット
-		// y軸の壁をセット
-		count++;
+		stgData_[idx % gridCountX][idx / gridCountX] = PUYO_TYPE::NON;
+		idx++;
 	}
 	for (size_t y = 0; y < gridCountY; y++)
 	{	stgData_[0][y] = PUYO_TYPE::WALL;
@@ -325,6 +337,11 @@ Vector2 Stage::getChipPos()
 	return _pos;
 }
 
+STG_TYPE Stage::GetStgType()
+{
+	return stgType_;
+}
+
 bool Stage::DeletePuyo()
 {
 
@@ -381,6 +398,7 @@ bool Stage::Init(Vector2& Pos)
 	GuidePyPos_[0] = { 0,0 };
 	GuidePyPos_[1] = { 0,0 };
 	stgMode = STG_MODE::GENERATES;
+	stgType_ = STG_TYPE::PLAY;
 	// frendで関数オブジェクトを呼び出す
 	StgModeFunc.try_emplace(STG_MODE::DROP, DROP());
 	StgModeFunc.try_emplace(STG_MODE::ERASE, ERASE());
@@ -418,12 +436,11 @@ bool Stage::Init(Vector2& Pos)
 bool Stage::efkInit()
 {
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("", 0.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/FireBall.efk", 3.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Arrow1.efk", 5.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow4.efk", 2.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow3.efk", 5.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/CosmicMist.efk", 1.f));
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/BloodLance.efk", 5.f));
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Arrow2.efk", 2.f));		// 赤
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Arrow1.efk", 5.f));		// 緑
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow4.efk", 2.f));		// 青
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow3.efk", 1.f));		// 黄色
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow7.efk", 2.f));	// 紫
  	return true;
 }
 
