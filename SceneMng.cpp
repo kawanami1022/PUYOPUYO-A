@@ -3,6 +3,7 @@
 #include "Scene/TitleScene.h"
 #include "Scene/GameScene.h"
 #include "EfkMng/EfkMng.h"
+#include "input/controller.h"
 SceneMng* SceneMng::hInstance = nullptr;
 
 int SceneMng::Run()
@@ -21,8 +22,8 @@ int SceneMng::Run()
 	SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
 
 	lpEfkMng;
-
 	nowScene = std::make_unique<TitleScene>();
+
 	// 描画先画面を裏画面にセット
 	SetDrawScreen(DX_SCREEN_BACK);
 	// ループ
@@ -43,7 +44,6 @@ SceneMng::SceneMng()
 	offset = {0,0};
 	size = { 400,600 };
 	SetChainCount_ = 0;
-	
 }
 
 SceneMng::~SceneMng()

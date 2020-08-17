@@ -4,29 +4,26 @@
 #include "../input/ComInput.h"
 #include "TitleScene.h"
 #include "GameScene.h"
+
+#define STCI static_cast<int>
 TitleScene::TitleScene()
 {
-	//textureContainer.try_emplace("")
-	efkStrList_.emplace_back("Effects/Benediction.efk");
-	efkHandle_ = efkFct_.GetEfkHandle(efkStrList_.front(), 1.f);
-
-	PlayingEfk_ = PlayEffekseer2DEffect(efkHandle_->GetHandle());
+	frame_ = 0;
+	texture_.emplace_back(txFcty_.GetTexture("Image/スペースキー押して.png"));
 }
 
 TitleScene::~TitleScene()
 {
-	efkFct_.EraseEfkHandle("Effects/Benediction.efk");
 }
 
 UniqueBase TitleScene::input(UniqueBase nowScene)
 {
 	(*comInput)();
-	if (comInput->push(ComInputID::SPACE))
+	if (comInput->push(ComInputID::SPACE)==true)
 	{
  		nowScene = std::make_unique<GameScene>();
 	}
-	SetPosPlayingEffekseer2DEffect(PlayingEfk_, 500, 300, 0);
-
+	frame_++;
 
 	return std::move(nowScene);
 }
@@ -42,6 +39,12 @@ void TitleScene::Draw()
 {
 	ClsDrawScreen();
 	DrawFormatString(0, 0, 0xffffff, "TitleScene");
+	if (frame_ % 60 > 30)
+	{
+		DrawGraph(400-texture_[STCI(TxNameID::PUSH_SPC)]->GetSize().x/2,
+			500 - texture_[STCI(TxNameID::PUSH_SPC)]->GetSize().y / 2,
+			texture_[STCI(TxNameID::PUSH_SPC)]->GetHandle(), true);
+	}
 	DrawEffekseer2D();
 	ScreenFlip();
 }

@@ -29,7 +29,7 @@ void EfkMng::Destroy()
 
 EfkMng::EfkMng()
 {
-	Effekseer_Init(8000);
+	Effekseer_Init(12000);
 	// DXライブラリのデバイスロストした時のコールバックを設定する。
 	// ウインドウとフルスクリーンの切り替えが発生する場合は必ず実行する。
 	// ただし、DirectX11を使用する場合は実行する必要はない。

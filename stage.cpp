@@ -78,7 +78,6 @@ int Stage::update(STG_TYPE EyStgType)
 	}
 
 
-
 	for (int i = 1; i < SetChainCount_; i++)
 	{
 		obsPuyo_.push_front(ObsPuyo(offset_, Vector2(i, 0)));
@@ -333,7 +332,6 @@ bool Stage::Init(Vector2& Pos)
 	{ controller_=std::make_unique<KeyInput>(); }
 	if(stageCount_==1)
 	{ controller_=std::make_unique<KeyInput>(); }
-
 	controller_->Setup(stageCount_);
 	id_ = stageCount_;
 	stageCount_++;
@@ -410,7 +408,7 @@ bool Stage::efkInit()
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Arrow1.efk", 5.f));		// óŒ
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow4.efk", 2.f));		// ê¬
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow3.efk", 1.f));		// â©êF
-	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow7.efk", 2.f));	// éá
+	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow7.efk", 2.f));		// éá
  	return true;
 }
 
@@ -432,5 +430,5 @@ Stage::~Stage()
 {
 	GrHandle_.clear();
 	InitGraph();
-
+	stageCount_ = 0;
 }

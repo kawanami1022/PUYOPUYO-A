@@ -25,7 +25,6 @@ enum class ContType
 
 using TrgBool = std::array<bool, static_cast<size_t>(Trg::Max)>;
 using CntData = std::map<InputID, TrgBool>;
-using ComData = std::map<ComInputID, TrgBool>;
 
 
 struct controller

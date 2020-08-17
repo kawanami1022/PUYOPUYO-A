@@ -4,6 +4,7 @@
 #include <vector>
 #include "Vector2.h"
 #include "Scene/BaseScene.h"
+#include "input/ComInput.h"
 #define SCREEN_SIZE_X	800
 #define SCREEN_SIZE_Y	600
 #define lpSceneMng SceneMng::GetInstance()
@@ -21,7 +22,6 @@ private:
 	Vector2 offset;
 	Vector2 size;
 	UniqueBase nowScene;
-
 public:
 	static SceneMng& GetInstance()
 	{

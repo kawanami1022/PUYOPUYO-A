@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "GameScene.h"
+#include "TitleScene.h"
 GameScene::GameScene()
 {
 	offset = { 50,100 };
@@ -11,6 +12,7 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 {
+	stage.clear();
 }
 
 UniqueBase GameScene::input(UniqueBase nowScene)
@@ -23,6 +25,15 @@ UniqueBase GameScene::input(UniqueBase nowScene)
 			{stage[1]->ChangeInputMode(id);}
 		}
 	}
+
+	if (stage[1]->GetStgType() != STG_TYPE::PLAY)
+	{
+		if (comInput->push(ComInputID::SPACE))
+		{
+			nowScene = std::make_unique<TitleScene>();
+		}
+	}
+
 
     return std::move(nowScene);
 }

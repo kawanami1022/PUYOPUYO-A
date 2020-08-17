@@ -1,8 +1,17 @@
 #pragma once
+#include <vector>
 #include <string>
+#include <list>
 #include <EffekseerForDXLib.h>
 #include "BaseScene.h"
-#include "../Effekseer/EffekseerFactory.h"
+#include "../Texture/TextureFactory.h"
+#include "../Texture/Texture.h"
+
+enum class TxNameID
+{
+    PUSH_SPC,
+    MAX,
+};
 
 class TitleScene :
     public BaseScene
@@ -14,9 +23,9 @@ public:
     UniqueBase upDate(UniqueBase nowScene)override;
     void Draw()override;
 private:
-    EffekseerFactory efkFct_;   
-    SharEfk efkHandle_;
-    std::list<std::string> efkStrList_;
-    int PlayingEfk_;
+    std::list<std::string> txNmList_;
+    int frame_;
+    TextureFactory txFcty_;
+    std::vector<SharTexture> texture_;
 };
 
