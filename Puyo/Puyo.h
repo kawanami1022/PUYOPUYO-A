@@ -96,5 +96,7 @@ private:
 	friend struct ERASE;
 	friend struct DROP;
 	friend struct EFFECT;
+
+	friend struct DRAWPLAYING;
 };
 

@@ -64,9 +64,9 @@ private:
 	std::vector<Vector2>	ErPyDelPos_;
 	std::vector<sharPuyo> ErPyDel_;		// 消去用
 
-
 	std::map<STG_MODE, std::function<void(Stage* stage)>> StgModeFunc;
 	std::map<InputID, std::function<void(Stage* stage)>> StgInputFunc;
+	std::map<STG_TYPE, std::function<void(Stage& stage)>> StgDrawFunc;
 	std::function<void(Vector2&&,Vector2&&)> chPuyo_;
 	std::list<ObsPuyo> obsPuyo_;
 
@@ -104,6 +104,10 @@ private:
 	friend struct ERASE;
 	friend struct DROP;
 	friend struct EFFECT;
+	
+	friend struct DRAWPLAYING;
+	friend struct DRAWWIN;
+	friend struct DRAWLOSE;
 protected:
 
 public:
@@ -135,6 +139,7 @@ public:
 	friend class PlayUnit;
 	TextureFactory textureFactory;
 	std::vector<int> GrHandle_;
+	std::vector<int> GmOvHdl_;
 
 	// エフェクト
 	std::vector<SharEfk> EffectHandle_;

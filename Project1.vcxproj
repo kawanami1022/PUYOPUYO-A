@@ -48,6 +48,9 @@
     <ClInclude Include="DxLibForHomeBrew\DxLib_Draw.h" />
     <ClInclude Include="input\CommonInputID.h" />
     <ClInclude Include="Puyo\nextPuyo.h" />
+    <ClInclude Include="PyDraw\DRAWLOSE.h" />
+    <ClInclude Include="PyDraw\DRAWPLAYING.h" />
+    <ClInclude Include="PyDraw\DRAWWIN.h" />
     <ClInclude Include="PyUpMode\EFFECT.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\BaseScene.h" />

@@ -23,6 +23,9 @@
 #include "PyInputMode/IpTurnR.h"
 #include "PyInputMode/IpUp.h"
 #include "PyInputMode/lpDown.h"
+#include "PyDraw/DRAWPLAYING.h"
+#include "PyDraw/DRAWWIN.h"
+#include "PyDraw/DRAWLOSE.h"
 #include	"Puyo/nextPuyo.h"
 #include "DxLibForHomeBrew/DxLib_Draw.h"
 
@@ -53,6 +56,7 @@ void Stage::input()
 					puyo_[id]->Down(data.first);
 				}
 			}
+
 		}
 	}
 }
@@ -72,7 +76,6 @@ int Stage::update(STG_TYPE EyStgType)
 	{
 		stgType_ = STG_TYPE::LOSE;
 	}
-	
 
 
 
@@ -88,55 +91,13 @@ int Stage::update(STG_TYPE EyStgType)
 void Stage::draw()
 {
 
-	controller_->DebugDrow(id_);
-
-
-	DrawLine(offset_.x, offset_.y+blockSize*gridCountY,
-		offset_.x+gridCountX*blockSize, offset_.y + blockSize * gridCountY,
-		0xffffff, false);
-	for (auto&& PUYO : puyo_)
-	{
-		PUYO->draw();
-	}
-	for (auto&& OBSPUYO : obsPuyo_)
-	{
-		OBSPUYO.draw();
-	}
-
-	for (int y = 0; y < gridCountY; y++)
-	{
-		for (int x = 0; x < gridCountX; x++)
-		{
-			if(stgData_[x][y]== PUYO_TYPE::WALL)
-			DrawGraph(offset_.x + x * blockSize, offset_.y + y * blockSize,GrHandle_[STCI(PUYO_TYPE::WALL)], true);
-		}
-	}
-
-
-	for (auto&& GuidePos : GuidePyPos_)
-	{
-		DrawGraph(offset_.x + GuidePos.x * blockSize, offset_.y + GuidePos.y * blockSize,
-			GrHandle_[8], true);
-	}
-
-	DrawBox(nextBoxPos.x + (screenSizeX / 8) * (3 + id_) - blockSize / 2,
-		nextBoxPos.y,
-		nextBoxPos.x + (screenSizeX / 8) * (3 + id_) + blockSize / 2,
-		nextBoxPos.y + blockSize * 2,
-		0xffffff, false);
-
-	for (auto&& NEXTPUYO : nextPuyo_)
-	{
-		NEXTPUYO->draw();
-	}
-	
 	// Effekseerにより再生中のエフェクトを更新する。
 	UpdateEffekseer2D();
 
 	// Effekseerにより再生中のエフェクトを描画する。
 	DrawEffekseer2D();
 
-
+	StgDrawFunc[stgType_](*this);
 	frame++;
 }
 
@@ -402,7 +363,7 @@ bool Stage::Init(Vector2& Pos)
 	// frendで関数オブジェクトを呼び出す
 	StgModeFunc.try_emplace(STG_MODE::DROP, DROP());
 	StgModeFunc.try_emplace(STG_MODE::ERASE, ERASE());
-	StgModeFunc.try_emplace(STG_MODE::MUNYON, MUNYOUN());
+ 	StgModeFunc.try_emplace(STG_MODE::MUNYON, MUNYOUN());
 	StgModeFunc.try_emplace(STG_MODE::PUYON, PUYON());
 	StgModeFunc.try_emplace(STG_MODE::FALL, FALL());
 	StgModeFunc.try_emplace(STG_MODE::GENERATES, GENERATES());
@@ -415,6 +376,11 @@ bool Stage::Init(Vector2& Pos)
 	StgInputFunc.try_emplace(InputID::TURN_L, IpTurnL());
 	StgInputFunc.try_emplace(InputID::TURN_R,IpTurnR());
 
+	//
+	StgDrawFunc.try_emplace(STG_TYPE::PLAY, DRAWPLAYING());
+	StgDrawFunc.try_emplace(STG_TYPE::WIN, DRAWWIN());
+	StgDrawFunc.try_emplace(STG_TYPE::LOSE, DRAWLOSE());
+
 	// グラフィックハンドルを用意
 	GrHandle_.reserve(STCI(PUYO_TYPE::MAX));
 	GrHandle_.emplace_back(textureFactory.GetTexture("")->GetHandle());
@@ -426,6 +392,10 @@ bool Stage::Init(Vector2& Pos)
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/ICE_Puyo.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoWall.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/GuideBlock.png")->GetHandle());
+
+	GmOvHdl_ = { textureFactory.GetTexture("")->GetHandle(),
+			textureFactory.GetTexture("Image/yatta.png")->GetHandle(),
+			textureFactory.GetTexture("Image/batanque.png")->GetHandle() };
 	setNextPuyo();
 	efkInit();
 	//changeInputType.try_emplace(ContType::Key, [](int x) { return x + 1; });
