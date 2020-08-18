@@ -11,7 +11,9 @@ int SceneMng::Run()
 
 	ChangeWindowMode(true);
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, 32);
-	SetUseDirect3DVersion(DX_SCREEN_BACK);
+	SetUseDirect3DVersion(DX_DIRECT3D_11);
+
+	SetDrawScreen(DX_SCREEN_BACK);
 	if (DxLib_Init() == -1)		// ＤＸライブラリ初期化処理
 	{
 		return -1;				// エラーが起きたら直ちに終了

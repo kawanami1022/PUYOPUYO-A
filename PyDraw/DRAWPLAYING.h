@@ -6,7 +6,6 @@ struct DRAWPLAYING
 {
 	void operator()(Stage& stg)
 	{
-		DrawFormatString(stg.offset_.x, 16, 0xffffff, "SetChainCount:%d", stg.SetChainCount_);
 		stg.controller_->DebugDrow(stg.id_);
 
 		for (int y = 0; y < stg.gridCountY; y++)

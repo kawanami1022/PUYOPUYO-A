@@ -38,8 +38,8 @@ void Stage::input()
 	{
 		for (auto&& data : controller_->GetCntData())
 		{
-			if (data.second[static_cast<int>(Trg::Now)] == 0 &&
-				data.second[static_cast<int>(Trg::Old)] == 1)
+			if (data.second[static_cast<int>(Trg::Now)] == true &&
+				data.second[static_cast<int>(Trg::Old)] == false)
 			{
 				for (int id = 0; id < 2; id++)
 				{
@@ -173,6 +173,7 @@ void Stage::SetPuyoData()
 
 bool Stage::setPermition(Vector2 tmp, int ID)
 {
+	if (tmp <= Vector2(0, 0) || Vector2(gridCountX-1, gridCountY-1) <= tmp)return false;
 	//puyo_[ID]->dirPer_.perBit.u = stgData_[tmp.x][tmp.y - 1] == PUYO_TYPE::NON ? 0 : 1;
 	puyo_[ID]->dirPer_.perBit.r = stgData_[tmp.x + 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
 	puyo_[ID]->dirPer_.perBit.d = stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON ? 0 : 1;

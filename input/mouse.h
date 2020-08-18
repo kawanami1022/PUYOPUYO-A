@@ -16,6 +16,8 @@ public:
 	bool separate(InputID)override;
 	void DebugDrow(int id)override;
 	Vector2 getMousePos();
+	InputID GetInputID();
+	int GetMouseWheelFlag(InputID inputID);
 protected:
 	std::map<InputID, int> _mouseInputTbl;
 private:

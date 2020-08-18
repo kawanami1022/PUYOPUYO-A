@@ -26,7 +26,7 @@ bool KeyInput::Setup(int no)
 			{InputID::Down,KEY_INPUT_S},
 			{InputID::Left,KEY_INPUT_A},
 			{InputID::Right,KEY_INPUT_D},
-			{InputID::TURN_L,KEY_INPUT_COMMA},
+			{InputID::TURN_L,KEY_INPUT_Q},
 			{InputID::TURN_R,KEY_INPUT_E},
 		};
 	}
