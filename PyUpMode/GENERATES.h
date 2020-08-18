@@ -8,22 +8,15 @@ struct GENERATES
 		Vector2 tmp;
 		stage->stgMode = STG_MODE::DROP;
 
-		//for (int i = 1; i < SetChainCount_; i++)
-		//{
-		//	obsPuyo_.push_front(ObsPuyo(offset_, Vector2(i, 0)));
-		//}
-
 		// お邪魔ぷよカウンターが3つ以上
 		// obsPuyo落下
 		for (auto&& ObsPuyo : stage->obsPuyo_)
 		{
 			ObsPuyo.DropCount--;
-			if (ObsPuyo.DropCount == 0)
-			{
-				tmp = ObsPuyo.GetGridPos();
-				stage->puyo_.emplace_back(std::make_unique<Puyo>(stage->offset_, (tmp,tmp), PUYO_TYPE::OBS, stage->GrHandle_[STCI(PUYO_TYPE::OBS)]));
-			}
+			tmp = ObsPuyo.GetGridPos();
+			stage->puyo_.emplace_back(std::make_unique<Puyo>(stage->offset_, (tmp,tmp), PUYO_TYPE::OBS, stage->GrHandle_[STCI(PUYO_TYPE::OBS)]));
 		}
+		stage->obsPuyo_.clear();
 		auto rmObs = std::remove_if(stage->obsPuyo_.begin(), stage->obsPuyo_.end(), [&](auto&& obsPy)
 		{
 			return obsPy.DropCount <= 0;

@@ -77,11 +77,8 @@ int Stage::update(STG_TYPE EyStgType)
 		stgType_ = STG_TYPE::LOSE;
 	}
 
+	DropObsPuyo();
 
-	for (int i = 1; i < SetChainCount_; i++)
-	{
-		obsPuyo_.push_front(ObsPuyo(offset_, Vector2(i, 0)));
-	}
 	if (stgMode == STG_MODE::GENERATES)
 	{return GetChainCount_;}
 	return 0;
@@ -187,16 +184,19 @@ bool Stage::chErasePuyo(Vector2&& GridPos, Vector2&& chGridPos)
 {
 	if (ErPyDelPos_.size() < gridCountX * gridCountY)
 	{
-		// ‚à‚µApuyoID‚ª“¯‚¶‚¾‚Á‚½‚ç
-		if (stgData_[GridPos.x][GridPos.y] == stgData_[chGridPos.x][chGridPos.y])
+		if (stgData_[GridPos.x][GridPos.y] != PUYO_TYPE::OBS)
 		{
-			for(auto&& ErPyDelPos:ErPyDelPos_)
-				if (ErPyDelPos == chGridPos)
-				{
-					return false;
-				}
-			ErPyDelPos_.emplace_back(Vector2(chGridPos));
-			return true;
+			// ‚à‚µApuyoID‚ª“¯‚¶‚¾‚Á‚½‚ç
+			if (stgData_[GridPos.x][GridPos.y] == stgData_[chGridPos.x][chGridPos.y])
+			{
+				for(auto&& ErPyDelPos:ErPyDelPos_)
+					if (ErPyDelPos == chGridPos)
+					{
+						return false;
+					}
+				ErPyDelPos_.emplace_back(Vector2(chGridPos));
+				return true;
+			}
 		}
 	}
 	return false;
@@ -271,6 +271,18 @@ void Stage::SetPuyoGuide()
 			}
 		}
 		idx++;
+	}
+}
+
+void Stage::DropObsPuyo()
+{
+	// ‚¨Ž×–‚puyo‚ð—Ž‚Æ‚·
+	if (SetChainCount_ > 0)
+	{
+		for (int i = 0; i < SetChainCount_; i++)
+		{
+			obsPuyo_.push_front(ObsPuyo(offset_, Vector2(i + 1, 0)));
+		}
 	}
 }
 
@@ -353,7 +365,6 @@ bool Stage::Init(Vector2& Pos)
 	_checkGridCount = 0;
 	GetChainCount_ = 0;
 	SetChainCount_ = 0;
-	ObsDropCnt_ = 0;
 	GuidePyPos_[0] = { 0,0 };
 	GuidePyPos_[1] = { 0,0 };
 	stgMode = STG_MODE::GENERATES;

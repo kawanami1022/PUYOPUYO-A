@@ -88,7 +88,6 @@ private:
 	int _checkGridCount;
 	int SetChainCount_;
 	int GetChainCount_;
-	int ObsDropCnt_;
 
 	friend struct IpLeft;
 	friend struct IpUp;
@@ -124,8 +123,10 @@ public:
 	bool chErasePuyo(Vector2&& GridPos, Vector2&& chGridPos);
 	bool ErasePuyo(Vector2&& GridPos);			// Á‚¹‚é‚Õ‚æ‚ª‘¶İ	true ‘¶İ‚µ‚È‚¢ false
 	void SetChainCount(int SetChainCount);
-
 	void SetPuyoGuide();
+
+
+	void DropObsPuyo();
 
 	// “ü—Íˆ—Œn‚ÌŠÖ”
 	void ChangeInputMode(ComInputID);

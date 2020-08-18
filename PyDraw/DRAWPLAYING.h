@@ -6,8 +6,18 @@ struct DRAWPLAYING
 {
 	void operator()(Stage& stg)
 	{
+		DrawFormatString(stg.offset_.x, 16, 0xffffff, "SetChainCount:%d", stg.SetChainCount_);
 		stg.controller_->DebugDrow(stg.id_);
 
+		for (int y = 0; y < stg.gridCountY; y++)
+		{
+			for (int x = 0; x < stg.gridCountX; x++)
+			{
+				if (stg.stgData_[x][y] == PUYO_TYPE::WALL)
+					DrawGraph(stg.offset_.x + x * stg.blockSize,
+						stg.offset_.y + y * stg.blockSize, stg.GrHandle_[STCI(PUYO_TYPE::WALL)], true);
+			}
+		}
 
 		DrawLine(stg.offset_.x, stg.offset_.y + stg.blockSize * stg.gridCountY,
 			stg.offset_.x + stg.gridCountX * stg.blockSize, stg.offset_.y + stg.blockSize * stg.gridCountY,
@@ -16,19 +26,12 @@ struct DRAWPLAYING
 		{
 			PUYO->draw();
 		}
+
 		for (auto&& OBSPUYO : stg.obsPuyo_)
 		{
 			OBSPUYO.draw();
 		}
 
-		for (int y = 0; y < stg.gridCountY; y++)
-		{
-			for (int x = 0; x < stg.gridCountX; x++)
-			{
-				if (stg.stgData_[x][y] == PUYO_TYPE::WALL)
-					DrawGraph(stg.offset_.x + x * stg.blockSize, stg.offset_.y + y * stg.blockSize, stg.GrHandle_[STCI(PUYO_TYPE::WALL)], true);
-			}
-		}
 
 
 		for (auto&& GuidePos : stg.GuidePyPos_)
