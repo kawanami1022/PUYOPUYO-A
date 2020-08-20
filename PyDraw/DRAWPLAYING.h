@@ -21,9 +21,12 @@ struct DRAWPLAYING
 		DrawLine(stg.offset_.x, stg.offset_.y + stg.blockSize * stg.gridCountY,
 			stg.offset_.x + stg.gridCountX * stg.blockSize, stg.offset_.y + stg.blockSize * stg.gridCountY,
 			0xffffff, false);
+		int idx = 0;
 		for (auto&& PUYO : stg.puyo_)
 		{
 			PUYO->draw();
+			DrawFormatString(PUYO->pos_.x, PUYO->pos_.y, 0xffffff, "%d", idx);
+			idx++;
 		}
 
 		for (auto&& OBSPUYO : stg.obsPuyo_)

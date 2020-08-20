@@ -31,7 +31,6 @@ UniqueBase TitleScene::input(UniqueBase nowScene)
 UniqueBase TitleScene::upDate(UniqueBase nowScene)
 {
 	
-	UpdateEffekseer2D();
 	return std::move(nowScene);
 }
 
@@ -40,11 +39,11 @@ void TitleScene::Draw()
 	ClsDrawScreen();
 	DrawFormatString(0, 0, 0xffffff, "TitleScene");
 	if (frame_ % 60 > 30)
-	{
-		DrawGraph(400-texture_[STCI(TxNameID::PUSH_SPC)]->GetSize().x/2,
+	{ 
+
+		DrawGraph(400 - texture_[STCI(TxNameID::PUSH_SPC)]->GetSize().x / 2,
 			500 - texture_[STCI(TxNameID::PUSH_SPC)]->GetSize().y / 2,
 			texture_[STCI(TxNameID::PUSH_SPC)]->GetHandle(), true);
 	}
-	DrawEffekseer2D();
 	ScreenFlip();
 }

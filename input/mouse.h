@@ -22,5 +22,6 @@ protected:
 	std::map<InputID, int> _mouseInputTbl;
 private:
 	Vector2 pos;
+	int mouseWheel_;
 };
 

@@ -6,7 +6,7 @@
 void mouse::Update()
 {
 	GetMousePoint(&pos.x, &pos.y);
-
+	mouseWheel_ = GetMouseWheelRotVol();
 	int mouseInput = GetMouseInput();
 	for (auto id_:InputID())
 	{
@@ -65,11 +65,9 @@ Vector2 mouse::getMousePos()
 
 InputID mouse::GetInputID()
 {
-	int idx = GetMouseWheelRotVol();
-	if (idx >= 1)
-		return InputID::TURN_L;
-	if (idx <= -1)
-		return InputID::TURN_R;
+	int idx = mouseWheel_;
+	if (idx >= 1) return InputID::TURN_L;
+	if (idx <= -1) return InputID::TURN_R;
 	return InputID();
 }
 

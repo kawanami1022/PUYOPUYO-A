@@ -441,6 +441,5 @@ Stage::Stage(Vector2 && offset, Vector2&& size) :
 Stage::~Stage()
 {
 	GrHandle_.clear();
-	InitGraph();
 	stageCount_ = 0;
 }
