@@ -16,7 +16,7 @@ struct FALL
 		std::for_each(stage->puyo_.crbegin(), stage->puyo_.crend(), 
 			[&](auto&& puyo){
 			tmp = puyo->GetGridPos();
-			stage->setPermition(tmp, id);
+			stage->setPermition((*puyo));
 			if (stage->stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON)
 			{
 				stage->stgMode = STG_MODE::FALL;

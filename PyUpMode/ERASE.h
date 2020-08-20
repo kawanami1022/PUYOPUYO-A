@@ -28,7 +28,7 @@ struct ERASE
 				}
 			}
 		}
-
+		stage->EraseObsPuyo();
 		stage->ErPyDelPos_.clear();
 		stage->SetStageData();
 	}

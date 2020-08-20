@@ -38,13 +38,14 @@ void Stage::input()
 	{
 		for (auto&& data : controller_->GetCntData())
 		{
+			for (int id = 0; id < 2; id++)
+			{
+				setPermition((*puyo_[id]));
+			}
+
 			if (data.second[static_cast<int>(Trg::Now)] == true &&
 				data.second[static_cast<int>(Trg::Old)] == false)
 			{
-				for (int id = 0; id < 2; id++)
-				{
-					setPermition(puyo_[id]->GetGridPos(), id);
-				}
 				StgInputFunc[data.first](&(*this));
 			}
 			if (data.second[static_cast<int>(Trg::Now)] == 1 &&
@@ -52,7 +53,6 @@ void Stage::input()
 			{
 				for (int id = 0; id < 2; id++)
 				{
-					setPermition(puyo_[id]->GetGridPos(), id);
 					puyo_[id]->Down(data.first);
 				}
 			}
@@ -80,7 +80,7 @@ int Stage::update(STG_TYPE EyStgType)
 	makeObsPuyoList();
 	for (auto&& ObsPuyo : obsPuyo_)
 	{
-		//setPermition()
+		setPermition((*ObsPuyo));
 		ObsPuyo->drop();
 	}
 
@@ -158,6 +158,11 @@ void Stage::SetStageData()
 		stgData_[x][0] = PUYO_TYPE::WALL;
 		stgData_[x][gridCountY-1] = PUYO_TYPE::WALL;
 	}
+	for (auto&& ObsPuyo : obsPuyo_)
+	{
+		tmp= ObsPuyo->GetGridPos();
+		stgData_[tmp.x][tmp.y] = ObsPuyo->GetPuyoType();
+	}
 	for (auto&& PUYO : puyo_)
 	{
 		tmp = PUYO->GetGridPos();
@@ -176,13 +181,14 @@ void Stage::SetPuyoData()
 }
 
 
-bool Stage::setPermition(Vector2 tmp, int ID)
+bool Stage::setPermition(Puyo& puyo)
 {
+	Vector2 tmp = puyo.GetGridPos();
 	if (tmp <= Vector2(0, 0) || Vector2(gridCountX-1, gridCountY-1) <= tmp)return false;
 	//puyo_[ID]->dirPer_.perBit.u = stgData_[tmp.x][tmp.y - 1] == PUYO_TYPE::NON ? 0 : 1;
-	puyo_[ID]->dirPer_.perBit.r = stgData_[tmp.x + 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
-	puyo_[ID]->dirPer_.perBit.d = stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON ? 0 : 1;
-	puyo_[ID]->dirPer_.perBit.l = stgData_[tmp.x - 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
+	puyo.dirPer_.perBit.r = stgData_[tmp.x + 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
+	puyo.dirPer_.perBit.d = stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON ? 0 : 1;
+	puyo.dirPer_.perBit.l = stgData_[tmp.x - 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
 	return true;
 }
 
@@ -254,6 +260,19 @@ bool Stage::ErasePuyo(Vector2&& GridPos)
 			}
 		}
 	return true;
+}
+
+bool Stage::EraseObsPuyo()
+{
+	Vector2 tmp;
+	for (auto&& ErPyDelPos : ErPyDelPos_)
+	{
+		for (auto&& ObsPuyo : obsPuyo_)
+		{
+			tmp = ObsPuyo->GetGridPos();
+		}
+	}
+	return false;
 }
 
 void Stage::SetChainCount(int SetChainCount)
@@ -329,7 +348,7 @@ bool Stage::DeletePuyo()
 		ErPyDel_.emplace_back(puyo);
 		return (puyo->GetAlive() == false);
 	});
-
+	EraseObsPuyo();
 	puyo_.erase(RemovePuyo,puyo_.end());
 	ErPyDelPos_.clear();
 	return false;

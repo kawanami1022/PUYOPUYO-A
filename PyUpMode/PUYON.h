@@ -30,8 +30,21 @@ struct PUYON
 				}
 			}
 		}
-		int idx = 0;
 
+		for (auto&& ObsPuyo : stage->obsPuyo_)
+		{
+			if (ObsPuyo->GetGridPos().x == ObsPuyo->GetGridPos().x)
+			{
+				int MatchGridPosY = ObsPuyo->GetGridPos().y * ObsPuyo->blockSize + ObsPuyo->offsetPos_.y + ObsPuyo->blockSize / 2;
+				int mag = (stage->gridCountY - 1) - ObsPuyo->GetGridPos().y;	// puyo‚ÌyÀ•W‚É‚æ‚Á‚ÄˆÚ“®”{—¦‚ð‹‚ß‚é
+
+				ObsPuyo->radious.x = ObsPuyo->blockSize / 2 - offsetRadious.x;
+				ObsPuyo->radious.y = ObsPuyo->blockSize / 2 - offsetRadious.y;
+				ObsPuyo->ROffPos_.y = offsetRadious.y * mag * 2;
+			}
+		}
+
+		int idx = 0;
 		for (auto&& Puyo : stage->puyo_)
 		{
 			if (offsetRadious.y <= 0)

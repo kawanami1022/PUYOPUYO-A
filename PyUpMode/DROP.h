@@ -12,8 +12,8 @@ struct DROP
 		if (stage->stgMode == STG_MODE::DROP)
 		{
 			stage->stgMode = STG_MODE::FALL;
-			stage->setPermition(stage->puyo_[0]->GetGridPos(), 0);
-			stage->setPermition(stage->puyo_[1]->GetGridPos(), 1);
+			stage->setPermition((*stage->puyo_[0]));
+			stage->setPermition((*stage->puyo_[1]));
 			stage->puyo_[0]->drop();
 			stage->puyo_[1]->drop();
 
