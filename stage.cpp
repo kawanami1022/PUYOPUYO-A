@@ -77,7 +77,12 @@ int Stage::update(STG_TYPE EyStgType)
 		stgType_ = STG_TYPE::LOSE;
 	}
 
-	DropObsPuyo();
+	makeObsPuyoList();
+	for (auto&& ObsPuyo : obsPuyo_)
+	{
+		//setPermition()
+		ObsPuyo->drop();
+	}
 
 	if (stgMode == STG_MODE::GENERATES)
 	{return GetChainCount_;}
@@ -275,14 +280,14 @@ void Stage::SetPuyoGuide()
 	}
 }
 
-void Stage::DropObsPuyo()
+void Stage::makeObsPuyoList()
 {
 	// ‚¨Ž×–‚puyo‚ð—Ž‚Æ‚·
 	if (SetChainCount_ > 0)
 	{
 		for (int i = 0; i < SetChainCount_; i++)
 		{
-			obsPuyo_.push_front(ObsPuyo(offset_, Vector2(i + 1, 0)));
+			obsPuyoList_.push_front(ObsPuyo(offset_, Vector2(i + 1, i/(gridCountX-2)), GrHandle_[STCI(PUYO_TYPE::OBS)]));
 		}
 	}
 }

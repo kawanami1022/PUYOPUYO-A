@@ -29,12 +29,15 @@ struct DRAWPLAYING
 			idx++;
 		}
 
-		for (auto&& OBSPUYO : stg.obsPuyo_)
+		for (auto&& OBSPUYOLIST : stg.obsPuyoList_)
 		{
-			OBSPUYO.draw();
+			OBSPUYOLIST.draw();
 		}
 
-
+		for (auto&& OBSPUYO : stg.obsPuyo_)
+		{
+			OBSPUYO->draw();
+		}
 
 		for (auto&& GuidePos : stg.GuidePyPos_)
 		{

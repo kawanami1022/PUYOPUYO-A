@@ -68,8 +68,8 @@ private:
 	std::map<InputID, std::function<void(Stage* stage)>> StgInputFunc;
 	std::map<STG_TYPE, std::function<void(Stage& stage)>> StgDrawFunc;
 	std::function<void(Vector2&&,Vector2&&)> chPuyo_;
-	std::list<ObsPuyo> obsPuyo_;
-
+	std::list<ObsPuyo> obsPuyoList_;
+	std::vector<sharObsPuyo> obsPuyo_;
 	STG_TYPE stgType_;			// ステージ状態
 	int frame;
 	InputID inputId_;
@@ -126,7 +126,7 @@ public:
 	void SetPuyoGuide();
 
 
-	void DropObsPuyo();
+	void makeObsPuyoList();
 
 	// 入力処理系の関数
 	void ChangeInputMode(ComInputID);
