@@ -53,6 +53,13 @@ void GameScene::Draw()
 {
 	ClsDrawScreen();
 
+	// Effekseerにより再生中のエフェクトを更新する。
+	UpdateEffekseer2D();
+
+	// Effekseerにより再生中のエフェクトを描画する。
+	DrawEffekseer2D();
+
+
 	stage[0]->draw();
 	stage[1]->draw();
 

@@ -92,11 +92,6 @@ int Stage::update(STG_TYPE EyStgType)
 void Stage::draw()
 {
 
-	// Effekseerにより再生中のエフェクトを更新する。
-	UpdateEffekseer2D();
-
-	// Effekseerにより再生中のエフェクトを描画する。
-	DrawEffekseer2D();
 
 	StgDrawFunc[stgType_](*this);
 	frame++;
@@ -267,9 +262,15 @@ bool Stage::EraseObsPuyo()
 	Vector2 tmp;
 	for (auto&& ErPyDelPos : ErPyDelPos_)
 	{
+		int idx = 0;
 		for (auto&& ObsPuyo : obsPuyo_)
 		{
 			tmp = ObsPuyo->GetGridPos();
+			if (tmp.x == ErPyDelPos.x)
+			{
+				obsPuyo_.erase(obsPuyo_.begin() + idx);
+			}
+			idx++;
 		}
 	}
 	return false;
