@@ -34,6 +34,7 @@ int Stage::stageCount_ = 0;
 void Stage::input()
 {
 	(*controller_)();
+	controller_->AutoChangeInput(controller_, id_);
 	if(stgMode==STG_MODE::DROP)
 	{
 		for (auto&& data : controller_->GetCntData())

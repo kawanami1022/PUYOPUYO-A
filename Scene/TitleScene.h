@@ -13,8 +13,7 @@ enum class TxNameID
     MAX,
 };
 
-class TitleScene :
-    public BaseScene
+class TitleScene :public BaseScene
 {
 public:
     TitleScene();

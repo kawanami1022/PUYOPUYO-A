@@ -5,6 +5,7 @@
 
 void mouse::Update()
 {
+	if (frame % 60 == 0)joyPadNum_ = ReSetupJoypad();
 	GetMousePoint(&pos.x, &pos.y);
 	mouseWheel_ = GetMouseWheelRotVol();
 	int mouseInput = GetMouseInput();
@@ -21,15 +22,17 @@ void mouse::Update()
 			_data[id_][static_cast<int>(Trg::Now)] = GetMouseWheelFlag(id_);
 		}
 	}
+	frame++;
 }
 bool mouse::Setup(int no)
 {
-
+	frame = 0;
 	_mouseInputTbl = { {InputID::Left,MOUSE_INPUT_LEFT},
 					{InputID::Right,MOUSE_INPUT_RIGHT},
 					{InputID::Down,MOUSE_INPUT_MIDDLE},
 					{InputID::TURN_L,NULL}, 
 					{InputID::TURN_R,NULL}, };
+	joyPadNum_ = GetJoypadNum();
 	return true;
 }
 

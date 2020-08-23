@@ -8,6 +8,7 @@
 #define STCI static_cast<int>
 TitleScene::TitleScene()
 {
+	
 	frame_ = 0;
 	texture_.emplace_back(txFcty_.GetTexture("Image/スペースキー押して.png"));
 }
@@ -18,10 +19,11 @@ TitleScene::~TitleScene()
 
 UniqueBase TitleScene::input(UniqueBase nowScene)
 {
-	(*comInput)();
-	if (comInput->push(ComInputID::SPACE)==true)
+	(*controller)();
+	controller->AutoChangeInput(controller, 0);
+	if (controller->push(InputID::TURN_L) == true)
 	{
- 		nowScene = std::make_unique<GameScene>();
+		nowScene = std::make_unique<GameScene>();
 	}
 	frame_++;
 
@@ -30,14 +32,14 @@ UniqueBase TitleScene::input(UniqueBase nowScene)
 
 UniqueBase TitleScene::upDate(UniqueBase nowScene)
 {
-	
 	return std::move(nowScene);
 }
 
 void TitleScene::Draw()
 {
 	ClsDrawScreen();
-	DrawFormatString(0, 0, 0xffffff, "TitleScene");
+	//DrawFormatString(0, 0, 0xffffff, "TitleScene");
+	controller->DebugDrow(0);
 	if (frame_ % 60 > 30)
 	{ 
 		DrawGraph(400 - texture_[STCI(TxNameID::PUSH_SPC)]->GetSize().x / 2,

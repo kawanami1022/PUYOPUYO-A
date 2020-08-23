@@ -22,11 +22,14 @@ public:
 
 	virtual void Draw() = 0;
 protected:
+	// 入力系
 	std::shared_ptr<ComInput> comInput;
+	SharCntr controller;
+	// 画像
 	SharTexture textureFactory;
 	std::map<std::string, SharTexture> textureContainer;
 private:
-	
+	static int IstcCnt_;	// インスタンス回数
 };
 
 

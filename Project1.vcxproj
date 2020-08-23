@@ -23,6 +23,7 @@
     <ClCompile Include="EfkMng\EfkMng.cpp" />
     <ClCompile Include="input\ComInput.cpp" />
     <ClCompile Include="DxLibForHomeBrew\DxLib_Draw.cpp" />
+    <ClCompile Include="input\controller.cpp" />
     <ClCompile Include="Puyo\nextPuyo.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />

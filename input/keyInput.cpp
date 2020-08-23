@@ -30,17 +30,21 @@ bool KeyInput::Setup(int no)
 			{InputID::TURN_R,KEY_INPUT_E},
 		};
 	}
+	frame = 0;
+	joyPadNum_ = GetJoypadNum();
 	return true;
 }
 
 void KeyInput::Update(void)
 {
+	if (frame % 60 == 0)joyPadNum_ = ReSetupJoypad();
 	GetHitKeyStateAll(_keyData.data());
 	for (auto id:InputID())
 	{
 		_data[id][static_cast<int>(Trg::Old)] = _data[id][static_cast<int>(Trg::Now)];
 		_data[id][static_cast<int>(Trg::Now)] = _keyData[_InputTbl[id]];
 	}
+	frame++;
 }
 
 bool KeyInput::push(InputID inputID)
@@ -65,6 +69,7 @@ bool KeyInput::separate(InputID)
 
 void KeyInput::DebugDrow(int id)
 {
+	
 	if(id==0)
 	DrawFormatString(0, 0, 0xffffff, "inputMode: KeyInput");
 	if(id==1)

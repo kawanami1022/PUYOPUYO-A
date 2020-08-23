@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include <array>
 #include <map>
 #include "InputID.h"
@@ -23,6 +24,9 @@ enum class ContType
 	Max
 };
 
+struct controller;
+
+using SharCntr = std::shared_ptr<controller>;
 using TrgBool = std::array<bool, static_cast<size_t>(Trg::Max)>;
 using CntData = std::map<InputID, TrgBool>;
 
@@ -46,12 +50,13 @@ struct controller
 	virtual bool Hold(InputID) = 0;
 	virtual bool separate(InputID)=0;
 	virtual void DebugDrow(int id) = 0;
+	void AutoChangeInput(SharCntr&,int);
 protected:
 	CntData _data;
-
+	static int joyPadNum_;
+	int frame;
 private:
 	virtual void Update(void) = 0;
-
 
 };
 
