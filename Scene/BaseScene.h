@@ -24,7 +24,7 @@ public:
 protected:
 	// “ü—ÍŒn
 	std::shared_ptr<ComInput> comInput;
-	SharCntr controller;
+	static SharCntr controller;
 	// ‰æ‘œ
 	SharTexture textureFactory;
 	std::map<std::string, SharTexture> textureContainer;

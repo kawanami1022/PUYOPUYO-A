@@ -46,7 +46,8 @@ bool Pad::Setup(int no)
 				{InputID::Left,XINPUT_BUTTON_DPAD_LEFT},
 				{InputID::Right,XINPUT_BUTTON_DPAD_RIGHT},
 				{InputID::TURN_L,XINPUT_BUTTON_A},
-				{InputID::TURN_R,XINPUT_BUTTON_B} };
+				{InputID::TURN_R,XINPUT_BUTTON_B},
+				{InputID::SPACE,XINPUT_BUTTON_A} };
 	joyPadNum_ = GetJoypadNum();
 	return true;
 }

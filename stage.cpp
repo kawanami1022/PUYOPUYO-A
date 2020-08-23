@@ -428,6 +428,7 @@ bool Stage::Init(Vector2& Pos)
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/ICE_Puyo.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoWall.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/GuideBlock.png")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoGuide.png")->GetHandle());
 
 	GmOvHdl_ = { textureFactory.GetTexture("")->GetHandle(),
 			textureFactory.GetTexture("Image/yatta.png")->GetHandle(),

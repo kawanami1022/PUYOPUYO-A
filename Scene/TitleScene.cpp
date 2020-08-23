@@ -21,7 +21,7 @@ UniqueBase TitleScene::input(UniqueBase nowScene)
 {
 	(*controller)();
 	controller->AutoChangeInput(controller, 0);
-	if (controller->push(InputID::TURN_L) == true)
+	if (controller->push(InputID::SPACE) == true)
 	{
 		nowScene = std::make_unique<GameScene>();
 	}

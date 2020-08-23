@@ -51,7 +51,7 @@ using Vector2 = Vector2Temple<int>;
 using Vector2Dbl = Vector2Temple<double>;
 using Vector2Flt = Vector2Temple<float>;
 using Vector2Lg = Vector2Temple<long>;
-
+typedef Vector2 Positoin2;
 //Vector2 operator+(const Vector2& u, int v);
 //Vector2 operator+(const Vector2& u, int v);
 //Vector2 operator+(const Vector2& u, int v);

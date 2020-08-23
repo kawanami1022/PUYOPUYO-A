@@ -2,7 +2,7 @@
 #include "../input/keyInput.h"
 #include "BaseScene.h"
 
-
+SharCntr BaseScene::controller = nullptr;
 int BaseScene::IstcCnt_=0;
 BaseScene::BaseScene()
 {

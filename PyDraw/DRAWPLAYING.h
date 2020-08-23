@@ -26,9 +26,10 @@ struct DRAWPLAYING
 		{
 			PUYO->draw();
 			DrawFormatString(PUYO->pos_.x, PUYO->pos_.y, 0xffffff, "%d", idx);
+			
 			idx++;
 		}
-
+		DrawGraph(stg.puyo_[0]->pos_.x - 20, stg.puyo_[0]->pos_.y - 20, stg.GrHandle_[9], true);
 		for (auto&& OBSPUYOLIST : stg.obsPuyoList_)
 		{
 			OBSPUYOLIST.draw();
