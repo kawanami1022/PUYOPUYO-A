@@ -21,6 +21,7 @@ enum class ContType
 	Key,
 	Mouse,
 	Pad,
+	AI,
 	Max
 };
 

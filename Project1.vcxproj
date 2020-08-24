@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="input\AI.cpp" />
     <ClCompile Include="Effekseer\EffekseerFactory.cpp" />
     <ClCompile Include="EfkMng\EfkMng.cpp" />
     <ClCompile Include="input\ComInput.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="_debug\_DebugDispOut.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="input\AI.h" />
     <ClInclude Include="Effekseer\Effect.h" />
     <ClInclude Include="Effekseer\EffekseerFactory.h" />
     <ClInclude Include="EfkMng\EfkMng.h" />
