@@ -1,4 +1,7 @@
 #pragma once
+#include <map>
+#include <vector>
+#include <utility>
 #include "controller.h"
 struct AI :public controller
 {
@@ -11,5 +14,9 @@ struct AI :public controller
 	void DebugDrow(int id)override;
 	void changeInputTbl(int, InputID)override;
 	void PadForceFeedback(int, int)override;
+	
+private:
+	std::map<InputID,std::pair<int, int>> InputStateContainer_;
+
 };
 

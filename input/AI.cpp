@@ -7,26 +7,32 @@ ContType AI::GetType(void)
 
 bool AI::Setup(int no)
 {
-
+	InputStateContainer_ =
+	{ {InputID::Up,std::make_pair(0,0)},
+	{InputID::Down,std::make_pair(1,1)},
+	{InputID::Left,std::make_pair(1,0)},
+	{InputID::Right,std::make_pair(1,0)},
+	{InputID::TURN_L,std::make_pair(1,0)},
+	{InputID::TURN_R,std::make_pair(1,0)} };
 	return false;
 }
 
-bool AI::push(InputID)
+bool AI::push(InputID inputID)
 {
 	return false;
 }
 
-bool AI::release(InputID)
+bool AI::release(InputID inputID)
 {
 	return false;
 }
 
-bool AI::Hold(InputID)
+bool AI::Hold(InputID inputID)
 {
 	return false;
 }
 
-bool AI::separate(InputID)
+bool AI::separate(InputID inputID)
 {
 	return false;
 }
