@@ -61,6 +61,15 @@ bool mouse::separate(InputID mouseButton)
 	return false;
 }
 
+void mouse::changeInputTbl(int inputButton, InputID inputID)
+{
+	_mouseInputTbl[inputID] = inputButton;
+}
+
+void mouse::PadForceFeedback(int Power, int Time)
+{
+}
+
 Vector2 mouse::getMousePos()
 {
 	return Vector2();

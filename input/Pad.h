@@ -5,9 +5,8 @@
 #include <memory>
 #include <DxLib.h>
 #include "controller.h"
-class Pad :public controller
+struct Pad :public controller
 {
-public:
 	ContType GetType(void)override;
 	void Update()override;
 	bool push(InputID)override;
@@ -15,6 +14,8 @@ public:
 	bool Hold(InputID)override;
 	bool separate(InputID)override;
 	bool Setup(int)override;
+	void changeInputTbl(int inputButton, InputID inputID)override;
+	void PadForceFeedback(int, int)override;
 	void DebugDrow(int id)override;
 protected:
 	std::array<XINPUT_STATE, 1> _xInputData;

@@ -14,6 +14,8 @@ public:
 	bool push(InputID)override;
 	bool release(InputID)override;
 	bool separate(InputID)override;
+	void changeInputTbl(int inputButton, InputID inputID)override;
+	void PadForceFeedback(int, int)override;
 	void DebugDrow(int id)override;
 	Vector2 getMousePos();
 	InputID GetInputID();

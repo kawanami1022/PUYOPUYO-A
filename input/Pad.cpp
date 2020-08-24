@@ -49,10 +49,20 @@ bool Pad::Setup(int no)
 				{InputID::Right,XINPUT_BUTTON_DPAD_RIGHT},
 				{InputID::TURN_L,XINPUT_BUTTON_A},
 				{InputID::TURN_R,XINPUT_BUTTON_B} };
-				//{InputID::SPACE,XINPUT_BUTTON_A} };
 	joyPadNum_ = GetJoypadNum();
 	return true;
 }
+
+void Pad::changeInputTbl(int inputButton, InputID inputID)
+{
+	_xInputTbl[inputID] = inputButton;
+}
+
+void Pad::PadForceFeedback(int Power, int Time)
+{
+	StartJoypadVibration(id_+1, Power, Time);
+}
+
 
 void Pad::DebugDrow(int id)
 {

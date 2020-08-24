@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include <vector>
 #include <string>
 #include <list>
@@ -26,5 +27,8 @@ private:
     int frame_;
     TextureFactory txFcty_;
     std::vector<SharTexture> texture_;
+    std::map< ContType,std::function<void(TitleScene&)>> TxtureDraw_;
+    friend struct KEY_INPUT_DRAW;
+    friend struct PAD_INPUT_DRAW;
 };
 

@@ -50,6 +50,8 @@ struct controller
 	virtual bool Hold(InputID) = 0;
 	virtual bool separate(InputID)=0;
 	virtual void DebugDrow(int id) = 0;
+	virtual void changeInputTbl(int, InputID)=0;
+	virtual void PadForceFeedback(int, int)=0;
 	void AutoChangeInput(SharCntr&,int);
 protected:
 	CntData _data;

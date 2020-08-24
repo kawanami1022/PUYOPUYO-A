@@ -9,7 +9,7 @@ struct IpTurnR
 	void operator()(Stage* stage)
 	{
 		std::function<void()> func = [&]() {
-
+			stage->controller_->PadForceFeedback(1000, 200);
 			// ‰E
 			if (stage->puyo_[0]->GetGridPos().x + 1 == stage->puyo_[1]->GetGridPos().x)
 			{

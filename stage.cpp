@@ -47,6 +47,7 @@ void Stage::input()
 			if (data.second[static_cast<int>(Trg::Now)] == true &&
 				data.second[static_cast<int>(Trg::Old)] == false)
 			{
+				
 				StgInputFunc[data.first](&(*this));
 			}
 			if (data.second[static_cast<int>(Trg::Now)] == 1 &&

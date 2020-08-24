@@ -1,16 +1,22 @@
 #include <DxLib.h>
-
 #include "../input/CommonInputID.h"
 #include "../input/ComInput.h"
 #include "TitleScene.h"
 #include "GameScene.h"
+#include "TITLE_INPUT_DRAW/KEY_INPUT_DRAW.h"
+#include "TITLE_INPUT_DRAW/PAD_INPUT_DRAW.h"
 
 #define STCI static_cast<int>
 TitleScene::TitleScene()
 {
-	
 	frame_ = 0;
-	texture_.emplace_back(txFcty_.GetTexture("Image/スペースキー押して.png"));
+	
+	txNmList_ = { "Image/スペースキー押して.png","Image/A_BUTTON.png" };
+	for (auto&& TXNMList : txNmList_)
+	{texture_.emplace_back(txFcty_.GetTexture(TXNMList));}
+	
+	TxtureDraw_.try_emplace(ContType::Key, KEY_INPUT_DRAW());
+	TxtureDraw_.try_emplace(ContType::Pad, PAD_INPUT_DRAW());
 }
 
 TitleScene::~TitleScene()
@@ -38,13 +44,6 @@ UniqueBase TitleScene::upDate(UniqueBase nowScene)
 void TitleScene::Draw()
 {
 	ClsDrawScreen();
-	//DrawFormatString(0, 0, 0xffffff, "TitleScene");
-	controller->DebugDrow(0);
-	if (frame_ % 60 > 30)
-	{ 
-		DrawGraph(400 - texture_[STCI(TxNameID::PUSH_SPC)]->GetSize().x / 2,
-			500 - texture_[STCI(TxNameID::PUSH_SPC)]->GetSize().y / 2,
-			texture_[STCI(TxNameID::PUSH_SPC)]->GetHandle(), true);
-	}
+	TxtureDraw_[controller->GetType()](*this);
 	ScreenFlip();
 }

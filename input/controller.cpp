@@ -6,6 +6,7 @@
 
 int controller::joyPadNum_ = 0;
 
+
 void controller::AutoChangeInput(SharCntr& sharCnt, int stageID)
 {
 	joyPadNum_ = GetJoypadNum();

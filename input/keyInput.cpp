@@ -70,6 +70,15 @@ bool KeyInput::separate(InputID)
 	return false;
 }
 
+void KeyInput::changeInputTbl(int inputButton,InputID inputID)
+{
+	_InputTbl[inputID] = inputButton;
+}
+
+void KeyInput::PadForceFeedback(int Power, int Time)
+{
+}
+
 void KeyInput::DebugDrow(int id)
 {
 	
