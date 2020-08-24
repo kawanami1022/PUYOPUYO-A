@@ -16,8 +16,8 @@ bool KeyInput::Setup(int no)
 			{InputID::Left,KEY_INPUT_LEFT},
 			{InputID::Right,KEY_INPUT_RIGHT},
 			{InputID::TURN_L,KEY_INPUT_K},
-			{InputID::TURN_R,KEY_INPUT_L},
-			{InputID::SPACE,KEY_INPUT_SPACE},
+			{InputID::TURN_R,KEY_INPUT_L}
+			//{InputID::SPACE,KEY_INPUT_SPACE},
 		};
 	}
 	else
@@ -29,9 +29,10 @@ bool KeyInput::Setup(int no)
 			{InputID::Right,KEY_INPUT_D},
 			{InputID::TURN_L,KEY_INPUT_Q},
 			{InputID::TURN_R,KEY_INPUT_E},
-			{InputID::SPACE,KEY_INPUT_SPACE},
+			//{InputID::SPACE,KEY_INPUT_SPACE},
 		};
 	}
+	id_ = no;
 	frame = 0;
 	joyPadNum_ = GetJoypadNum();
 	return true;

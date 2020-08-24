@@ -55,6 +55,7 @@ protected:
 	CntData _data;
 	static int joyPadNum_;
 	int frame;
+	int id_;
 private:
 	virtual void Update(void) = 0;
 

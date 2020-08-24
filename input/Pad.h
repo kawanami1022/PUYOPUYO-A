@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <map>
 #include <array>
 #include <memory>
@@ -18,7 +19,7 @@ public:
 protected:
 	std::array<XINPUT_STATE, 1> _xInputData;
 	std::map<InputID, int> _xInputTbl;
-	
+	std::vector<int> PadIdList_;
 private:
 };
 
