@@ -6,8 +6,10 @@
 #include "../stage.h"
 #include "../Texture/Texture.h"
 #include "../Texture/TextureFactory.h"
+#include "../BLOCK/BLOCK.h"
 
-
+enum class BLOCK_COLOR;
+struct BLOCK;
 
 class GameScene :
     public BaseScene
@@ -24,7 +26,7 @@ private:
     Vector2 offset;
     Vector2 size;
     int SetChainCount_;
-
+    std::vector<BLOCK> Block_;
     // Texture
     std::list<std::string> BlockNameList_;
     std::vector<SharTexture> BlockHandle_;

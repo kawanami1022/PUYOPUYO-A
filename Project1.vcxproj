@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BLOCK\BLOCK.cpp" />
     <ClCompile Include="input\AI.cpp" />
     <ClCompile Include="Effekseer\EffekseerFactory.cpp" />
     <ClCompile Include="EfkMng\EfkMng.cpp" />
@@ -90,6 +91,30 @@
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="_debug\_DebugConOut.h" />
     <ClInclude Include="_debug\_DebugDispOut.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image\A_BUTTON.png" />
+    <Image Include="Image\batanque.png" />
+    <Image Include="Image\BLOCK\BLOWNBLOCK.png" />
+    <Image Include="Image\BLOCK\BLUEBLOCK.png" />
+    <Image Include="Image\BLOCK\GREENASEETS.png" />
+    <Image Include="Image\BLOCK\PAPLEBLOCK.png" />
+    <Image Include="Image\BLOCK\REDBLOCK.png" />
+    <Image Include="Image\BLUE_Puyo.png" />
+    <Image Include="Image\B_BUTTON.png" />
+    <Image Include="Image\GREEN_Puyo.png" />
+    <Image Include="Image\GuideBlock.png" />
+    <Image Include="Image\ICE_Puyo.png" />
+    <Image Include="Image\numberUI.png" />
+    <Image Include="Image\PURPLE_Puyo.png" />
+    <Image Include="Image\PuyoGuide.png" />
+    <Image Include="Image\PuyoWall.png" />
+    <Image Include="Image\RED_Puyo.png" />
+    <Image Include="Image\X_BUTTON.png" />
+    <Image Include="Image\yatta.png" />
+    <Image Include="Image\YELLOW_Puyo.png" />
+    <Image Include="Image\Y_BUTTON.png" />
+    <Image Include="Image\スペースキー押して.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

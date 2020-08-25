@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include <random>
 #include "GameScene.h"
 #include "TitleScene.h"
 #include "../BLOCK/BLOCK.h"
@@ -20,13 +21,32 @@ GameScene::GameScene()
 		BlockHandle_.emplace_back(txFcty_.GetTexture(BLOCKLIST));
 	}
 
+	const int width = 14;
+	const int height = 14;
+
+
+	std::random_device seed_gen;
+	std::mt19937 engine(seed_gen());
+	std::uniform_int_distribution<> dist1(static_cast<int>(BLOCK_COLOR::BLOWN), static_cast<int>(BLOCK_COLOR::RED));
+
+	Block_.reserve(width * height);
+	for (int i = 0; i < width * height; i++)
+	{
+		int color = dist1(engine);
+		Vector2 size = BlockHandle_[color]->GetSize();
+
+		Block_.emplace_back(
+			BLOCK({ size.x * (i % width) - size.x / 2 + (i / width % 2 * size.x / 2),
+			(i/width)*(size.y-size.y/4)-size.y/2 },
+				size, BlockHandle_[color]->GetHandle()));
+	}
 }
 
 GameScene::~GameScene()
 {
+
 	stage.clear();
 }
-
 UniqueBase GameScene::input(UniqueBase nowScene)
 {
 	(*comInput)();
@@ -64,13 +84,15 @@ UniqueBase GameScene::upDate(UniqueBase nowScene)
 void GameScene::Draw()
 {
 	ClsDrawScreen();
-
+	for (auto BLOCK : Block_)
+	{
+		DrawGraph(BLOCK.pos_.x, BLOCK.pos_.y, BLOCK.GrHdl_, true);
+	}
 	// Effekseerにより再生中のエフェクトを更新する。
 	UpdateEffekseer2D();
 
 	// Effekseerにより再生中のエフェクトを描画する。
 	DrawEffekseer2D();
-
 
 	stage[0]->draw();
 	stage[1]->draw();

@@ -12,6 +12,7 @@ enum class BLOCK_COLOR {
 };
 struct BLOCK
 {
+    BLOCK(Positoin2, Vector2, int);
 	Positoin2 pos_;
 	Vector2 Size_;
 	int GrHdl_;

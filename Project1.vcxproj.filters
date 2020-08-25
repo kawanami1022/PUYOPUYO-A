@@ -84,6 +84,9 @@
     <ClCompile Include="input\AI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="BLOCK\BLOCK.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SceneMng.h">
@@ -224,5 +227,73 @@
     <ClInclude Include="BLOCK\BLOCK.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image\BLOCK\BLOWNBLOCK.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\BLOCK\REDBLOCK.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\BLOCK\PAPLEBLOCK.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\BLOCK\GREENASEETS.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\BLOCK\BLUEBLOCK.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\A_BUTTON.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\batanque.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\スペースキー押して.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\YELLOW_Puyo.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\Y_BUTTON.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\yatta.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\X_BUTTON.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\RED_Puyo.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\PuyoWall.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\PuyoGuide.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\PURPLE_Puyo.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\numberUI.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\ICE_Puyo.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\GuideBlock.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\GREEN_Puyo.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\BLUE_Puyo.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\B_BUTTON.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

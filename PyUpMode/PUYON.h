@@ -26,7 +26,7 @@ struct PUYON
 
 					Puyo->radious.x = Puyo->blockSize / 2 - offsetRadious.x;
 					Puyo->radious.y = Puyo->blockSize / 2 - offsetRadious.y;
-					Puyo->ROffPos_.y = offsetRadious.y * mag * 2;
+					Puyo->ROffPos_.y = offsetRadious.y * mag;
 				}
 			}
 		}
@@ -40,7 +40,7 @@ struct PUYON
 
 				ObsPuyo->radious.x = ObsPuyo->blockSize / 2 - offsetRadious.x;
 				ObsPuyo->radious.y = ObsPuyo->blockSize / 2 - offsetRadious.y;
-				ObsPuyo->ROffPos_.y = offsetRadious.y * mag * 2;
+				ObsPuyo->ROffPos_.y = offsetRadious.y * mag;
 			}
 		}
 
