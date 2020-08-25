@@ -107,6 +107,7 @@ private:
 	friend struct DRAWPLAYING;
 	friend struct DRAWWIN;
 	friend struct DRAWLOSE;
+
 protected:
 
 public:
