@@ -225,4 +225,7 @@
   <ItemGroup>
     <None Include="Image\PURPLE_Puyo.psd" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\PURPLE_Puyo.psd" />
+  </ItemGroup>
 </Project>
