@@ -29,7 +29,9 @@ struct DRAWPLAYING
 			
 			idx++;
 		}
-		DrawGraph(stg.puyo_[0]->pos_.x - 20, stg.puyo_[0]->pos_.y - 20, stg.GrHandle_[9], true);
+
+		if(stg.puyo_.size()>0)DrawGraph(stg.puyo_[0]->pos_.x - 20, stg.puyo_[0]->pos_.y - 20, stg.GrHandle_[9], true);
+
 		for (auto&& OBSPUYOLIST : stg.obsPuyoList_)
 		{
 			OBSPUYOLIST.draw();

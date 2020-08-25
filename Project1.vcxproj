@@ -44,6 +44,7 @@
     <ClCompile Include="_debug\_DebugDispOut.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BLOCK\BLOCK.h" />
     <ClInclude Include="input\AI.h" />
     <ClInclude Include="Effekseer\Effect.h" />
     <ClInclude Include="Effekseer\EffekseerFactory.h" />

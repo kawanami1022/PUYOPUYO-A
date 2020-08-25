@@ -1,12 +1,24 @@
 #include <DxLib.h>
 #include "GameScene.h"
 #include "TitleScene.h"
+#include "../BLOCK/BLOCK.h"
 GameScene::GameScene()
 {
 	offset = { 50,100 };
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
 	offset = { 500, 100 };
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
+
+	BlockNameList_ = { "Image/BLOCK/BLOWNBLOCK.png",
+					"Image/BLOCK/BLUEBLOCK.png",
+					"Image/BLOCK/GREENASEETS.png",
+					"Image/BLOCK/PAPLEBLOCK.png",
+					"Image/BLOCK/REDBLOCK.png" };
+
+	for (auto BLOCKLIST : BlockNameList_)
+	{
+		BlockHandle_.emplace_back(txFcty_.GetTexture(BLOCKLIST));
+	}
 
 }
 
