@@ -40,7 +40,6 @@ bool KeyInput::Setup(int no)
 
 void KeyInput::Update(void)
 {
-	if (frame % 60 == 0)joyPadNum_ = ReSetupJoypad();
 	GetHitKeyStateAll(_keyData.data());
 	for (auto id:InputID())
 	{

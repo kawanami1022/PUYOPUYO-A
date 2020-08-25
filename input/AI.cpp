@@ -1,9 +1,6 @@
 #include <DxLib.h>
 #include "AI.h"
-#include "../stage.h"
-#include "../Puyo/Puyo.h"
-#include "../Puyo/nextPuyo.h"
-#include "../Puyo/ObsPuyo.h"
+
 
 void AI::Update()
 {
@@ -64,13 +61,4 @@ void AI::PadForceFeedback(int, int)
 {
 }
 
-void AI::SetStgData(std::vector<PUYO_TYPE> stgDataBase, std::shared_ptr<Puyo> nextPuyo)
-{
-	stgDataBase_ = stgDataBase;
-	nextPuyo_ = nextPuyo;
-	for (int i = 0; i < gridCountX_; i++)
-	{
-		stgData_.emplace_back(&stgDataBase_[i * gridCountY_]);
-	}
-}
 

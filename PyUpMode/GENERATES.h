@@ -33,5 +33,6 @@ struct GENERATES
 				break;
 			}
 		}
+		stage->controller_->ResetJoyPadNum();
 	}
 };

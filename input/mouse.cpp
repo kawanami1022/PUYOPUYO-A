@@ -5,7 +5,6 @@
 
 void mouse::Update()
 {
-	if (frame % 60 == 0)joyPadNum_ = ReSetupJoypad();
 	GetMousePoint(&pos.x, &pos.y);
 	mouseWheel_ = GetMouseWheelRotVol();
 	int mouseInput = GetMouseInput();

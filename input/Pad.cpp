@@ -7,7 +7,6 @@ ContType Pad::GetType(void)
 
 void Pad::Update()
 {
-	if (frame % 180 == 0)joyPadNum_ = ReSetupJoypad();
 	int joyPadNum = GetJoypadNum();		// ジョイパッドが接続されてる状態を取得する
 	GetJoypadXInputState(PadIdList_[id_], &_xInputData.data()[0]);
 	for (auto _id : InputID())

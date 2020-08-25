@@ -9,6 +9,7 @@
 #include "input/keyInput.h"
 #include "input/Pad.h"
 #include "input/mouse.h"
+#include "input/AI.h"
 #include "_debug/_DebugConOut.h"
 #include "PyUpMode/DROP.h"
 #include "PyUpMode/ERASE.h"
@@ -312,6 +313,12 @@ void Stage::makeObsPuyoList()
 			obsPuyoList_.push_front(ObsPuyo(offset_, Vector2(i + 1, i/(gridCountX-2)), GrHandle_[STCI(PUYO_TYPE::OBS)]));
 		}
 	}
+}
+
+//AI‚Å§Œä
+void Stage::controllAI()
+{
+	controller_->SetStgData(stgDataBase_, nextPuyo_);
 }
 
 void Stage::ChangeInputMode(ComInputID comInput)

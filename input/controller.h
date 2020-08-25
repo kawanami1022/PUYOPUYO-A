@@ -2,6 +2,7 @@
 #include <memory>
 #include <array>
 #include <map>
+#include <vector>
 #include "InputID.h"
 #include "CommonInputID.h"
 #define STCI static_cast<int>
@@ -26,7 +27,10 @@ enum class ContType
 };
 
 struct controller;
-
+enum class PUYO_TYPE;
+class Puyo;
+class nextPuyo;
+class ObsPuyo;
 using SharCntr = std::shared_ptr<controller>;
 using TrgBool = std::array<bool, static_cast<size_t>(Trg::Max)>;
 using CntData = std::map<InputID, TrgBool>;
@@ -53,12 +57,20 @@ struct controller
 	virtual void DebugDrow(int id) = 0;
 	virtual void changeInputTbl(int, InputID)=0;
 	virtual void PadForceFeedback(int, int)=0;
+	void ResetJoyPadNum();
 	void AutoChangeInput(SharCntr&,int);
+	void SetStgData(std::vector<PUYO_TYPE>, std::vector<std::shared_ptr<Puyo>>);
 protected:
 	CntData _data;
 	static int joyPadNum_;
 	int frame;
 	int id_;
+	int gridCountX_;
+	int gridCountY_;
+	std::map<InputID, std::pair<int, int>> InputStateContainer_;
+	std::vector<PUYO_TYPE> stgDataBase_;	// 
+	std::vector<PUYO_TYPE*> stgData_;		// _dataBaseの一次元配列の先頭アドレスを確保
+	std::vector < std::shared_ptr<Puyo>> nextPuyo_;
 private:
 	virtual void Update(void) = 0;
 

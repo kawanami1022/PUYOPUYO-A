@@ -3,9 +3,17 @@
 #include "mouse.h"
 #include "keyInput.h"
 #include "Pad.h"
-
+#include "../stage.h"
+#include "../Puyo/Puyo.h"
+#include "../Puyo/nextPuyo.h"
+#include "../Puyo/ObsPuyo.h"
 int controller::joyPadNum_ = 0;
 
+
+void controller::ResetJoyPadNum()
+{
+	joyPadNum_ = DxLib::ReSetupJoypad();
+}
 
 void controller::AutoChangeInput(SharCntr& sharCnt, int stageID)
 {
@@ -30,3 +38,13 @@ void controller::AutoChangeInput(SharCntr& sharCnt, int stageID)
 }
 
 
+void controller::SetStgData(std::vector<PUYO_TYPE> stgDataBase, 
+						std::vector<std::shared_ptr<Puyo>> nextPuyo)
+{
+	stgDataBase_ = stgDataBase;
+	nextPuyo_ = nextPuyo;
+	for (int i = 0; i < gridCountX_; i++)
+	{
+		stgData_.emplace_back(&stgDataBase_[i * gridCountY_]);
+	}
+}
