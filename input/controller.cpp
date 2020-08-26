@@ -45,7 +45,7 @@ void controller::SetStgData(std::vector<PUYO_TYPE> stgDataBase,
 	nextPuyo_ = nextPuyo;
 	for (int i = 0; i < gridCountX_; i++)
 	{
-		stgData_.emplace_back(&stgDataBase_[i * gridCountY_]);
+		stgData_.emplace_back(&stgDataBase_[STCI(i * gridCountY_)]);
 	}
 }
 

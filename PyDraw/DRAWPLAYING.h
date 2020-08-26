@@ -48,6 +48,13 @@ struct DRAWPLAYING
 				stg.GrHandle_[8], true);
 		}
 
+
+		// Effekseerにより再生中のエフェクトを更新する。
+		UpdateEffekseer2D();
+
+		// Effekseerにより再生中のエフェクトを描画する。
+		DrawEffekseer2D();
+
 		DrawBox(stg.nextBoxPos.x + (stg.screenSizeX / 8) * (3 + stg.id_) - stg.blockSize / 2,
 			stg.nextBoxPos.y,
 			stg.nextBoxPos.x + (stg.screenSizeX / 8) * (3 + stg.id_) + stg.blockSize / 2,

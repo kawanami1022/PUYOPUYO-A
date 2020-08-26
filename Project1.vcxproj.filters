@@ -295,5 +295,14 @@
     <Image Include="Image\B_BUTTON.png">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="Image\キーボードにゅうりょく.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\マウスにゅうりょく.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\ぱっどにゅうりょく.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

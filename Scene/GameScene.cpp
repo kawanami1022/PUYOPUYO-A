@@ -88,11 +88,7 @@ void GameScene::Draw()
 	{
 		DrawGraph(BLOCK.pos_.x, BLOCK.pos_.y, BLOCK.GrHdl_, true);
 	}
-	// Effekseerにより再生中のエフェクトを更新する。
-	UpdateEffekseer2D();
 
-	// Effekseerにより再生中のエフェクトを描画する。
-	DrawEffekseer2D();
 
 	stage[0]->draw();
 	stage[1]->draw();

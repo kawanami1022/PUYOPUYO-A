@@ -183,15 +183,15 @@ bool Stage::setPermition(Puyo& puyo)
 	Vector2 tmp = puyo.GetGridPos();
 	if (tmp <= Vector2(0, 0) || Vector2(gridCountX-1, gridCountY-1) <= tmp)return false;
 	//puyo_[ID]->dirPer_.perBit.u = stgData_[tmp.x][tmp.y - 1] == PUYO_TYPE::NON ? 0 : 1;
-	puyo.dirPer_.perBit.r = stgData_[STCI(tmp.x + 1)][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
+	puyo.dirPer_.perBit.r = stgData_[STCI(tmp.x + 1)][STCI(tmp.y)] == PUYO_TYPE::NON ? 0 : 1;
 	puyo.dirPer_.perBit.d = stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON ? 0 : 1;
-	puyo.dirPer_.perBit.l = stgData_[STCI(tmp.x - 1)][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
+	puyo.dirPer_.perBit.l = stgData_[STCI(tmp.x - 1)][STCI(tmp.y)] == PUYO_TYPE::NON ? 0 : 1;
 	return true;
 }
 
 bool Stage::chErasePuyo(Vector2&& GridPos, Vector2&& chGridPos)
 {
-	if (ErPyDelPos_.size() < STCI(gridCountX * gridCountY))
+	if (STCI(ErPyDelPos_.size()) < STCI(gridCountX * gridCountY))
 	{
 		if (stgData_[GridPos.x][GridPos.y] != PUYO_TYPE::OBS)
 		{
@@ -423,7 +423,7 @@ bool Stage::Init(Vector2& Pos)
 	StgDrawFunc.try_emplace(STG_TYPE::PLAY, DRAWPLAYING());
 	StgDrawFunc.try_emplace(STG_TYPE::WIN, DRAWWIN());
 	StgDrawFunc.try_emplace(STG_TYPE::LOSE, DRAWLOSE());
-
+	std::string stgList[] = { "Image/PuyoWall.png","Image/PuyoWall_BLUE.png" };
 	// グラフィックハンドルを用意
 	GrHandle_.reserve(STCI(PUYO_TYPE::MAX));
 	GrHandle_.emplace_back(textureFactory.GetTexture("")->GetHandle());
@@ -433,7 +433,7 @@ bool Stage::Init(Vector2& Pos)
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PURPLE_Puyo.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/YELLOW_Puyo.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/ICE_Puyo.png")->GetHandle());
-	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoWall.png")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture(stgList[id_])->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/GuideBlock.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoGuide.png")->GetHandle());
 

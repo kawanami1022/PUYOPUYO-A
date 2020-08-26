@@ -29,9 +29,10 @@ void EfkMng::Destroy()
 
 EfkMng::EfkMng()
 {
+	SetUseDirect3DVersion(DX_DIRECT3D_11);
 	// DirectX11を使用するようにする。(DirectX9も可、一部機能不可)
 	// Effekseerを使用するには必ず設定する。
-	Effekseer_Init(12000);
+	Effekseer_Init(100);
 
 	// フルスクリーンウインドウの切り替えでリソースが消えるのを防ぐ。
 	// Effekseerを使用する場合は必ず設定する。

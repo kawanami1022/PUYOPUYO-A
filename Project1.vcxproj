@@ -114,7 +114,10 @@
     <Image Include="Image\yatta.png" />
     <Image Include="Image\YELLOW_Puyo.png" />
     <Image Include="Image\Y_BUTTON.png" />
+    <Image Include="Image\ぱっどにゅうりょく.png" />
+    <Image Include="Image\キーボードにゅうりょく.png" />
     <Image Include="Image\スペースキー押して.png" />
+    <Image Include="Image\マウスにゅうりょく.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

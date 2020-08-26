@@ -11,7 +11,7 @@ int SceneMng::Run()
 
 	ChangeWindowMode(true);
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, 32);
-	SetUseDirect3DVersion(DX_DIRECT3D_11);
+
 
 	SetDrawScreen(DX_SCREEN_BACK);
 	if (DxLib_Init() == -1)		// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ˆ—
