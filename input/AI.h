@@ -18,7 +18,7 @@ struct AI :public controller
 	void DebugDrow(int id)override;
 	void changeInputTbl(int, InputID)override;
 	void PadForceFeedback(int, int)override;
-	//void SetStgData(std::vector<PUYO_TYPE>, std::shared_ptr<Puyo>);	// stageData:ステージデータ
+
 private:
 
 

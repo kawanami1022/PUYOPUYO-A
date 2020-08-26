@@ -27,7 +27,9 @@ enum class ContType
 };
 
 struct controller;
+enum class STG_MODE;
 enum class PUYO_TYPE;
+class Stage;
 class Puyo;
 class nextPuyo;
 class ObsPuyo;
@@ -60,6 +62,7 @@ struct controller
 	void ResetJoyPadNum();
 	void AutoChangeInput(SharCntr&,int);
 	void SetStgData(std::vector<PUYO_TYPE>, std::vector<std::shared_ptr<Puyo>>);
+	void SetStgType(STG_MODE);
 protected:
 	CntData _data;
 	static int joyPadNum_;
