@@ -14,9 +14,11 @@ TitleScene::TitleScene()
 	txNmList_ = { "Image/スペースキー押して.png","Image/A_BUTTON.png" };
 	for (auto&& TXNMList : txNmList_)
 	{texture_.emplace_back(txFcty_.GetTexture(TXNMList));}
-	
 	TxtureDraw_.try_emplace(ContType::Key, KEY_INPUT_DRAW());
 	TxtureDraw_.try_emplace(ContType::Pad, PAD_INPUT_DRAW());
+	//
+	if (controller->GetType() == ContType::Key)
+		controller->changeInputTbl(KEY_INPUT_SPACE, InputID::TURN_L);
 }
 
 TitleScene::~TitleScene()

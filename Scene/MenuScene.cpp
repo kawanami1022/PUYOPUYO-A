@@ -25,7 +25,9 @@ UniqueBase MenuScene::upDate(UniqueBase nowScene)
 
 void MenuScene::Draw()
 {
-
+	ClsDrawScreen();
 	DrawFormatString(0, 0, 0xffffff, "MenueScene");
 	SetDrawBright(200, 200, 200);
+	gameScene_->Draw();
+	ScreenFlip();
 }

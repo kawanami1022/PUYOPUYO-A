@@ -80,7 +80,7 @@ UniqueBase GameScene::upDate(UniqueBase nowScene)
 	{
 		stage[i]->SetChainCount(SetChainCount_);
 		stage[i]->input();
-		SetChainCount_ = stage[i]->update(stage[(i + 1) % stage.size()]->GetStgType());
+		SetChainCount_ = stage[i]->update(stage[(STCI(i + 1)) % stage.size()]->GetStgType());
 	}
     return std::move(nowScene);
 }

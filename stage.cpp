@@ -385,14 +385,14 @@ bool Stage::Init(Vector2& Pos)
 
 	//puyo_[0]->setBlockSize(blockSizeX);
 
-	stgDataBase_.resize(gridCountX * gridCountY);
+	stgDataBase_.resize(STCI(gridCountX * gridCountY));
 	for(int no=0;no<gridCountX;no++)
-	{stgData_.emplace_back(&stgDataBase_[no * gridCountY]);}
+	{stgData_.emplace_back(&stgDataBase_[STCI(no * gridCountY)]);}
 	SetStageData();
 
-	eraseDataBase_.resize(gridCountX * gridCountY);
+	eraseDataBase_.resize(STCI(gridCountX * gridCountY));
 	for (int no = 0; no < gridCountX; no++)
-	{eraseData_.emplace_back(&eraseDataBase_[no * gridCountY]);}
+	{eraseData_.emplace_back(&eraseDataBase_[STCI(no * gridCountY)]);}
 	SetStageData();
 
 
