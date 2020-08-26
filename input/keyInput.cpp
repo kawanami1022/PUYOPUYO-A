@@ -33,7 +33,7 @@ bool KeyInput::Setup(int no)
 		};
 	}
 	id_ = no;
-	frame = 0;
+	frame_ = 0;
 	joyPadNum_ = GetJoypadNum();
 	return true;
 }
@@ -46,7 +46,7 @@ void KeyInput::Update(void)
 		_data[id][static_cast<int>(Trg::Old)] = _data[id][static_cast<int>(Trg::Now)];
 		_data[id][static_cast<int>(Trg::Now)] = _keyData[_InputTbl[id]];
 	}
-	frame++;
+	frame_++;
 }
 
 bool KeyInput::push(InputID inputID)

@@ -14,7 +14,7 @@ void Pad::Update()
 		_data[_id][static_cast<int>(Trg::Old)] = _data[_id][static_cast<int>(Trg::Now)];
 		_data[_id][static_cast<int>(Trg::Now)] = _xInputData.data()->Buttons[_xInputTbl[_id]];
 	}
-	frame++;
+	frame_++;
 }
 
 bool Pad::push(InputID button)
@@ -39,7 +39,7 @@ bool Pad::separate(InputID button)
 
 bool Pad::Setup(int no)
 {
-	frame = 0;
+	frame_ = 0;
 	id_ = no;
 	PadIdList_ = { DX_INPUT_PAD1 ,DX_INPUT_PAD2 };
 	_xInputTbl = { {InputID::Up,XINPUT_BUTTON_DPAD_UP},

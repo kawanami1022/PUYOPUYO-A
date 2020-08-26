@@ -21,11 +21,11 @@ void mouse::Update()
 			_data[id_][static_cast<int>(Trg::Now)] = GetMouseWheelFlag(id_);
 		}
 	}
-	frame++;
+	frame_++;
 }
 bool mouse::Setup(int no)
 {
-	frame = 0;
+	frame_ = 0;
 	_mouseInputTbl = { {InputID::Left,MOUSE_INPUT_LEFT},
 					{InputID::Right,MOUSE_INPUT_RIGHT},
 					{InputID::Down,MOUSE_INPUT_MIDDLE},

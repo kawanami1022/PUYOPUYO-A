@@ -118,13 +118,12 @@ void Stage::setNextPuyo()
 	std::uniform_int_distribution<int> dist(static_cast<int>(PUYO_TYPE::R), static_cast<int>(PUYO_TYPE::P));
 
 	PUYO_TYPE PuyoType= static_cast<PUYO_TYPE>(dist(random_));
-
 	nextPuyo_.clear();
 	nextPuyo_.emplace(nextPuyo_.begin(), 
 		std::make_unique<nextPuyo>(
 			Vector2(nextBoxPos.x +(screenSizeX / 8) * (3 + id_),
 				nextBoxPos.y+blockSize/2+ blockSize*0),
-				PuyoType,GrHandle_[STCI(PuyoType)]));
+			PuyoType,GrHandle_[STCI(PuyoType)]));
 	nextPuyo_[0]->setBlockSize(blockSize);
 
 	PuyoType= static_cast<PUYO_TYPE>(dist(random_));
@@ -132,7 +131,7 @@ void Stage::setNextPuyo()
 		std::make_unique<nextPuyo>(
 			Vector2(nextBoxPos.x + (screenSizeX / 8) * (3 + id_), 
 				nextBoxPos.y + blockSize / 2 + blockSize * 1),
-				PuyoType, GrHandle_[STCI(PuyoType)]));
+			PuyoType, GrHandle_[STCI(PuyoType)]));
 	nextPuyo_[1]->setBlockSize(blockSize);
 
 }
@@ -184,15 +183,15 @@ bool Stage::setPermition(Puyo& puyo)
 	Vector2 tmp = puyo.GetGridPos();
 	if (tmp <= Vector2(0, 0) || Vector2(gridCountX-1, gridCountY-1) <= tmp)return false;
 	//puyo_[ID]->dirPer_.perBit.u = stgData_[tmp.x][tmp.y - 1] == PUYO_TYPE::NON ? 0 : 1;
-	puyo.dirPer_.perBit.r = stgData_[tmp.x + 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
+	puyo.dirPer_.perBit.r = stgData_[STCI(tmp.x + 1)][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
 	puyo.dirPer_.perBit.d = stgData_[tmp.x][tmp.y + 1] == PUYO_TYPE::NON ? 0 : 1;
-	puyo.dirPer_.perBit.l = stgData_[tmp.x - 1][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
+	puyo.dirPer_.perBit.l = stgData_[STCI(tmp.x - 1)][tmp.y] == PUYO_TYPE::NON ? 0 : 1;
 	return true;
 }
 
 bool Stage::chErasePuyo(Vector2&& GridPos, Vector2&& chGridPos)
 {
-	if (ErPyDelPos_.size() < gridCountX * gridCountY)
+	if (ErPyDelPos_.size() < STCI(gridCountX * gridCountY))
 	{
 		if (stgData_[GridPos.x][GridPos.y] != PUYO_TYPE::OBS)
 		{

@@ -12,6 +12,9 @@ struct PUYON
 	void operator()(Stage* stage) {
 		frame++;
 		Vector2 offsetRadious(abs((frame/2) % 6 - 3), abs((frame) % 12 - 6));
+		if (stage->puyo_.size() == 0)	stage->stgMode = STG_MODE::GENERATES;
+
+
 
 		for (int id = 0; id < 2; id++)
 		{

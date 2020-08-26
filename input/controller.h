@@ -66,7 +66,7 @@ struct controller
 protected:
 	CntData _data;
 	static int joyPadNum_;
-	int frame;
+	int frame_;
 	int id_;
 	int gridCountX_;
 	int gridCountY_;

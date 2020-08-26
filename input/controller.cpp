@@ -48,3 +48,7 @@ void controller::SetStgData(std::vector<PUYO_TYPE> stgDataBase,
 		stgData_.emplace_back(&stgDataBase_[i * gridCountY_]);
 	}
 }
+
+void controller::SetStgType(STG_MODE stgMode)
+{
+}

@@ -25,7 +25,7 @@ struct EFFECT
 					stage->playEfkHandle_.emplace_back(
 						PlayEffekseer2DEffect(stage->EffectHandle_[STCI(ErPyDel->GetPuyoType())]->GetHandle()));
 						SetPosPlayingEffekseer2DEffect(stage->playEfkHandle_.back(),
-						static_cast<int>(ErPyDel->pos_.x), static_cast<int>(ErPyDel->pos_.y), 0);
+						static_cast<float>(ErPyDel->pos_.x), static_cast<float>(ErPyDel->pos_.y), 0);
 				}
 
 			}

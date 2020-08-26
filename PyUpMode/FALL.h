@@ -11,7 +11,7 @@ struct FALL
 		Vector2 tmp;
 
 		stage->stgMode = STG_MODE::PUYON;
-		int id=stage->puyo_.size() - 1;
+		int id=STCI(stage->puyo_.size() - 1);
 
 		std::for_each(stage->puyo_.crbegin(), stage->puyo_.crend(), 
 			[&](auto&& puyo){
