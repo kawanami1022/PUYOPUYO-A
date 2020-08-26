@@ -4,6 +4,7 @@
 
 void AI::Update()
 {
+
 }
 
 ContType AI::GetType(void)

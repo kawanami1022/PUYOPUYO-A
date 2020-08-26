@@ -7,6 +7,7 @@ bool ComInput::Setup()
     _ComInputTbl.try_emplace(ComInputID::PG_UP, KEY_INPUT_PGUP);
     _ComInputTbl.try_emplace(ComInputID::PG_DOWN, KEY_INPUT_PGDN);
     _ComInputTbl.try_emplace(ComInputID::SPACE, KEY_INPUT_SPACE);
+    _ComInputTbl.try_emplace(ComInputID::F1, KEY_INPUT_F1);
     frame_ = 0;
     return true;
 }

@@ -440,6 +440,16 @@ bool Stage::Init(Vector2& Pos)
 	GmOvHdl_ = { textureFactory.GetTexture("")->GetHandle(),
 			textureFactory.GetTexture("Image/yatta.png")->GetHandle(),
 			textureFactory.GetTexture("Image/batanque.png")->GetHandle() };
+
+	contNameList_ = {"Image/キーボードにゅうりょく.png","Image/マウスにゅうりょく.png" ,
+				"Image/ぱっどにゅうりょく.png" ,"Image/AIモード.png" };
+
+	int idx = 0;
+	for (auto&& CNTNmList : contNameList_)
+	{
+		contHdl_[idx] = textureFactory.GetTexture(CNTNmList)->GetHandle();
+		idx++;
+	}
 	setNextPuyo();
 	efkInit();
 	//changeInputType.try_emplace(ContType::Key, [](int x) { return x + 1; });
@@ -456,6 +466,10 @@ bool Stage::efkInit()
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow3.efk", 1.f));		// 黄色
 	EffectHandle_.emplace_back(efkFac_.GetEfkHandle("Effects/Blow7.efk", 2.f));		// 紫
  	return true;
+}
+
+void Stage::controllerTypeDraw()
+{
 }
 
 

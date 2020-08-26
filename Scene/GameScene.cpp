@@ -2,6 +2,7 @@
 #include <random>
 #include "GameScene.h"
 #include "TitleScene.h"
+#include "MenuScene.h"
 #include "../BLOCK/BLOCK.h"
 GameScene::GameScene()
 {
@@ -65,7 +66,10 @@ UniqueBase GameScene::input(UniqueBase nowScene)
 			nowScene = std::make_unique<TitleScene>();
 		}
 	}
-
+	if (comInput->push(ComInputID::F1))
+	{
+		nowScene = std::make_unique<MenuScene>(std::move(*this));
+	}
 
     return std::move(nowScene);
 }

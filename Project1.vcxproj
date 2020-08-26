@@ -26,6 +26,7 @@
     <ClCompile Include="input\ComInput.cpp" />
     <ClCompile Include="DxLibForHomeBrew\DxLib_Draw.cpp" />
     <ClCompile Include="input\controller.cpp" />
+    <ClCompile Include="Scene\MenuScene.cpp" />
     <ClCompile Include="Puyo\nextPuyo.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
@@ -53,6 +54,7 @@
     <ClInclude Include="input\ComInput.h" />
     <ClInclude Include="DxLibForHomeBrew\DxLib_Draw.h" />
     <ClInclude Include="input\CommonInputID.h" />
+    <ClInclude Include="Scene\MenuScene.h" />
     <ClInclude Include="Puyo\nextPuyo.h" />
     <ClInclude Include="PyDraw\DRAWLOSE.h" />
     <ClInclude Include="PyDraw\DRAWPLAYING.h" />

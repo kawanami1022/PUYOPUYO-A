@@ -80,10 +80,11 @@ private:
 	Vector2 size_;
 	Vector2 nextBoxPos;
 	std::array<Vector2,2> GuidePyPos_;	//ガイド用Puyo座標
-
 	// 初期化処理
 	bool Init(Vector2&);
 	bool efkInit();			// エフェクト
+
+	void controllerTypeDraw();
 
 	int _checkGridCount;
 	int SetChainCount_;
@@ -142,6 +143,9 @@ public:
 	TextureFactory textureFactory;
 	std::vector<int> GrHandle_;
 	std::vector<int> GmOvHdl_;
+
+	std::list<std::string> contNameList_;
+	std::array<int, STCI(ContType::Max)> contHdl_;
 
 	// エフェクト
 	std::vector<SharEfk> EffectHandle_;

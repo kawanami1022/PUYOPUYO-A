@@ -5,6 +5,7 @@ enum class ComInputID
 	PG_UP,
 	PG_DOWN,
 	SPACE,
+	F1,
 	Max
 };
 

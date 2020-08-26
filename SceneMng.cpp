@@ -2,6 +2,7 @@
 #include "SceneMng.h"
 #include "Scene/TitleScene.h"
 #include "Scene/GameScene.h"
+#include "Scene/MenuScene.h"
 #include "EfkMng/EfkMng.h"
 #include "input/controller.h"
 SceneMng* SceneMng::hInstance = nullptr;
