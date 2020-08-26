@@ -68,7 +68,7 @@ UniqueBase GameScene::input(UniqueBase nowScene)
 	}
 	if (comInput->push(ComInputID::F1))
 	{
-		nowScene = std::make_unique<MenuScene>(std::move(*this));
+		nowScene = std::make_unique<MenuScene>(nowScene);
 	}
 
     return std::move(nowScene);

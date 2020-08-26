@@ -5,9 +5,9 @@
 class MenuScene:public BaseScene
 {
 private:
-	std::unique_ptr<GameScene> gameScene_;
+	UniqueBase gameScene_;
 public:
-	MenuScene(std::unique_ptr<GameScene>);
+	MenuScene(UniqueBase & gameScene);
 	UniqueBase input(UniqueBase)override;
 	UniqueBase upDate(UniqueBase)override;
 	void Draw()override;

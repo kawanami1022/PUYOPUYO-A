@@ -23,7 +23,7 @@ public:
 	virtual void Draw() = 0;
 protected:
 	// “ü—ÍŒn
-	std::shared_ptr<ComInput> comInput;
+	static std::shared_ptr<ComInput> comInput;
 	static SharCntr controller;
 	// ‰æ‘œ
 	SharTexture textureFactory;

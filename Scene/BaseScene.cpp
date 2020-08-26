@@ -1,7 +1,7 @@
 #include <DxLib.h>
 #include "../input/keyInput.h"
 #include "BaseScene.h"
-
+std::shared_ptr<ComInput> BaseScene::comInput;
 SharCntr BaseScene::controller = nullptr;
 int BaseScene::IstcCnt_=0;
 BaseScene::BaseScene()
