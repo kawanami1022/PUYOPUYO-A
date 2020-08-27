@@ -41,6 +41,8 @@ GameScene::GameScene()
 			(i/width)*(size.y-size.y/4)-size.y/2 },
 				size, BlockHandle_[color]->GetHandle()));
 	}
+	if (controller->GetType() == ContType::Key)
+		controller->changeInputTbl(KEY_INPUT_SPACE, InputID::TURN_L);
 }
 
 GameScene::~GameScene()
@@ -51,6 +53,7 @@ GameScene::~GameScene()
 UniqueBase GameScene::input(UniqueBase nowScene)
 {
 	(*comInput)();
+	(*controller)();
 	for (auto id : ComInputID())
 	{
 		if (comInput->push(id))
@@ -61,7 +64,7 @@ UniqueBase GameScene::input(UniqueBase nowScene)
 
 	if (stage[1]->GetStgType() != STG_TYPE::PLAY)
 	{
-		if (comInput->push(ComInputID::SPACE))
+		if (controller->push(InputID::TURN_L))
 		{
 			nowScene = std::make_unique<TitleScene>();
 		}

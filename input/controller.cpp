@@ -27,12 +27,15 @@ void controller::AutoChangeInput(SharCntr& sharCnt, int stageID)
 			sharCnt->Setup(stageID);
 		}
 	}
-	if (joyPadNum_ ==0)
+	if (sharCnt->GetType() == ContType::Pad)
 	{
-		if (sharCnt->GetType() != ContType::Key)
+		if (joyPadNum_ ==0)
 		{
-			sharCnt = std::make_unique<KeyInput>();
-			sharCnt->Setup(stageID);
+			if (sharCnt->GetType() != ContType::Key)
+			{
+				sharCnt = std::make_unique<KeyInput>();
+				sharCnt->Setup(stageID);
+			}
 		}
 	}
 }
@@ -47,6 +50,7 @@ void controller::SetStgData(std::vector<PUYO_TYPE> stgDataBase,
 	{
 		stgData_.emplace_back(&stgDataBase_[STCI(i * gridCountY_)]);
 	}
+	SetStgDataFlag_ = true;
 }
 
 void controller::SetStgType(STG_MODE stgMode)

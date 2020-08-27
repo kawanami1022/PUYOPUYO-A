@@ -67,6 +67,8 @@ void Stage::input()
 // EyStgType: 敵側のステージタイプ
 int Stage::update(STG_TYPE EyStgType)	
 {
+	// AIを制御する
+	controllAI();
 	if (stgType_ == STG_TYPE::PLAY)
 	{
 		StgModeFunc[stgMode](&(*this));
@@ -148,7 +150,7 @@ void Stage::SetStageData()
 	}
 	for (size_t y = 0; y < gridCountY; y++)
 	{	stgData_[0][y] = PUYO_TYPE::WALL;
-		stgData_[gridCountX-1][y] = PUYO_TYPE::WALL;}
+		stgData_[static_cast<long>(gridCountX-1)][y] = PUYO_TYPE::WALL;}
 
 	for (size_t x = 0; x < gridCountX; x++)
 	{
@@ -317,7 +319,7 @@ void Stage::makeObsPuyoList()
 //AIで制御
 void Stage::controllAI()
 {
-	controller_->SetStgData(stgDataBase_, nextPuyo_);
+	
 }
 
 void Stage::ChangeInputMode(ComInputID comInput)
@@ -326,13 +328,22 @@ void Stage::ChangeInputMode(ComInputID comInput)
 		ContType contTypeTmp = controller_->GetType();
 
 		if (inputID == ComInputID::PG_DOWN)
-			contTypeTmp = static_cast<ContType>((STCI(contTypeTmp) - 1) % STCI(ContType::Max));
+		{
+			contTypeTmp = static_cast<ContType>(((STCI(contTypeTmp)+ STCI(ContType::Max)) - 1) % STCI(ContType::Max));
+			if(contTypeTmp== ContType::Pad) 
+				contTypeTmp = static_cast<ContType>(((STCI(contTypeTmp) + STCI(ContType::Max)) - 1) % STCI(ContType::Max));
+		}
 		if (inputID == ComInputID::PG_UP)
-			contTypeTmp = static_cast<ContType>((STCI(contTypeTmp) + 1) % STCI(ContType::Max));
+		{
+			contTypeTmp = static_cast<ContType>(((STCI(contTypeTmp) + STCI(ContType::Max)) + 1) % STCI(ContType::Max));
+			if (contTypeTmp == ContType::Pad)
+				contTypeTmp = static_cast<ContType>(((STCI(contTypeTmp) + STCI(ContType::Max)) + 1) % STCI(ContType::Max));
 
+		}
 		if (contTypeTmp == ContType::Key)			controller_ = std::make_unique<KeyInput>();
 		if (contTypeTmp == ContType::Mouse)		controller_ = std::make_unique<mouse>();
 		if (contTypeTmp == ContType::Pad)			controller_ = std::make_unique<Pad>();
+		if (contTypeTmp == ContType::AI)			controller_ = std::make_unique<AI>();
 		controller_->Setup(id_);
 	};
 	func(comInput);
@@ -385,14 +396,14 @@ bool Stage::Init(Vector2& Pos)
 
 	//puyo_[0]->setBlockSize(blockSizeX);
 
-	stgDataBase_.resize(STCI(gridCountX * gridCountY));
+	stgDataBase_.resize(static_cast<size_t>(gridCountX * gridCountY));
 	for(int no=0;no<gridCountX;no++)
-	{stgData_.emplace_back(&stgDataBase_[STCI(no * gridCountY)]);}
+	{stgData_.emplace_back(&stgDataBase_[static_cast<size_t>(no * gridCountY)]);}
 	SetStageData();
 
-	eraseDataBase_.resize(STCI(gridCountX * gridCountY));
+	eraseDataBase_.resize(static_cast<size_t>(gridCountX * gridCountY));
 	for (int no = 0; no < gridCountX; no++)
-	{eraseData_.emplace_back(&eraseDataBase_[STCI(no * gridCountY)]);}
+	{eraseData_.emplace_back(&eraseDataBase_[static_cast<size_t>(no * gridCountY)]);}
 	SetStageData();
 
 

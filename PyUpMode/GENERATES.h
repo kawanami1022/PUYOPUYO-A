@@ -6,6 +6,13 @@ struct GENERATES
 {
 	void operator()(Stage* stage) {
 		Vector2 tmp;
+
+		if(stage->controller_->GetType()==ContType::AI)
+		{
+			stage->controller_->SetStgData(stage->stgDataBase_, stage->nextPuyo_);
+		}
+
+
 		stage->stgMode = STG_MODE::DROP;
 
 		// お邪魔ぷよカウンターが3つ以上
@@ -14,7 +21,7 @@ struct GENERATES
 		{
 			ObsPuyoList_.DropCount--;
 			tmp = ObsPuyoList_.GetGridPos();
-			//stage->puyo_.emplace_back(std::make_unique<Puyo>(stage->offset_, (tmp,tmp), PUYO_TYPE::OBS, stage->GrHandle_[STCI(PUYO_TYPE::OBS)]));
+			//stage->puyo_.emplace_back(std::make_unique<Puyo>(stage->offset_, (tmp,tmp), PUYO_TYPE::OBS, stage->GrHandle_[S(PUYO_TYPE::OBS)]));
 			stage->obsPuyo_.emplace_back(std::make_unique<ObsPuyo>(stage->offset_, (tmp,tmp), stage->GrHandle_[STCI(PUYO_TYPE::OBS)]));
 		}
 		stage->obsPuyoList_.clear();

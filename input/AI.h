@@ -1,4 +1,5 @@
 #pragma once
+#include <list>
 #include <memory>
 #include <map>
 #include <vector>
@@ -18,9 +19,11 @@ struct AI :public controller
 	void DebugDrow(int id)override;
 	void changeInputTbl(int, InputID)override;
 	void PadForceFeedback(int, int)override;
-
+	void IdntSmColor();			// 同色のpuyoを識別する
+	void SetInputPattern();		// 入力パターンを作成
+	void ResetFrame();			// フレームをリセットする
 private:
 
-
+	std::list<InputID> InputPatten_;
 };
 

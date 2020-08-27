@@ -10,11 +10,11 @@
 class BaseScene;
 
 using UniqueBase = std::unique_ptr<BaseScene>;
-
 class BaseScene
 {
 public:
 	BaseScene();
+
 	virtual ~BaseScene();
 
 	virtual UniqueBase input(UniqueBase) = 0;
@@ -29,6 +29,7 @@ protected:
 	SharTexture textureFactory;
 	std::map<std::string, SharTexture> textureContainer;
 private:
+	void SceneInit();
 	static int IstcCnt_;	// インスタンス回数
 };
 

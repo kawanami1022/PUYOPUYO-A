@@ -19,10 +19,10 @@ enum class Trg
 //入力装置の種類
 enum class ContType
 {
+	AI,
 	Key,
 	Mouse,
 	Pad,
-	AI,
 	Max
 };
 
@@ -66,14 +66,18 @@ struct controller
 protected:
 	CntData _data;
 	static int joyPadNum_;
+
 	int frame_;
 	int id_;
 	int gridCountX_;
 	int gridCountY_;
-	std::map<InputID, std::pair<int, int>> InputStateContainer_;
+
+	std::pair<PUYO_TYPE, PUYO_TYPE> CntlPuyoType_;		// 操作中のぷよ
 	std::vector<PUYO_TYPE> stgDataBase_;	// 
 	std::vector<PUYO_TYPE*> stgData_;		// _dataBaseの一次元配列の先頭アドレスを確保
+	bool SetStgDataFlag_;					// ステージデータをset確認用変数
 	std::vector < std::shared_ptr<Puyo>> nextPuyo_;
+	std::map<InputID, std::pair<int, int>> InputStateContainer_;
 private:
 	virtual void Update(void) = 0;
 

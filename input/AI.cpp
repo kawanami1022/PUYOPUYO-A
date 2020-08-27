@@ -4,7 +4,12 @@
 
 void AI::Update()
 {
-
+	if (SetStgDataFlag_)
+	{
+		IdntSmColor();
+		SetInputPattern();
+	}
+	frame_++;
 }
 
 ContType AI::GetType(void)
@@ -21,8 +26,10 @@ bool AI::Setup(int no)
 	{InputID::Right,std::make_pair(1,0)},
 	{InputID::TURN_L,std::make_pair(1,0)},
 	{InputID::TURN_R,std::make_pair(1,0)} };
+
 	gridCountX_ = 8;
 	gridCountY_ = 15;
+	frame_ = 0;
 	return false;
 }
 
@@ -59,6 +66,20 @@ void AI::changeInputTbl(int, InputID)
 }
 
 void AI::PadForceFeedback(int, int)
+{
+
+}
+
+void AI::IdntSmColor()
+{
+
+}
+
+void AI::SetInputPattern()
+{
+}
+
+void AI::ResetFrame()
 {
 }
 
