@@ -9,7 +9,9 @@ struct GENERATES
 
 		if(stage->controller_->GetType()==ContType::AI)
 		{
-			stage->controller_->SetStgData(stage->stgDataBase_, stage->nextPuyo_);
+			stage->controller_->SetStgData(
+				stage->stgDataBase_, stage->nextPuyo_,
+				std::make_pair(stage->puyo_[0]->puyoType_, stage->puyo_[1]->puyoType_));
 		}
 
 

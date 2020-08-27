@@ -42,8 +42,10 @@ void controller::AutoChangeInput(SharCntr& sharCnt, int stageID)
 
 
 void controller::SetStgData(std::vector<PUYO_TYPE> stgDataBase, 
-						std::vector<std::shared_ptr<Puyo>> nextPuyo)
+						std::vector<std::shared_ptr<Puyo>> nextPuyo,
+						std::pair<PUYO_TYPE, PUYO_TYPE> CntlPuyoType)
 {
+	CntlPuyoType_ = CntlPuyoType;
 	stgDataBase_ = stgDataBase;
 	nextPuyo_ = nextPuyo;
 	for (int i = 0; i < gridCountX_; i++)

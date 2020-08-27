@@ -6,7 +6,6 @@
 #include <utility>
 #include "controller.h"
 
-
 struct AI :public controller
 {
 	void Update() override;
@@ -25,5 +24,6 @@ struct AI :public controller
 private:
 
 	std::list<InputID> InputPatten_;
+	
 };
 

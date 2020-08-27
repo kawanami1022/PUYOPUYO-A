@@ -67,8 +67,6 @@ void Stage::input()
 // EyStgType: 敵側のステージタイプ
 int Stage::update(STG_TYPE EyStgType)	
 {
-	// AIを制御する
-	controllAI();
 	if (stgType_ == STG_TYPE::PLAY)
 	{
 		StgModeFunc[stgMode](&(*this));
@@ -314,12 +312,6 @@ void Stage::makeObsPuyoList()
 			obsPuyoList_.push_front(ObsPuyo(offset_, Vector2(i + 1, i/(gridCountX-2)), GrHandle_[STCI(PUYO_TYPE::OBS)]));
 		}
 	}
-}
-
-//AIで制御
-void Stage::controllAI()
-{
-	
 }
 
 void Stage::ChangeInputMode(ComInputID comInput)

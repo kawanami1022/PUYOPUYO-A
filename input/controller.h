@@ -61,7 +61,7 @@ struct controller
 	virtual void PadForceFeedback(int, int)=0;
 	void ResetJoyPadNum();
 	void AutoChangeInput(SharCntr&,int);
-	void SetStgData(std::vector<PUYO_TYPE>, std::vector<std::shared_ptr<Puyo>>);
+	void SetStgData(std::vector<PUYO_TYPE>, std::vector<std::shared_ptr<Puyo>>, std::pair<PUYO_TYPE, PUYO_TYPE>);
 	void SetStgType(STG_MODE);
 protected:
 	CntData _data;

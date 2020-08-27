@@ -8,6 +8,7 @@ void AI::Update()
 	{
 		IdntSmColor();
 		SetInputPattern();
+		SetStgDataFlag_ = false;
 	}
 	frame_++;
 }
@@ -70,9 +71,20 @@ void AI::PadForceFeedback(int, int)
 
 }
 
+// “¯F‚Ìpuyo‚ğ¯•Ê
 void AI::IdntSmColor()
 {
+	for (int x = 1; x < gridCountX_ - 1; x++)
+	{
+		// ‚»‚ê‚¼‚ê‚Ìy²‚²‚Æ‚Ìˆê”Ô‰º‚É‚ ‚éPUYO_TYPE::NON‚ÌêŠ‚ğ’²‚×‚é
+		for (int y = 1; y < gridCountY_; y++)
+		{
+			//if (stgData_[x][y] == PUYO_TYPE::NON)
+			//{
 
+			//}
+		}
+	}
 }
 
 void AI::SetInputPattern()

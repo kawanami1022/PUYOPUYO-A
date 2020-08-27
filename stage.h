@@ -129,7 +129,6 @@ public:
 	void SetPuyoGuide();
 
 	void makeObsPuyoList();
-	void controllAI();		//AI‚Å§Œä
 	// “ü—Íˆ—Œn‚ÌŠÖ”
 	void ChangeInputMode(ComInputID);
 	Vector2 getChipPos();
