@@ -1,4 +1,5 @@
 #pragma once
+#include <mutex>
 #include <list>
 #include <memory>
 #include <map>
@@ -26,6 +27,6 @@ struct AI :public controller
 private:
 
 	std::list<InputID> InputPatten_;
-	Positoin2 PyLdPoint_;		// ぷよの着地点
+	std::pair<Positoin2, Positoin2> PyLdPoint_;		// ぷよの着地点
 };
 

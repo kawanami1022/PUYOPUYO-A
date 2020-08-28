@@ -96,6 +96,7 @@
     <ClInclude Include="_debug\_DebugDispOut.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Image\AIモード.png" />
     <Image Include="Image\A_BUTTON.png" />
     <Image Include="Image\batanque.png" />
     <Image Include="Image\BLOCK\BLOWNBLOCK.png" />
@@ -112,6 +113,7 @@
     <Image Include="Image\PURPLE_Puyo.png" />
     <Image Include="Image\PuyoGuide.png" />
     <Image Include="Image\PuyoWall.png" />
+    <Image Include="Image\PuyoWall_BLUE.png" />
     <Image Include="Image\RED_Puyo.png" />
     <Image Include="Image\X_BUTTON.png" />
     <Image Include="Image\yatta.png" />

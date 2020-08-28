@@ -313,5 +313,11 @@
     <Image Include="Image\ぱっどにゅうりょく.png">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="Image\PuyoWall_BLUE.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\AIモード.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>
