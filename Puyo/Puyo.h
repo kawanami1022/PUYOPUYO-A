@@ -2,6 +2,7 @@
 #include <memory>
 #include <functional>
 #include <map>
+#include "PUYO_ID.h"
 #include "../input/InputID.h"
 #include "../Vector2.h"
 #include "../Stage.h"
@@ -20,27 +21,6 @@ union DirPermit
 	unsigned int flag;
 };
 
-enum class PUYO_TYPE
-{
-	NON,			// 
-	R,			// ê‘
-	G,			// óŒ
-	B,			// ê¬
-	Y,			// â©êF
-	P,			// éá
-	OBS,			// Ç®é◊ñÇ
-	WALL,
-	MAX,
-};
-
-
-enum class PUYO_STATE
-{
-	MOVE,
-	STOP,
-	DEAD,
-	MAX,
-};
 
 
 

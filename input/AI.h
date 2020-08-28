@@ -5,6 +5,8 @@
 #include <vector>
 #include <utility>
 #include "controller.h"
+#include "../Vector2.h"
+#include "../Puyo/PUYO_ID.h"
 
 struct AI :public controller
 {
@@ -24,6 +26,6 @@ struct AI :public controller
 private:
 
 	std::list<InputID> InputPatten_;
-	
+	Positoin2 PyLdPoint_;		// ‚Õ‚æ‚Ì’…’n“_
 };
 

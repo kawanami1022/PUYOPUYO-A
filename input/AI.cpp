@@ -1,3 +1,4 @@
+#include <functional>
 #include <DxLib.h>
 #include "AI.h"
 
@@ -31,6 +32,7 @@ bool AI::Setup(int no)
 	gridCountX_ = 8;
 	gridCountY_ = 15;
 	frame_ = 0;
+	PyLdPoint_ = { 0,0 };
 	return false;
 }
 
@@ -74,15 +76,46 @@ void AI::PadForceFeedback(int, int)
 // 同色のpuyoを識別
 void AI::IdntSmColor()
 {
+	int samePuyoColor_=0;		// 同色puyo
+	Vector2 SetPos = { 0,0 };
+
+	auto func = [&]() {
+		//上
+		if (stgData_[SetPos.x][SetPos.y - 1] == PUYO_TYPE::NON)
+		{
+
+		}
+		//右
+		if (stgData_[SetPos.x + 1][SetPos.y] == PUYO_TYPE::NON)
+		{
+
+		}
+		//下
+		if (stgData_[SetPos.x][SetPos.y - 1] == PUYO_TYPE::NON)
+		{
+
+		}
+		//左
+		if (stgData_[SetPos.x - 1][SetPos.y] == PUYO_TYPE::NON)
+		{
+
+		}
+	};
+
 	for (int x = 1; x < gridCountX_ - 1; x++)
 	{
 		// それぞれのy軸ごとの一番下にあるPUYO_TYPE::NONの場所を調べる
 		for (int y = 1; y < gridCountY_; y++)
 		{
-			//if (stgData_[x][y] == PUYO_TYPE::NON)
-			//{
+			if (stgData_[x][y] != PUYO_TYPE::NON)
+			{
+				SetPos = { x,y - 1 };
+				stgData_[SetPos.x][SetPos.y] = CntlPuyoType_.first;
+				// PUYO_TYPE::NON以外が入っていないか確認
 
-			//}
+				func();
+				break;
+			}
 		}
 	}
 }

@@ -233,6 +233,9 @@
     <ClInclude Include="Scene\MenuScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Puyo\PUYO_ID.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\BLOCK\BLOWNBLOCK.png">
