@@ -24,6 +24,9 @@ struct AI :public controller
 	void IdntSmColor();			// 同色のpuyoを識別する
 	void SetInputPattern();		// 入力パターンを作成
 	void ResetFrame();			// フレームをリセットする
+	void MoveWidth(InputID,bool, Positoin2 GenPos, Positoin2 LdPoint);
+	void TurnVrtcl(InputID inputID, Vector2 LdPoint);
+	void TurnR();
 private:
 
 	std::list<InputID> InputPatten_;

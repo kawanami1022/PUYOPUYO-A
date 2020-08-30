@@ -7,11 +7,11 @@ struct GENERATES
 	void operator()(Stage* stage) {
 		Vector2 tmp;
 
-		if(stage->controller_->GetType()==ContType::AI)
+		if (stage->controller_->GetType() == ContType::AI)
 		{
 			stage->controller_->SetStgData(
 				stage->stgDataBase_, stage->nextPuyo_,
-				std::make_pair(stage->puyo_[0]->puyoType_, stage->puyo_[1]->puyoType_));
+				std::make_pair(stage->nextPuyo_[0]->puyoType_, stage->nextPuyo_[1]->puyoType_));
 		}
 
 

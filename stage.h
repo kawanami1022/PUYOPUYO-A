@@ -133,6 +133,8 @@ public:
 	void ChangeInputMode(ComInputID);
 	Vector2 getChipPos();
 	STG_TYPE GetStgType();
+	Positoin2 GetGridPos(Positoin2);
+	PUYO_TYPE GetStageData(Positoin2);
 
 	bool DeletePuyo();
 	std::vector<PUYO_TYPE*> GetErasePos();

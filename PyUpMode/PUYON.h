@@ -21,7 +21,7 @@ struct PUYON
 
 			for (auto&& Puyo : stage->puyo_)
 			{
-
+				if (stage->puyo_[id] == nullptr)break;
 				if (stage->puyo_[id]->GetGridPos().x == Puyo->GetGridPos().x)
 				{
 					int MatchGridPosY = Puyo->GetGridPos().y * Puyo->blockSize + Puyo->offsetPos_.y + Puyo->blockSize / 2;

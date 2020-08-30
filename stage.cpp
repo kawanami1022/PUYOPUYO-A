@@ -264,9 +264,11 @@ bool Stage::EraseObsPuyo()
 	Vector2 tmp;
 	for (auto&& ErPyDelPos : ErPyDelPos_)
 	{
+		if (obsPuyo_.empty())return true;
 		int idx = 0;
 		for (auto&& ObsPuyo : obsPuyo_)
 		{
+			if (ObsPuyo == NULL)return true;
 			tmp = ObsPuyo->GetGridPos();
 			if (tmp.x == ErPyDelPos.x)
 			{
@@ -349,6 +351,16 @@ Vector2 Stage::getChipPos()
 STG_TYPE Stage::GetStgType()
 {
 	return stgType_;
+}
+
+Positoin2 Stage::GetGridPos(Positoin2 GridPos)
+{
+	return (GridPos- _pos)/blockSize;
+}
+
+PUYO_TYPE Stage::GetStageData(Positoin2 pos)
+{
+	return stgData_[pos.x][pos.y];
 }
 
 bool Stage::DeletePuyo()

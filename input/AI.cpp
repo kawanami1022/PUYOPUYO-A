@@ -6,6 +6,7 @@
 
 void AI::Update()
 {
+
 	if (SetStgDataFlag_)
 	{
 		InputPatten_.clear();
@@ -14,14 +15,25 @@ void AI::Update()
 		SetStgDataFlag_ = false;
 	}
 
+	for (auto id : InputID())
+	{
+		_data[id][static_cast<int>(Trg::Old)] = 0;
+		_data[id][static_cast<int>(Trg::Now)] = 0;
+	}
+
 	if (!InputPatten_.empty())
 	{
-		if (frame_ % 30 == 0)
+		if (frame_ % 20 == 0)
 		{
 			_data[InputPatten_.front()][static_cast<int>(Trg::Now)] = InputStateContainer_[InputPatten_.front()].first;
 			_data[InputPatten_.front()][static_cast<int>(Trg::Old)] = InputStateContainer_[InputPatten_.front()].second;
 			InputPatten_.pop_front();
 		}
+	}
+	else
+	{
+		_data[InputID::Down][static_cast<int>(Trg::Now)] = InputStateContainer_[InputID::Down].first;
+		_data[InputID::Down][static_cast<int>(Trg::Old)] = InputStateContainer_[InputID::Down].second;
 	}
 	frame_++;
 }
@@ -33,6 +45,7 @@ ContType AI::GetType(void)
 
 bool AI::Setup(int no)
 {
+	ZeroMemory(&_data, sizeof(_data) / sizeof(int));
 	InputStateContainer_ =
 	{ {InputID::Up,std::make_pair(0,0)},
 	{InputID::Down,std::make_pair(1,1)},
@@ -73,8 +86,10 @@ void AI::DebugDrow(int id)
 	if (id == 0)
 		DrawFormatString(0, 0, 0xffffff, "inputMode: AI");
 	if (id == 1)
+	{
 		DrawFormatString(400, 0, 0xffffff, "inputMode: AI");
-
+		DrawFormatString(400, 16, 0xffffff, "LDpos(%d,%d)", PyLdPoint_.first.x, PyLdPoint_.first.y);
+	}
 
 }
 
@@ -176,31 +191,49 @@ void AI::SetInputPattern()
 	
 	std::pair<Positoin2, Positoin2> GenPyPos = { { 3,1 },{ 4,1 } };// PuyoÇÃê∂ê¨èÍèä
 	std::pair< Positoin2, Positoin2>GenAndLdPosDis =
-	{ {GenPyPos.first - PyLdPoint_.first},{GenPyPos.second - PyLdPoint_.second} };
+	{ {PyLdPoint_.first - GenPyPos.first},{PyLdPoint_.second - GenPyPos.second} };
 
-	int InputCounter = abs(GenAndLdPosDis.first.x);
+	MoveWidth(InputID::Left, GenAndLdPosDis.first.x < 0, GenPyPos.first, PyLdPoint_.first);
+	MoveWidth(InputID::Right, GenAndLdPosDis.first.x > 0, GenPyPos.second, PyLdPoint_.second);
 
-	// ç∂à⁄ìÆ
-	if (GenAndLdPosDis.first.x < 0)
-	{
-		for (int i = 0; i < InputCounter; i++)
-		{
-			InputPatten_.push_back(InputID::Left);
-		}
-	}
-
-	// âEà⁄ìÆ
-	if (GenAndLdPosDis.first.x > 0)
-	{
-		for (int i = 0; i < InputCounter; i++)
-		{
-			InputPatten_.push_back(InputID::Right);
-		}
-	}
+	TurnVrtcl(InputID::TURN_L, { PyLdPoint_.first.x,PyLdPoint_.first.y - 1 });
+	TurnVrtcl(InputID::TURN_R, { PyLdPoint_.first.x,PyLdPoint_.first.y + 1 });
 }
 
 void AI::ResetFrame()
 {
 }
+
+
+//InputID :ì¸óÕ
+//inputCnd:ì¸óÕèåè	
+//GenPos  :èÍèä
+//LdPoint :íÖínì_
+void AI::MoveWidth(InputID inputID, bool inputCnd, Positoin2 GenPos, Positoin2 LdPoint)
+{
+	Positoin2 GenAndLdPosDis = { LdPoint - GenPos };
+
+	int InputCounter = abs(GenAndLdPosDis.x);
+
+	if (inputCnd)
+	{
+		for (int i = 0; i < InputCounter; i++)
+		{
+			InputPatten_.push_back(inputID);
+		}
+	}
+
+}
+
+void AI::TurnVrtcl(InputID inputID, Vector2 LdPoint)
+{
+	if (LdPoint.y == PyLdPoint_.second.y)
+	{
+		InputPatten_.push_back(inputID);
+	}
+
+}
+
+
 
 
