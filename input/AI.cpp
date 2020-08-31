@@ -53,7 +53,6 @@ bool AI::Setup(int no)
 	{InputID::Right,std::make_pair(1,0)},
 	{InputID::TURN_L,std::make_pair(1,0)},
 	{InputID::TURN_R,std::make_pair(1,0)} };
-
 	gridCountX_ = 8;
 	gridCountY_ = 15;
 	frame_ = 0;
@@ -81,14 +80,13 @@ bool AI::separate(InputID inputID)
 	return false;
 }
 
-void AI::DebugDrow(int id)
+void AI::DebugDrow(int id, Texture& texture)
 {
 	if (id == 0)
-		DrawFormatString(0, 0, 0xffffff, "inputMode: AI");
+		DrawGraph(0, 0, texture.GetHandle(), true);
 	if (id == 1)
 	{
-		DrawFormatString(400, 0, 0xffffff, "inputMode: AI");
-		DrawFormatString(400, 16, 0xffffff, "LDpos(%d,%d)", PyLdPoint_.first.x, PyLdPoint_.first.y);
+		DrawGraph(400, 0, texture.GetHandle(), true);
 	}
 
 }

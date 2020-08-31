@@ -16,6 +16,13 @@ struct DROP_OBS
 			}
 		}
 		if (stg->stgMode == STG_MODE::GENERATES)
+		{
+			for (auto&& ObsPuyo : stg->obsPuyo_)
+			{
+				// ぷよの位置をグリッドに合わせる
+				ObsPuyo->SetMatchGrid();
+			}
 			stg->SetStageData();
+		}
 	}
 };

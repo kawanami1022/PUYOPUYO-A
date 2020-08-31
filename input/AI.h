@@ -18,7 +18,7 @@ struct AI :public controller
 	bool release(InputID)override;
 	bool Hold(InputID)override;
 	bool separate(InputID)override;
-	void DebugDrow(int id)override;
+	void DebugDrow(int id, Texture& texture)override;
 	void changeInputTbl(int, InputID)override;
 	void PadForceFeedback(int, int)override;
 	void IdntSmColor();			// 同色のpuyoを識別する
@@ -26,7 +26,6 @@ struct AI :public controller
 	void ResetFrame();			// フレームをリセットする
 	void MoveWidth(InputID,bool, Positoin2 GenPos, Positoin2 LdPoint);
 	void TurnVrtcl(InputID inputID, Vector2 LdPoint);
-	void TurnR();
 private:
 
 	std::list<InputID> InputPatten_;

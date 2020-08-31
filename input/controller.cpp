@@ -7,6 +7,7 @@
 #include "../Puyo/Puyo.h"
 #include "../Puyo/nextPuyo.h"
 #include "../Puyo/ObsPuyo.h"
+
 int controller::joyPadNum_ = 0;
 
 
@@ -48,6 +49,7 @@ void controller::SetStgData(std::vector<PUYO_TYPE> stgDataBase,
 	CntlPuyoType_ = CntlPuyoType;
 	stgDataBase_ = stgDataBase;
 	nextPuyo_ = nextPuyo;
+	
 	for (int i = 0; i < gridCountX_; i++)
 	{
 		stgData_.emplace_back(&stgDataBase_[STCI(i * gridCountY_)]);
@@ -57,4 +59,12 @@ void controller::SetStgData(std::vector<PUYO_TYPE> stgDataBase,
 
 void controller::SetStgType(STG_MODE stgMode)
 {
+}
+
+void controller::InitTexture()
+{
+	TxHdl_ = { inputTextuerName_.GetTexture("Image/AIモード.png"),
+			inputTextuerName_.GetTexture("Image/キーボードにゅうりょく.png"),
+			inputTextuerName_.GetTexture("Image/マウスにゅうりょく.png"),
+			inputTextuerName_.GetTexture("Image/ぱっどにゅうりょく.png") };
 }

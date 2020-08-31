@@ -16,7 +16,7 @@ struct Pad :public controller
 	bool Setup(int)override;
 	void changeInputTbl(int inputButton, InputID inputID)override;
 	void PadForceFeedback(int, int)override;
-	void DebugDrow(int id)override;
+	void DebugDrow(int id, Texture& texture)override;
 protected:
 	std::array<XINPUT_STATE, 1> _xInputData;
 	std::map<InputID, int> _xInputTbl;

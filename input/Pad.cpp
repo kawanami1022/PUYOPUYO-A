@@ -63,11 +63,11 @@ void Pad::PadForceFeedback(int Power, int Time)
 }
 
 
-void Pad::DebugDrow(int id)
+void Pad::DebugDrow(int id, Texture& texture)
 {
 	if(id==0)
-	DrawFormatString(0, 0, 0xffffff, "inputMode: Pad");
+		DrawGraph(0, 0, texture.GetHandle(), true);
 	if (id == 1)
-		DrawFormatString(400, 0, 0xffffff, "inputMode: Pad");
+		DrawGraph(400, 0, texture.GetHandle(), true);
 }
 

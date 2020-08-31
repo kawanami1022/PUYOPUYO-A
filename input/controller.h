@@ -5,6 +5,8 @@
 #include <vector>
 #include "InputID.h"
 #include "CommonInputID.h"
+#include "../Texture/TextureFactory.h"
+#include "../Texture/Texture.h"
 #define STCI static_cast<int>
 
 enum class Trg
@@ -13,8 +15,6 @@ enum class Trg
 	Old,
 	Max
 };
-
-
 
 //入力装置の種類
 enum class ContType
@@ -56,7 +56,7 @@ struct controller
 	virtual bool release(InputID) = 0;
 	virtual bool Hold(InputID) = 0;
 	virtual bool separate(InputID)=0;
-	virtual void DebugDrow(int id) = 0;
+	virtual void DebugDrow(int id, Texture& texture) = 0;
 	virtual void changeInputTbl(int, InputID)=0;
 	virtual void PadForceFeedback(int, int)=0;
 	void ResetJoyPadNum();
@@ -64,6 +64,9 @@ struct controller
 	void SetStgData(std::vector<PUYO_TYPE>, std::vector<std::shared_ptr<Puyo>>, std::pair<PUYO_TYPE, PUYO_TYPE>);
 	void SetStgType(STG_MODE);
 protected:
+	
+	void InitTexture();
+
 	CntData _data;
 	static int joyPadNum_;
 
@@ -78,9 +81,12 @@ protected:
 	bool SetStgDataFlag_;					// ステージデータをset確認用変数
 	std::vector < std::shared_ptr<Puyo>> nextPuyo_;
 	std::map<InputID, std::pair<int, int>> InputStateContainer_;
+
+	std::vector<SharTexture> TxHdl_;
+	TextureFactory inputTextuerName_;
 private:
 	virtual void Update(void) = 0;
-
+	
 };
 
 

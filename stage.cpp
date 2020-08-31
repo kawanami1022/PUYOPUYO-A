@@ -496,7 +496,10 @@ Stage::Stage(Vector2 && offset, Vector2&& size) :
 	size_ = size;
 	nextBoxPos = Vector2(50, 100);
 
-
+	InputTxHdl_.try_emplace(ContType::AI, textureFactory.GetTexture("Image/AIモード.png"));
+	InputTxHdl_.try_emplace(ContType::Key, textureFactory.GetTexture("Image/キーボードにゅうりょく.png"));
+	InputTxHdl_.try_emplace(ContType::Mouse, textureFactory.GetTexture("Image/マウスにゅうりょく.png"));
+	InputTxHdl_.try_emplace(ContType::Pad, textureFactory.GetTexture("Image/ぱっどにゅうりょく.png"));
 	Init(offset_ );
 }
 

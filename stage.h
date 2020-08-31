@@ -148,6 +148,7 @@ public:
 	TextureFactory textureFactory;
 	std::vector<int> GrHandle_;
 	std::vector<int> GmOvHdl_;
+	std::map<ContType, SharTexture> InputTxHdl_;		// 入力用グラフィックハンドル
 
 	std::list<std::string> contNameList_;
 	std::array<int, STCI(ContType::Max)> contHdl_;

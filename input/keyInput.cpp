@@ -30,6 +30,8 @@ bool KeyInput::Setup(int no)
 			{InputID::TURN_R,KEY_INPUT_E},
 		};
 	}
+
+
 	id_ = no;
 	frame_ = 0;
 	joyPadNum_ = GetJoypadNum();
@@ -76,12 +78,12 @@ void KeyInput::PadForceFeedback(int Power, int Time)
 {
 }
 
-void KeyInput::DebugDrow(int id)
+void KeyInput::DebugDrow(int id, Texture& texture)
 {
 	
 	if(id==0)
-	DrawFormatString(0, 0, 0xffffff, "inputMode: KeyInput");
+		DrawGraph(0, 0, texture.GetHandle(), true);
 	if(id==1)
-	DrawFormatString(400, 0, 0xffffff, "inputMode: KeyInput");
+		DrawGraph(400, 0, texture.GetHandle(), true);
 }
 

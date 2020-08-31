@@ -62,7 +62,7 @@ void Puyo::draw()
     DrawExtendGraph(pos_.x - radious.x - munyonBox_.perBit.l * 2,
         pos_.y - radious.y + ROffPos_.y - munyonBox_.perBit.u * 2,
         pos_.x + radious.x + munyonBox_.perBit.r * 2,
-        pos_.y + radious.y + ROffPos_.y+munyonBox_.perBit.d* 2,
+        pos_.y + radious.y + ROffPos_.y + munyonBox_.perBit.d * 2,
         GrHandle_, true);
 
 }

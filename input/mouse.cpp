@@ -89,12 +89,12 @@ int mouse::GetMouseWheelFlag(InputID inputID)
 	return 0;
 }
 
-void mouse::DebugDrow(int id)
+void mouse::DebugDrow(int id, Texture& texture)
 {
 	if(id==0)
-	DrawFormatString(0, 0, 0xffffff, "inputMode: mouse");
+		DrawGraph(0, 0, texture.GetHandle(), true);
 	if(id==1)
-	DrawFormatString(400,0, 0xffffff, "inputMode: mouse");
+		DrawGraph(400, 0, texture.GetHandle(), true);
 
 }
  

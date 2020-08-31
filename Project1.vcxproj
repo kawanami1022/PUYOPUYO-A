@@ -57,6 +57,7 @@
     <ClInclude Include="Puyo\PUYO_ID.h" />
     <ClInclude Include="PyUpMode\DROP_OBS.h" />
     <ClInclude Include="PyUpMode\GENERATES_OBS.h" />
+    <ClInclude Include="PyUpMode\SHACK.h" />
     <ClInclude Include="Scene\MenuScene.h" />
     <ClInclude Include="Puyo\nextPuyo.h" />
     <ClInclude Include="PyDraw\DRAWLOSE.h" />
