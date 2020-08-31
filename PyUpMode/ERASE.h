@@ -11,7 +11,7 @@ struct ERASE
 		Vector2 tmp;
 
 
-		stage->stgMode = STG_MODE::GENERATES;
+		stage->stgMode = STG_MODE::GENERATE_OBS;
 		stage->SetStageData();
 		for (int i = stage->gridCountX * stage->gridCountY; 0 < i; i--)
 		{

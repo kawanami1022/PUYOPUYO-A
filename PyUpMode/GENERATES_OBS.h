@@ -16,7 +16,6 @@ struct GENERATES_OBS
 		{
 			ObsPuyoList_.DropCount--;
 			tmp = ObsPuyoList_.GetGridPos();
-			//stage->puyo_.emplace_back(std::make_unique<Puyo>(stage->offset_, (tmp,tmp), PUYO_TYPE::OBS, stage->GrHandle_[S(PUYO_TYPE::OBS)]));
 			stage->obsPuyo_.emplace_back(std::make_unique<ObsPuyo>(stage->offset_, (tmp, tmp), stage->GrHandle_[STCI(PUYO_TYPE::OBS)]));
 		}
 		stage->obsPuyoList_.clear();
@@ -26,5 +25,6 @@ struct GENERATES_OBS
 			});
 
 		stage->obsPuyoList_.erase(rmObs, stage->obsPuyoList_.end());
+		stage->stgMode = STG_MODE::DROP_OBS;
 	}
 };

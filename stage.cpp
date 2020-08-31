@@ -82,12 +82,7 @@ int Stage::update(STG_TYPE EyStgType)
 		stgType_ = STG_TYPE::LOSE;
 	}
 
-	makeObsPuyoList();
-	for (auto&& ObsPuyo : obsPuyo_)
-	{
-		setPermition((*ObsPuyo));
-		ObsPuyo->drop();
-	}
+
 
 	if (stgMode == STG_MODE::GENERATES)
 	{return GetChainCount_;}
