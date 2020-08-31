@@ -55,6 +55,8 @@
     <ClInclude Include="DxLibForHomeBrew\DxLib_Draw.h" />
     <ClInclude Include="input\CommonInputID.h" />
     <ClInclude Include="Puyo\PUYO_ID.h" />
+    <ClInclude Include="PyUpMode\DROP_OBS.h" />
+    <ClInclude Include="PyUpMode\GENERATES_OBS.h" />
     <ClInclude Include="Scene\MenuScene.h" />
     <ClInclude Include="Puyo\nextPuyo.h" />
     <ClInclude Include="PyDraw\DRAWLOSE.h" />

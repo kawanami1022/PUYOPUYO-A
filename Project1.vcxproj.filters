@@ -236,6 +236,12 @@
     <ClInclude Include="Puyo\PUYO_ID.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="PyUpMode\GENERATES_OBS.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="PyUpMode\DROP_OBS.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\BLOCK\BLOWNBLOCK.png">

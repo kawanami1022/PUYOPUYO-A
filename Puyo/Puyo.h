@@ -76,6 +76,8 @@ private:
 	friend struct ERASE;
 	friend struct DROP;
 	friend struct EFFECT;
+	friend struct GENERATES_OBS;
+	friend struct DROP_OBS;
 
 	friend struct DRAWPLAYING;
 };

@@ -18,6 +18,8 @@
 #include "PyUpMode/FALL.h"
 #include "PyUpMode/GENERATES.h"
 #include "PyUpMode/EFFECT.h"
+#include "PyUpMode/GENERATES_OBS.h"
+#include "PyUpMode/DROP_OBS.h"
 #include "PyInputMode/IpLeft.h"
 #include "PyInputMode/IpRight.h"
 #include "PyInputMode/IpTurnL.h"
@@ -426,6 +428,8 @@ bool Stage::Init(Vector2& Pos)
 	StgModeFunc.try_emplace(STG_MODE::FALL, FALL());
 	StgModeFunc.try_emplace(STG_MODE::GENERATES, GENERATES());
 	StgModeFunc.try_emplace(STG_MODE::EFFECT, EFFECT());
+	StgModeFunc.try_emplace(STG_MODE::GENERATE_OBS, GENERATES_OBS());
+	StgModeFunc.try_emplace(STG_MODE::DROP_OBS, DROP_OBS());
 
 	StgInputFunc.try_emplace(InputID::Up, IpUp());
 	StgInputFunc.try_emplace(InputID::Left, IpLeft());

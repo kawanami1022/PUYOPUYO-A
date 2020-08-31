@@ -25,6 +25,8 @@ enum class STG_MODE
 	FALL,
 	ERASE,
 	EFFECT,
+	DROP_OBS,
+	GENERATE_OBS,
 	MAX,
 };
 
@@ -104,7 +106,9 @@ private:
 	friend struct ERASE;
 	friend struct DROP;
 	friend struct EFFECT;
-	
+	friend struct GENERATES_OBS;
+	friend struct DROP_OBS;
+
 	friend struct DRAWPLAYING;
 	friend struct DRAWWIN;
 	friend struct DRAWLOSE;
