@@ -72,11 +72,11 @@ void Puyo::setBlockSize(int size)
     blockSize = size;
 }
 
-bool Puyo::drop()
+bool Puyo::drop(int DropSpeed)
 {
     if (dirPer_.perBit.d == 0)
     {
-        pos_.y+= 1;
+        pos_.y+= DropSpeed;
         return true;
     }
     return false;

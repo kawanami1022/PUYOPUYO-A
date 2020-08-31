@@ -39,7 +39,7 @@ public:
 	bool GetAlive();
 	void SetAlive(bool aliveFlag);
 	void setBlockSize(int size);
-	bool drop();
+	bool drop(int);
 	void SetMatchGrid();
 protected:
 	PUYO_TYPE puyoType_;

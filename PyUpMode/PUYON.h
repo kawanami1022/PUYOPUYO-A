@@ -36,7 +36,8 @@ struct PUYON
 
 		for (auto&& ObsPuyo : stage->obsPuyo_)
 		{
-			if (ObsPuyo->GetGridPos().x == ObsPuyo->GetGridPos().x)
+			if (stage->puyo_[0]->GetGridPos().x == ObsPuyo->GetGridPos().x||
+				stage->puyo_[1]->GetGridPos().x == ObsPuyo->GetGridPos().x)
 			{
 				int MatchGridPosY = ObsPuyo->GetGridPos().y * ObsPuyo->blockSize + ObsPuyo->offsetPos_.y + ObsPuyo->blockSize / 2;
 				int mag = (stage->gridCountY - 1) - ObsPuyo->GetGridPos().y;	// puyo‚ÌyÀ•W‚É‚æ‚Á‚ÄˆÚ“®”{—¦‚ð‹‚ß‚é

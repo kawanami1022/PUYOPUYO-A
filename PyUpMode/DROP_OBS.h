@@ -6,14 +6,16 @@ struct DROP_OBS
 	void operator()(Stage* stg)
 	{
 		stg->stgMode = STG_MODE::GENERATES;
-		stg->makeObsPuyoList();
+		//stg->makeObsPuyoList();
 		for (auto&& ObsPuyo : stg->obsPuyo_)
 		{
 			stg->setPermition((*ObsPuyo));
-			if (ObsPuyo->drop())
+			if (ObsPuyo->drop(6))
 			{
 				stg->stgMode = STG_MODE::DROP_OBS;
 			}
 		}
+		if (stg->stgMode == STG_MODE::GENERATES)
+			stg->SetStageData();
 	}
 };

@@ -82,9 +82,9 @@ int Stage::update(STG_TYPE EyStgType)
 		stgType_ = STG_TYPE::LOSE;
 	}
 
+	makeObsPuyoList();
 
-
-	if (stgMode == STG_MODE::GENERATES)
+	if (stgMode == STG_MODE::GENERATE_OBS)
 	{return GetChainCount_;}
 	return 0;
 }

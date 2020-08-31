@@ -16,8 +16,8 @@ struct DROP
 			stage->stgMode = STG_MODE::FALL;
 			stage->setPermition((*stage->puyo_[0]));
 			stage->setPermition((*stage->puyo_[1]));
-			stage->puyo_[0]->drop();
-			stage->puyo_[1]->drop();
+			stage->puyo_[0]->drop(1);
+			stage->puyo_[1]->drop(1);
 
 			//‰º•ûŒü‚ÉˆÚ“®‚Å‚«‚È‚¢‚©Šm”F‚·‚é
 			if (stage->puyo_[0]->dirPer_.perBit.d == 0&&stage->puyo_[1]->dirPer_.perBit.d==0)
