@@ -42,6 +42,7 @@
     <ClCompile Include="Texture\Texture.cpp" />
     <ClCompile Include="Texture\TextureFactory.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="_debug\_DebugConOut.cpp" />
     <ClCompile Include="_debug\_DebugDispOut.cpp" />
   </ItemGroup>
@@ -94,6 +95,7 @@
     <ClInclude Include="Texture\Texture.h" />
     <ClInclude Include="Texture\TextureFactory.h" />
     <ClInclude Include="Scene\TitleScene.h" />
+    <ClInclude Include="UI\UI.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="_debug\_DebugConOut.h" />
     <ClInclude Include="_debug\_DebugDispOut.h" />

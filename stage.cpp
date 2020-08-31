@@ -94,7 +94,7 @@ void Stage::draw()
 
 
 	StgDrawFunc[stgType_](*this);
-	frame++;
+	frame_++;
 }
 
 void Stage::makePuyo()
@@ -383,7 +383,7 @@ std::vector<PUYO_TYPE*> Stage::GetErasePos()
 
 bool Stage::Init(Vector2& Pos)
 {
-	frame = 0;
+	frame_ = 0;
 	this->_pos = Pos;
 
 	if (stageCount_ == 0) 
@@ -468,6 +468,9 @@ bool Stage::Init(Vector2& Pos)
 	efkInit();
 	//changeInputType.try_emplace(ContType::Key, [](int x) { return x + 1; });
 
+	//UIの初期化
+	//StageUI_ = { {},{},{} };
+
 	return true;
 }
 
@@ -500,6 +503,7 @@ Stage::Stage(Vector2 && offset, Vector2&& size) :
 	InputTxHdl_.try_emplace(ContType::Key, textureFactory.GetTexture("Image/キーボードにゅうりょく.png"));
 	InputTxHdl_.try_emplace(ContType::Mouse, textureFactory.GetTexture("Image/マウスにゅうりょく.png"));
 	InputTxHdl_.try_emplace(ContType::Pad, textureFactory.GetTexture("Image/ぱっどにゅうりょく.png"));
+
 	Init(offset_ );
 }
 

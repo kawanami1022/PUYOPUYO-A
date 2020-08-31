@@ -13,6 +13,8 @@
 #include "Puyo/ObsPuyo.h"
 #include "Texture/TextureFactory.h"
 #include "Texture/Texture.h"
+#include "UI/UI.h"
+
 #define STGPUYO(id) stage->puyo_[id]
 #define PUYO_DELETE_NUM	4
 
@@ -72,8 +74,11 @@ private:
 	std::function<void(Vector2&&,Vector2&&)> chPuyo_;
 	std::list<ObsPuyo> obsPuyoList_;
 	std::vector<sharObsPuyo> obsPuyo_;
+
+	std::map<STG_TYPE, UI> StageUI_;		// ステージのUI
+
 	STG_TYPE stgType_;			// ステージ状態
-	int frame;
+	int frame_;
 	InputID inputId_;
 	static int stageCount_;
 	int id_;
