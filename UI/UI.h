@@ -5,6 +5,7 @@
 class UI
 {
 public:
+	UI();
 	UI(int, int);
 	int frame_;
 	void DrawUI(Positoin2 Center);

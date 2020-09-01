@@ -5,9 +5,11 @@ class Texture
 {
 
 private:
+
 	int GrHandle_;
 	Vector2 size_;
 public:
+	Texture();
 	Texture(int);
 	// getter
 	Vector2 GetSize();

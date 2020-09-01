@@ -15,6 +15,9 @@ struct DRAWWIN
 			}
 		}
 		DrawGraph(stg.offset_.x + 1 * stg.blockSize, stg.offset_.y + 1 * stg.blockSize, stg.GmOvHdl_[STCI(STG_TYPE::WIN)], true);
+		stg.StageUI_[STG_TYPE::WIN].DrawUIReductionWidth(
+			{ stg.offset_.x + 4 * stg.blockSize,
+			stg.offset_.y + 2 * stg.blockSize });
 	}
 
 };

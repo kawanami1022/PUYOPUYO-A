@@ -2,6 +2,12 @@
 #include "UI.h"
 
 
+
+UI::UI()
+{
+	frame_ = 0;
+	txHdl_ = Texture(0);
+}
 UI::UI(int frame, int GrHdl):frame_(frame), txHdl_(GrHdl)
 {
 }
@@ -15,6 +21,7 @@ void UI::DrawUI(Positoin2 Center)
 
 void UI::DrawUIReductionWidth(Positoin2 Center)
 {
+	frame_++;
 	DrawExtendGraph(frame_+Center.x - txHdl_.GetSize().x / 2, Center.y - txHdl_.GetSize().y / 2,
 		Center.x + txHdl_.GetSize().x / 2- frame_, Center.y + txHdl_.GetSize().y / 2, txHdl_.GetHandle(), true);
 }

@@ -1,6 +1,12 @@
 #include <DxLib.h>
 #include "Texture.h"
 
+Texture::Texture()
+{
+	GrHandle_ = 0;
+	GetGraphSize(GrHandle_, 0, 0);
+}
+
 Texture::Texture(int GrHandle)
 {
 	GrHandle_ = GrHandle;

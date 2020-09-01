@@ -466,11 +466,14 @@ bool Stage::Init(Vector2& Pos)
 	}
 	setNextPuyo();
 	efkInit();
-	//changeInputType.try_emplace(ContType::Key, [](int x) { return x + 1; });
 
 	//UIÇÃèâä˙âª
-	//StageUI_ = { {},{},{} };
-
+	StageUI_.insert(std::make_pair(STG_TYPE::PLAY, UI(0, GmOvHdl_[STCI(STG_TYPE::PLAY)])));
+	StageUI_.insert(std::make_pair(STG_TYPE::WIN, UI(0, GmOvHdl_[STCI(STG_TYPE::WIN)])));
+	StageUI_.insert(std::make_pair(STG_TYPE::LOSE, UI(0, GmOvHdl_[STCI(STG_TYPE::LOSE)])));
+	//StageUI_.try_emplace(STG_TYPE::PLAY, UI(0,GmOvHdl_[STCI(STG_TYPE::PLAY)]));
+	//StageUI_.try_emplace(STG_TYPE::WIN, UI(0,GmOvHdl_[STCI(STG_TYPE::WIN)]));
+	//StageUI_.try_emplace(STG_TYPE::LOSE, UI(0, GmOvHdl_[STCI(STG_TYPE::LOSE)]));
 	return true;
 }
 
