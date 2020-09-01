@@ -1,3 +1,4 @@
+#include <cmath>
 #include <DxLib.h>
 #include "UI.h"
 
@@ -19,11 +20,17 @@ void UI::DrawUI(Positoin2 Center)
 
 }
 
-void UI::DrawUIReductionWidth(Positoin2 Center)
+void UI::DrawUIReductionWidth(Positoin2 Center, int speed)
 {
 	frame_++;
-	DrawExtendGraph(frame_+Center.x - txHdl_.GetSize().x / 2, Center.y - txHdl_.GetSize().y / 2,
-		Center.x + txHdl_.GetSize().x / 2- frame_, Center.y + txHdl_.GetSize().y / 2, txHdl_.GetHandle(), true);
+	int tmpWdh = abs((((frame_* speed) + txHdl_.GetSize().x / 2) % (txHdl_.GetSize().x * 2)) - txHdl_.GetSize().x);
+
+	if (frame_*speed > txHdl_.GetSize().x*2)tmpWdh = 0;
+	DrawExtendGraph(
+		tmpWdh + Center.x - txHdl_.GetSize().x / 2, Center.y - txHdl_.GetSize().y / 2,
+		Center.x + txHdl_.GetSize().x / 2 - tmpWdh, Center.y + txHdl_.GetSize().y / 2,
+		txHdl_.GetHandle(),
+		true);
 }
 
 

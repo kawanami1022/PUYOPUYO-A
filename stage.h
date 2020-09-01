@@ -18,6 +18,8 @@
 #define STGPUYO(id) stage->puyo_[id]
 #define PUYO_DELETE_NUM	4
 
+const int RotaSpeed = 6;
+
 enum class STG_MODE
 {
 	GENERATES,

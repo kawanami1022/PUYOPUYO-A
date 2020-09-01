@@ -13,6 +13,8 @@ struct DRAWLOSE
 					DrawGraph(stg.offset_.x + x * stg.blockSize, stg.offset_.y + y * stg.blockSize, stg.GrHandle_[STCI(PUYO_TYPE::WALL)], true);
 			}
 		}
-		DrawGraph(stg.offset_.x + 1 * stg.blockSize, stg.offset_.y + 1 * stg.blockSize, stg.GmOvHdl_[STCI(STG_TYPE::LOSE)], true);
+		stg.StageUI_[STG_TYPE::LOSE].DrawUIReductionWidth(
+			{ stg.offset_.x + 4 * stg.blockSize,
+			stg.offset_.y + 6 * stg.blockSize }, RotaSpeed);
 	}
 };
