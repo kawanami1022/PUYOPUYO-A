@@ -26,7 +26,6 @@ struct DRAWPLAYING
 		for (auto&& PUYO : stg.puyo_)
 		{
 			PUYO->draw();
-			DrawFormatString(PUYO->pos_.x, PUYO->pos_.y, 0xffffff, "%d", idx);
 			
 			idx++;
 		}
