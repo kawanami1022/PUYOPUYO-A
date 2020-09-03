@@ -91,8 +91,8 @@ int Stage::update(STG_TYPE EyStgType)
 
 void Stage::draw()
 {
-
-
+	DrawGraph(_pos.x, _pos.y, GrHandle_[10], true);
+	
 	StgDrawFunc[stgType_](*this);
 	frame_++;
 }
@@ -331,8 +331,9 @@ void Stage::ChangeInputMode(ComInputID comInput)
 				contTypeTmp = static_cast<ContType>(((STCI(contTypeTmp) + STCI(ContType::Max)) + 1) % STCI(ContType::Max));
 
 		}
+
 		if (contTypeTmp == ContType::Key)			controller_ = std::make_unique<KeyInput>();
-		if (contTypeTmp == ContType::Mouse)		controller_ = std::make_unique<mouse>();
+		if (contTypeTmp == ContType::Mouse)			controller_ = std::make_unique<mouse>();
 		if (contTypeTmp == ContType::Pad)			controller_ = std::make_unique<Pad>();
 		if (contTypeTmp == ContType::AI)			controller_ = std::make_unique<AI>();
 		controller_->Setup(id_);
@@ -383,6 +384,7 @@ std::vector<PUYO_TYPE*> Stage::GetErasePos()
 
 bool Stage::Init(Vector2& Pos)
 {
+	shackPos_ = { 0,0 };
 	frame_ = 0;
 	this->_pos = Pos;
 
@@ -438,6 +440,7 @@ bool Stage::Init(Vector2& Pos)
 	StgDrawFunc.try_emplace(STG_TYPE::WIN, DRAWWIN());
 	StgDrawFunc.try_emplace(STG_TYPE::LOSE, DRAWLOSE());
 	std::string stgList[] = { "Image/PuyoWall.png","Image/PuyoWall_BLUE.png" };
+	std::string stgBgList[] = { "Image/BackGround_Red.png","Image/BackGround_BLUE.png" };
 	// グラフィックハンドルを用意
 	GrHandle_.reserve(STCI(PUYO_TYPE::MAX));
 	GrHandle_.emplace_back(textureFactory.GetTexture("")->GetHandle());
@@ -450,6 +453,7 @@ bool Stage::Init(Vector2& Pos)
 	GrHandle_.emplace_back(textureFactory.GetTexture(stgList[id_])->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/GuideBlock.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoGuide.png")->GetHandle());
+	GrHandle_.emplace_back(textureFactory.GetTexture(stgBgList[id_])->GetHandle());
 
 	GmOvHdl_ = { textureFactory.GetTexture("")->GetHandle(),
 			textureFactory.GetTexture("Image/yatta.png")->GetHandle(),
@@ -471,9 +475,7 @@ bool Stage::Init(Vector2& Pos)
 	StageUI_.insert(std::make_pair(STG_TYPE::PLAY, UI(0, GmOvHdl_[STCI(STG_TYPE::PLAY)])));
 	StageUI_.insert(std::make_pair(STG_TYPE::WIN, UI(0, GmOvHdl_[STCI(STG_TYPE::WIN)])));
 	StageUI_.insert(std::make_pair(STG_TYPE::LOSE, UI(0, GmOvHdl_[STCI(STG_TYPE::LOSE)])));
-	//StageUI_.try_emplace(STG_TYPE::PLAY, UI(0,GmOvHdl_[STCI(STG_TYPE::PLAY)]));
-	//StageUI_.try_emplace(STG_TYPE::WIN, UI(0,GmOvHdl_[STCI(STG_TYPE::WIN)]));
-	//StageUI_.try_emplace(STG_TYPE::LOSE, UI(0, GmOvHdl_[STCI(STG_TYPE::LOSE)]));
+
 	return true;
 }
 

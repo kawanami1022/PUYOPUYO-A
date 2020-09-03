@@ -245,9 +245,6 @@
     <ClInclude Include="PyUpMode\DROP_OBS.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="PyUpMode\SHACK.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="UI\UI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -334,5 +331,18 @@
     <Image Include="Image\AIモード.png">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="Image\BackGround_BLUE.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\BackGround_Red.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\titleLogo.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\BackGround.psd" />
+    <None Include="Image\TitleLogo.psd" />
   </ItemGroup>
 </Project>

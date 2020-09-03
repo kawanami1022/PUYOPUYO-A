@@ -13,8 +13,9 @@ struct DRAWPLAYING
 			for (int x = 0; x < stg.gridCountX; x++)
 			{
 				if (stg.stgData_[x][y] == PUYO_TYPE::WALL)
-					DrawGraph(stg.offset_.x + x * stg.blockSize,
-						stg.offset_.y + y * stg.blockSize, stg.GrHandle_[STCI(PUYO_TYPE::WALL)], true);
+					DrawGraph(stg.offset_.x + x * stg.blockSize + stg.shackPos_.x,
+						stg.offset_.y + y * stg.blockSize + stg.shackPos_.y,
+						stg.GrHandle_[STCI(PUYO_TYPE::WALL)], true);
 			}
 		}
 
@@ -44,7 +45,8 @@ struct DRAWPLAYING
 
 		for (auto&& GuidePos : stg.GuidePyPos_)
 		{
-			DrawGraph(stg.offset_.x + GuidePos.x * stg.blockSize, stg.offset_.y + GuidePos.y * stg.blockSize,
+			DrawGraph(stg.offset_.x + GuidePos.x * stg.blockSize,
+				stg.offset_.y + GuidePos.y * stg.blockSize,
 				stg.GrHandle_[8], true);
 		}
 

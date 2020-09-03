@@ -6,7 +6,7 @@ struct GENERATES
 {
 	void operator()(Stage* stage) {
 		Vector2 tmp;
-
+		stage->shackPos_ = { 0,0 };
 		if (stage->controller_->GetType() == ContType::AI)
 		{
 			stage->controller_->SetStgData(

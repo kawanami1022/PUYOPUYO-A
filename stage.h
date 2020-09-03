@@ -88,6 +88,7 @@ private:
 	Vector2 offset_;
 	Vector2 size_;
 	Vector2 nextBoxPos;
+	Positoin2 shackPos_;				// 揺らす座標
 	std::array<Vector2,2> GuidePyPos_;	//ガイド用Puyo座標
 	// 初期化処理
 	bool Init(Vector2&);

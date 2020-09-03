@@ -58,7 +58,6 @@
     <ClInclude Include="Puyo\PUYO_ID.h" />
     <ClInclude Include="PyUpMode\DROP_OBS.h" />
     <ClInclude Include="PyUpMode\GENERATES_OBS.h" />
-    <ClInclude Include="PyUpMode\SHACK.h" />
     <ClInclude Include="Scene\MenuScene.h" />
     <ClInclude Include="Puyo\nextPuyo.h" />
     <ClInclude Include="PyDraw\DRAWLOSE.h" />
@@ -103,6 +102,8 @@
   <ItemGroup>
     <Image Include="Image\AIモード.png" />
     <Image Include="Image\A_BUTTON.png" />
+    <Image Include="Image\BackGround_BLUE.png" />
+    <Image Include="Image\BackGround_Red.png" />
     <Image Include="Image\batanque.png" />
     <Image Include="Image\BLOCK\BLOWNBLOCK.png" />
     <Image Include="Image\BLOCK\BLUEBLOCK.png" />
@@ -120,6 +121,7 @@
     <Image Include="Image\PuyoWall.png" />
     <Image Include="Image\PuyoWall_BLUE.png" />
     <Image Include="Image\RED_Puyo.png" />
+    <Image Include="Image\titleLogo.png" />
     <Image Include="Image\X_BUTTON.png" />
     <Image Include="Image\yatta.png" />
     <Image Include="Image\YELLOW_Puyo.png" />
@@ -128,6 +130,10 @@
     <Image Include="Image\キーボードにゅうりょく.png" />
     <Image Include="Image\スペースキー押して.png" />
     <Image Include="Image\マウスにゅうりょく.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\BackGround.psd" />
+    <None Include="Image\TitleLogo.psd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

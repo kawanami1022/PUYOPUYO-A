@@ -21,15 +21,22 @@ struct PUYON
 
 			for (auto&& Puyo : stage->puyo_)
 			{
-				if (stage->puyo_[id] == nullptr)break;
-				if (stage->puyo_[id]->GetGridPos().x == Puyo->GetGridPos().x)
+				try
 				{
-					int MatchGridPosY = Puyo->GetGridPos().y * Puyo->blockSize + Puyo->offsetPos_.y + Puyo->blockSize / 2;
-					int mag = (stage->gridCountY-1)-Puyo->GetGridPos().y;	// puyo‚ÌyÀ•W‚É‚æ‚Á‚ÄˆÚ“®”{—¦‚ð‹‚ß‚é
 
-					Puyo->radious.x = Puyo->blockSize / 2 - offsetRadious.x;
-					Puyo->radious.y = Puyo->blockSize / 2 - offsetRadious.y;
-					Puyo->ROffPos_.y = offsetRadious.y * mag;
+					if (stage->puyo_[id]->GetGridPos().x == Puyo->GetGridPos().x)
+					{
+						int MatchGridPosY = Puyo->GetGridPos().y * Puyo->blockSize + Puyo->offsetPos_.y + Puyo->blockSize / 2;
+						int mag = (stage->gridCountY-1)-Puyo->GetGridPos().y;	// puyo‚ÌyÀ•W‚É‚æ‚Á‚ÄˆÚ“®”{—¦‚ð‹‚ß‚é
+
+						Puyo->radious.x = Puyo->blockSize / 2 - offsetRadious.x;
+						Puyo->radious.y = Puyo->blockSize / 2 - offsetRadious.y;
+						Puyo->ROffPos_.y = offsetRadious.y * mag;
+					}
+				}
+				catch (...)
+				{
+					std::cout << "accecssed the non - exisit puyo!" << std::endl;
 				}
 			}
 		}
