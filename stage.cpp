@@ -455,6 +455,7 @@ bool Stage::Init(Vector2& Pos)
 	GrHandle_.emplace_back(textureFactory.GetTexture("Image/PuyoGuide.png")->GetHandle());
 	GrHandle_.emplace_back(textureFactory.GetTexture(stgBgList[id_])->GetHandle());
 
+
 	GmOvHdl_ = { textureFactory.GetTexture("")->GetHandle(),
 			textureFactory.GetTexture("Image/yatta.png")->GetHandle(),
 			textureFactory.GetTexture("Image/batanque.png")->GetHandle() };
@@ -490,6 +491,11 @@ bool Stage::efkInit()
  	return true;
 }
 
+bool Stage::ButtonInit()
+{
+	return false;
+}
+
 void Stage::controllerTypeDraw()
 {
 }
@@ -504,10 +510,10 @@ Stage::Stage(Vector2 && offset, Vector2&& size) :
 	size_ = size;
 	nextBoxPos = Vector2(50, 100);
 
-	InputTxHdl_.try_emplace(ContType::AI, textureFactory.GetTexture("Image/AIモード.png"));
-	InputTxHdl_.try_emplace(ContType::Key, textureFactory.GetTexture("Image/キーボードにゅうりょく.png"));
-	InputTxHdl_.try_emplace(ContType::Mouse, textureFactory.GetTexture("Image/マウスにゅうりょく.png"));
-	InputTxHdl_.try_emplace(ContType::Pad, textureFactory.GetTexture("Image/ぱっどにゅうりょく.png"));
+	ContTypeTxHdl_.try_emplace(ContType::AI, textureFactory.GetTexture("Image/AIモード.png"));
+	ContTypeTxHdl_.try_emplace(ContType::Key, textureFactory.GetTexture("Image/キーボードにゅうりょく.png"));
+	ContTypeTxHdl_.try_emplace(ContType::Mouse, textureFactory.GetTexture("Image/マウスにゅうりょく.png"));
+	ContTypeTxHdl_.try_emplace(ContType::Pad, textureFactory.GetTexture("Image/ぱっどにゅうりょく.png"));
 
 	Init(offset_ );
 }

@@ -6,7 +6,7 @@ struct DRAWPLAYING
 {
 	void operator()(Stage& stg)
 	{
-		stg.controller_->DebugDrow(stg.id_, (*stg.InputTxHdl_[stg.controller_->GetType()]));
+		stg.controller_->DebugDrow(stg.id_, (*stg.ContTypeTxHdl_[stg.controller_->GetType()]));
 
 		for (int y = 0; y < stg.gridCountY; y++)
 		{

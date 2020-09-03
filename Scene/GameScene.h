@@ -30,6 +30,8 @@ private:
     int SetChainCount_;
     std::vector<BLOCK> Block_;
     // Texture
+    std::list<std::string> txNmList_;
+    std::vector<SharTexture> texture_;
     std::list<std::string> BlockNameList_;
     std::vector<SharTexture> BlockHandle_;
     TextureFactory txFcty_;

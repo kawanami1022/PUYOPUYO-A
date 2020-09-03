@@ -23,9 +23,9 @@ public:
     UniqueBase upDate(UniqueBase nowScene)override;
     void Draw()override;
 private:
-    std::list<std::string> txNmList_;
     int frame_;
     TextureFactory txFcty_;
+    std::list<std::string> txNmList_;
     std::vector<SharTexture> texture_;
     std::map< ContType,std::function<void(TitleScene&)>> TxtureDraw_;
     friend struct KEY_INPUT_DRAW;

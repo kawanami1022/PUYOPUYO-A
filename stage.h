@@ -77,6 +77,8 @@ private:
 	std::list<ObsPuyo> obsPuyoList_;
 	std::vector<sharObsPuyo> obsPuyo_;
 
+
+
 	std::map<STG_TYPE, UI> StageUI_;		// ステージのUI
 
 	STG_TYPE stgType_;			// ステージ状態
@@ -93,7 +95,7 @@ private:
 	// 初期化処理
 	bool Init(Vector2&);
 	bool efkInit();			// エフェクト
-
+	bool ButtonInit();
 	void controllerTypeDraw();
 
 	int _checkGridCount;
@@ -143,23 +145,32 @@ public:
 	void makeObsPuyoList();
 	// 入力処理系の関数
 	void ChangeInputMode(ComInputID);
+
+	//Getter
 	Vector2 getChipPos();
 	STG_TYPE GetStgType();
 	Positoin2 GetGridPos(Positoin2);
 	PUYO_TYPE GetStageData(Positoin2);
+
 
 	bool DeletePuyo();
 	std::vector<PUYO_TYPE*> GetErasePos();
 	Stage(Vector2&& offset, Vector2&& size);
 	~Stage();
 	friend class PlayUnit;
+
+	// グラフィックハンドル
 	TextureFactory textureFactory;
 	std::vector<int> GrHandle_;
 	std::vector<int> GmOvHdl_;
-	std::map<ContType, SharTexture> InputTxHdl_;		// 入力用グラフィックハンドル
+	std::map<ContType, SharTexture> ContTypeTxHdl_;		// 入力用グラフィックハンドル
 
 	std::list<std::string> contNameList_;
 	std::array<int, STCI(ContType::Max)> contHdl_;
+
+	//std::list<std::string> InputKeyNmList_;				// 入力用
+	std::vector<int> InputHdl_;							// 入力グラフィックハンドル
+
 
 	// エフェクト
 	std::vector<SharEfk> EffectHandle_;

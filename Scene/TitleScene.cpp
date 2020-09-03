@@ -49,7 +49,6 @@ void TitleScene::Draw()
 	ClsDrawScreen();
 	int offSize = frame_ % 30;
 	DxLib_Draw::DrawExtendGraphCe(400, 150, texture_[2]->GetSize().x, texture_[2]->GetSize().y - offSize, texture_[2]->GetHandle());
-	//DrawGraph(100, 100, texture_[2]->GetHandle(), true);
 	TxtureDraw_[controller->GetType()](*this);
 	ScreenFlip();
 }

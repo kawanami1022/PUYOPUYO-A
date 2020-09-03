@@ -22,6 +22,12 @@ GameScene::GameScene()
 		BlockHandle_.emplace_back(txFcty_.GetTexture(BLOCKLIST));
 	}
 
+	txNmList_ = { "Image/スペースキー押して.png","Image/A_BUTTON.png","Image/titleLogo.png" };
+	for (auto&& TXNMList : txNmList_)
+	{
+		texture_.emplace_back(txFcty_.GetTexture(TXNMList));
+	}
+
 	const int width = 14;
 	const int height = 14;
 
@@ -96,10 +102,13 @@ void GameScene::Draw()
 		DrawGraph(BLOCK.pos_.x, BLOCK.pos_.y, BLOCK.GrHdl_, true);
 	}
 
-
 	stage[0]->draw();
 	stage[1]->draw();
 
+	if (stage[0]->GetStgType()==STG_TYPE::LOSE)
+	{
+
+	}
 	ScreenFlip();
 }
 
