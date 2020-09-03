@@ -10,7 +10,7 @@ enum class InputID
 	Right,
 	TURN_L,
 	TURN_R,
-	//SPACE,
+	PAUSE_,
 	Max
 };
 

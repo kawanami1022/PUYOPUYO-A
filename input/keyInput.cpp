@@ -15,8 +15,9 @@ bool KeyInput::Setup(int no)
 			{InputID::Down,KEY_INPUT_DOWN},
 			{InputID::Left,KEY_INPUT_LEFT},
 			{InputID::Right,KEY_INPUT_RIGHT},
-			{InputID::TURN_L,KEY_INPUT_K},
-			{InputID::TURN_R,KEY_INPUT_L}
+			{InputID::TURN_L,KEY_INPUT_NUMPAD0},
+			{InputID::TURN_R,KEY_INPUT_NUMPAD1},
+			{InputID::PAUSE_,KEY_INPUT_3}
 		};
 	}
 	else
@@ -28,6 +29,7 @@ bool KeyInput::Setup(int no)
 			{InputID::Right,KEY_INPUT_D},
 			{InputID::TURN_L,KEY_INPUT_Q},
 			{InputID::TURN_R,KEY_INPUT_E},
+			{InputID::PAUSE_,KEY_INPUT_R}
 		};
 	}
 

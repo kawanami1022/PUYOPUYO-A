@@ -30,7 +30,8 @@ bool mouse::Setup(int no)
 					{InputID::Right,MOUSE_INPUT_RIGHT},
 					{InputID::Down,MOUSE_INPUT_MIDDLE},
 					{InputID::TURN_L,NULL}, 
-					{InputID::TURN_R,NULL}, };
+					{InputID::TURN_R,NULL},
+					{InputID::PAUSE_,NULL} };
 	joyPadNum_ = GetJoypadNum();
 	return true;
 }

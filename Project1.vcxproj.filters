@@ -254,6 +254,9 @@
     <ClInclude Include="Scene\GAME_INPUT_DRAW\PAD_INPUT_DRAW.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="STG_INPUT_DRAW\STG_INPUT_DRAW_KEY.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\BLOCK\BLOWNBLOCK.png">

@@ -94,6 +94,9 @@ void Stage::draw()
 	DrawGraph(_pos.x, _pos.y, GrHandle_[10], true);
 	
 	StgDrawFunc[stgType_](*this);
+
+	if(id_==0)DrawGraph(0, 0, InputHdl_[controller_->GetType()], true);
+	if(id_==1)DrawGraph(400, 0, InputHdl_[controller_->GetType()], true);
 	frame_++;
 }
 
@@ -397,8 +400,6 @@ bool Stage::Init(Vector2& Pos)
 	stageCount_++;
 	color_ = 0x000033 << (16 * stageCount_);
 
-	//puyo_[0]->setBlockSize(blockSizeX);
-
 	stgDataBase_.resize(static_cast<size_t>(gridCountX * gridCountY));
 	for(int no=0;no<gridCountX;no++)
 	{stgData_.emplace_back(&stgDataBase_[static_cast<size_t>(no * gridCountY)]);}
@@ -471,6 +472,11 @@ bool Stage::Init(Vector2& Pos)
 	}
 	setNextPuyo();
 	efkInit();
+
+	std::string TxList_[2] = {"Image/KeyInputLeft.png","Image/KeyInputRight.png"};
+	InputHdl_.try_emplace(ContType::Key, textureFactory.GetTexture(TxList_[id_])->GetHandle());
+	InputHdl_.try_emplace(ContType::Mouse, textureFactory.GetTexture("Image/mouse.png")->GetHandle());
+	InputHdl_.try_emplace(ContType::Pad, textureFactory.GetTexture("Image/controller.png")->GetHandle());
 
 	//UIÇÃèâä˙âª
 	StageUI_.insert(std::make_pair(STG_TYPE::PLAY, UI(0, GmOvHdl_[STCI(STG_TYPE::PLAY)])));

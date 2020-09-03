@@ -81,6 +81,7 @@ private:
 
 	std::map<STG_TYPE, UI> StageUI_;		// ステージのUI
 
+
 	STG_TYPE stgType_;			// ステージ状態
 	int frame_;
 	InputID inputId_;
@@ -168,9 +169,7 @@ public:
 	std::list<std::string> contNameList_;
 	std::array<int, STCI(ContType::Max)> contHdl_;
 
-	//std::list<std::string> InputKeyNmList_;				// 入力用
-	std::vector<int> InputHdl_;							// 入力グラフィックハンドル
-
+	std::map<ContType, int> InputHdl_;							// 入力グラフィックハンドル
 
 	// エフェクト
 	std::vector<SharEfk> EffectHandle_;

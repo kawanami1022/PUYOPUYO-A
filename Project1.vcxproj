@@ -93,6 +93,7 @@
     <ClInclude Include="input\mouse.h" />
     <ClInclude Include="Puyo\Puyo.h" />
     <ClInclude Include="SceneMng.h" />
+    <ClInclude Include="STG_INPUT_DRAW\STG_INPUT_DRAW_KEY.h" />
     <ClInclude Include="Texture\Texture.h" />
     <ClInclude Include="Texture\TextureFactory.h" />
     <ClInclude Include="Scene\TitleScene.h" />
