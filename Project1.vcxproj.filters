@@ -248,6 +248,12 @@
     <ClInclude Include="UI\UI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\GAME_INPUT_DRAW\KEY_INPUT_DRAW.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GAME_INPUT_DRAW\PAD_INPUT_DRAW.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\BLOCK\BLOWNBLOCK.png">

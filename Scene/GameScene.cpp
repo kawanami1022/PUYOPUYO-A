@@ -4,13 +4,16 @@
 #include "TitleScene.h"
 #include "MenuScene.h"
 #include "../BLOCK/BLOCK.h"
+#include "GAME_INPUT_DRAW/KEY_INPUT_DRAW.h"
+#include "GAME_INPUT_DRAW/PAD_INPUT_DRAW.h"
+
 GameScene::GameScene()
 {
 	offset = { 50,100 };
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
 	offset = { 500, 100 };
 	stage.emplace_back(new Stage(std::move(offset), std::move(size)));
-
+	frame_ = 0;
 	BlockNameList_ = { "Image/BLOCK/BLOWNBLOCK.png",
 					"Image/BLOCK/BLUEBLOCK.png",
 					"Image/BLOCK/GREENASEETS.png",
@@ -27,7 +30,8 @@ GameScene::GameScene()
 	{
 		texture_.emplace_back(txFcty_.GetTexture(TXNMList));
 	}
-
+	TxtureDraw_.try_emplace(ContType::Key, KEY_INPUT_DRAW());
+	TxtureDraw_.try_emplace(ContType::Pad, PAD_INPUT_DRAW());
 	const int width = 14;
 	const int height = 14;
 
@@ -91,6 +95,7 @@ UniqueBase GameScene::upDate(UniqueBase nowScene)
 		stage[i]->input();
 		SetChainCount_ = stage[i]->update(stage[(STCI(i + 1)) % stage.size()]->GetStgType());
 	}
+	frame_++;
     return std::move(nowScene);
 }
 
@@ -105,9 +110,9 @@ void GameScene::Draw()
 	stage[0]->draw();
 	stage[1]->draw();
 
-	if (stage[0]->GetStgType()==STG_TYPE::LOSE)
+	if (stage[0]->GetStgType()!=STG_TYPE::PLAY)
 	{
-
+		TxtureDraw_[controller->GetType()](*this);
 	}
 	ScreenFlip();
 }
