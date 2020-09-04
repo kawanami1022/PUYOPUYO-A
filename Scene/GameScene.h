@@ -31,7 +31,10 @@ private:
     int SetChainCount_;
     std::vector<BLOCK> Block_;
     int frame_;
+    bool InputVisible;
+
     // Texture
+
     std::map< ContType, std::function<void(GameScene&)>> TxtureDraw_;
     std::list<std::string> txNmList_;
     std::vector<SharTexture> texture_;

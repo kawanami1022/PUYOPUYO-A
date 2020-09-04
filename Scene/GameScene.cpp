@@ -53,6 +53,8 @@ GameScene::GameScene()
 	}
 	if (controller->GetType() == ContType::Key)
 		controller->changeInputTbl(KEY_INPUT_SPACE, InputID::TURN_L);
+
+	InputVisible = false;
 }
 
 GameScene::~GameScene()
@@ -78,6 +80,7 @@ UniqueBase GameScene::input(UniqueBase nowScene)
 		{
 			nowScene = std::make_unique<TitleScene>();
 		}
+
 	}
 	if (comInput->push(ComInputID::F1))
 	{
@@ -112,7 +115,8 @@ void GameScene::Draw()
 
 	if (stage[0]->GetStgType()!=STG_TYPE::PLAY)
 	{
-		TxtureDraw_[controller->GetType()](*this);
+
+			TxtureDraw_[controller->GetType()](*this);
 	}
 	ScreenFlip();
 }

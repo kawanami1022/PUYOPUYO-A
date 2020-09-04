@@ -81,7 +81,7 @@ private:
 
 	std::map<STG_TYPE, UI> StageUI_;		// ステージのUI
 
-
+	bool InputVisible_;
 	STG_TYPE stgType_;			// ステージ状態
 	int frame_;
 	InputID inputId_;
@@ -109,6 +109,7 @@ private:
 	friend struct IpRight;
 	friend struct IpTurnL;
 	friend struct IpTurnR;
+	friend struct IpPause;
 
 	friend struct GENERATES;
 	friend struct FALL;

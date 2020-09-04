@@ -26,6 +26,7 @@
 #include "PyInputMode/IpTurnR.h"
 #include "PyInputMode/IpUp.h"
 #include "PyInputMode/lpDown.h"
+#include "PyInputMode/lpPause.h"
 #include "PyDraw/DRAWPLAYING.h"
 #include "PyDraw/DRAWWIN.h"
 #include "PyDraw/DRAWLOSE.h"
@@ -61,7 +62,6 @@ void Stage::input()
 					puyo_[id]->Down(data.first);
 				}
 			}
-
 		}
 	}
 }
@@ -95,8 +95,10 @@ void Stage::draw()
 	
 	StgDrawFunc[stgType_](*this);
 
-	if(id_==0)DrawGraph(0, 0, InputHdl_[controller_->GetType()], true);
-	if(id_==1)DrawGraph(400, 0, InputHdl_[controller_->GetType()], true);
+	if (InputVisible_) {
+		if(id_==0)DrawGraph(0, 0, InputHdl_[controller_->GetType()], true);
+		if(id_==1)DrawGraph(400, 0, InputHdl_[controller_->GetType()], true);
+	}
 	frame_++;
 }
 
@@ -410,7 +412,7 @@ bool Stage::Init(Vector2& Pos)
 	{eraseData_.emplace_back(&eraseDataBase_[static_cast<size_t>(no * gridCountY)]);}
 	SetStageData();
 
-
+	InputVisible_ = false;
 	_checkGridCount = 0;
 	GetChainCount_ = 0;
 	SetChainCount_ = 0;
